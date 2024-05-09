@@ -21,11 +21,11 @@ $router->post("/login", [LoginController::class, "index"]);
 
 
 $router->get("/dashboard", [DashboardController::class, "index"]);
-$router->get("/perfil", [PerfilController::class, "index"]);
-$router->get("/matriculas", [MatriculasController::class, "index"]);
-$router->get("/calificaciones", [CalificacionesController::class, "index"]);
-$router->get("/asignaturas", [AsignaturasController::class, "index"]);
-$router->get("/docentes", [DocentesController::class, "index"]);
+$router->get("/dashboard/perfil", [PerfilController::class, "index"]);
+$router->get("/dashboard/matriculas", [MatriculasController::class, "index"]);
+$router->get("/dashboard/calificaciones", [CalificacionesController::class, "index"]);
+$router->get("/dashboard/asignaturas", [AsignaturasController::class, "index"]);
+$router->get("/dashboard/docentes", [DocentesController::class, "index"]);
 
 
 

@@ -2,13 +2,11 @@
     <div class="d-flex justify-content-center align-items-center flex-column w-100">
         <div>
 
-            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Calificaciones</h3>
+            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Docentes</h3>
         </div>
 
 
-      
-    <!-- Table Element -->
-    <div class="container-fluid w-100">
+        <div class="container-fluid w-100">
     <!-- Table Element -->
     <div class="card border-0 p-5 ">
 
@@ -30,10 +28,10 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Estudiante</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Asignatura</th>
-                        <th scope="col">Nota</th>
-                        <th scope="col">Docente</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Sexo</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -42,8 +40,8 @@
                         <th scope="row">1</th>
                         <td>John Doe</td>
                         <td>Matemáticas</td>
-                        <td>90</td>
-                        <td>Profesor A</td>
+                        <td>Mañana</td>
+                        <td>Masculino</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i> Editar
@@ -57,8 +55,8 @@
                         <th scope="row">2</th>
                         <td>Jane Smith</td>
                         <td>Ciencias</td>
-                        <td>85</td>
-                        <td>Profesor B</td>
+                        <td>Tarde</td>
+                        <td>Femenino</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i> Editar
@@ -72,8 +70,8 @@
                         <th scope="row">3</th>
                         <td>Michael Johnson</td>
                         <td>Lenguaje</td>
-                        <td>95</td>
-                        <td>Profesor C</td>
+                        <td>Mañana</td>
+                        <td>Masculino</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i> Editar
@@ -87,8 +85,8 @@
                         <th scope="row">4</th>
                         <td>Emily Williams</td>
                         <td>Historia</td>
-                        <td>88</td>
-                        <td>Profesor D</td>
+                        <td>Tarde</td>
+                        <td>Femenino</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i> Editar
@@ -102,8 +100,8 @@
                         <th scope="row">5</th>
                         <td>David Brown</td>
                         <td>Geografía</td>
-                        <td>92</td>
-                        <td>Profesor E</td>
+                        <td>Mañana</td>
+                        <td>Masculino</td>
                         <td>
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i> Editar
@@ -119,7 +117,6 @@
     </div>
 </div>
 
-</div>
 
 
     </div>

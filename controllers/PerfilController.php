@@ -11,7 +11,7 @@ class PerfilController
            echo json_encode(['respuesta' => true]);
            return;
         }
-        $router->render("login/auth",[]);
+        $router->render("dashboard/Perfil/Perfil",[]);
     }
    
     

@@ -13,12 +13,12 @@
         </div>
 
         <ul class="list-unstyled px-2 mt-2 d-flex flex-column">
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa fa-home"></i> Inicio</a></li>
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-user"></i>Perfil</a></li>
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between"> <span><i class="fa-solid fa-file"></i> Matriculas</span> </a></li>
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-regular fa-pen-to-square"></i> Calificaciones</a></li>
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-layer-group"></i>Asignaturas</a></li>
-                <li class="modifywapper"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a></li>
+                <li class="modifywapper"><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block <?php echo pagina_actual("/dashboard")? "activa" : "";?> "><i class="fa fa-home"></i> Inicio</a></li>
+                <li class="modifywapper"><a href="/dashboard/perfil" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-user"></i>Perfil</a></li>
+                <li class="modifywapper"><a href="/dashboard/matriculas" class="text-decoration-none px-3 py-2 d-block"> <span><i class="fa-solid fa-file"></i> Matriculas</span> </a></li>
+                <li class="modifywapper"><a href="/dashboard/calificaciones" class="text-decoration-none px-3 py-2 d-block"><i class="fa-regular fa-pen-to-square"></i> Calificaciones</a></li>
+                <li class="modifywapper"><a href="/dashboard/asignaturas" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-layer-group"></i>Asignaturas</a></li>
+                <li class="modifywapper"><a href="/dashboard/docentes" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-chalkboard-user"></i> Docentes</a></li>
         </ul>
         <hr class="h-color mx-2">
 

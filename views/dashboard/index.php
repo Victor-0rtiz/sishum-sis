@@ -53,93 +53,93 @@
                     </h6>
                 </div>
                 <div class="card-body">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Estudiante</th>
-                <th scope="col">Tutor</th>
-                <th scope="col">Grado</th>
-              
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Kevin Andrés</td>
-                <td>García Moncada</td>
-                <td>10°</td>
-               
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <i class="bi bi-pencil-square"></i> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i> Borrar
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>11°</td>
-              
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <i class="bi bi-pencil-square"></i> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i> Borrar
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>Larry the Bird</td>
-                <td>9°</td>
-                
-                <td>
-                    <button type="button" class="btn btn-primary">
-                        <i class="bi bi-pencil-square"></i> Editar
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i> Borrar
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Estudiante</th>
+                                <th scope="col">Tutor</th>
+                                <th scope="col">Grado</th>
+
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Kevin Andrés</td>
+                                <td>García Moncada</td>
+                                <td>10°</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Borrar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>11°</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Borrar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry the Bird</td>
+                                <td>Larry the Bird</td>
+                                <td>9°</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Borrar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>
     </main>
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 </div>
 
