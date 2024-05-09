@@ -17,5 +17,50 @@ class DetalleTutorEstudiante extends ActiveRecord {
         $this->Id_Estudiante = $args['Id_Estudiante'] ?? null;
     }
 
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Tutor
+     */
+    public function getIdTutor() {
+        return $this->Id_Tutor;
+    }
+
+    /**
+     * Set the value of Id_Tutor
+     */
+    public function setIdTutor($Id_Tutor): self {
+        $this->Id_Tutor = $Id_Tutor;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Estudiante
+     */
+    public function getIdEstudiante() {
+        return $this->Id_Estudiante;
+    }
+
+    /**
+     * Set the value of Id_Estudiante
+     */
+    public function setIdEstudiante($Id_Estudiante): self {
+        $this->Id_Estudiante = $Id_Estudiante;
+        return $this;
+    }
 }
 ?>

@@ -18,5 +18,50 @@ class Docente extends ActiveRecord {
     }
 
  
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Cod_docente
+     */
+    public function getCodDocente() {
+        return $this->Cod_docente;
+    }
+
+    /**
+     * Set the value of Cod_docente
+     */
+    public function setCodDocente($Cod_docente): self {
+        $this->Cod_docente = $Cod_docente;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Usuario
+     */
+    public function getIdUsuario() {
+        return $this->Id_Usuario;
+    }
+
+    /**
+     * Set the value of Id_Usuario
+     */
+    public function setIdUsuario($Id_Usuario): self {
+        $this->Id_Usuario = $Id_Usuario;
+        return $this;
+    }
 }
 ?>

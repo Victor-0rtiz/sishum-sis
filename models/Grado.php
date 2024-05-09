@@ -16,5 +16,35 @@ class Grado extends ActiveRecord {
     }
 
     
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Nombre
+     */
+    public function getNombre() {
+        return $this->Nombre;
+    }
+
+    /**
+     * Set the value of Nombre
+     */
+    public function setNombre($Nombre): self {
+        $this->Nombre = $Nombre;
+        return $this;
+    }
 }
 ?>

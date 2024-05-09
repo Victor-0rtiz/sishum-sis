@@ -20,5 +20,65 @@ class DetalleNotaAsignatura extends ActiveRecord {
     }
 
    
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of id_detalle_grado_asignatura
+     */
+    public function getIdDetalleGradoAsignatura() {
+        return $this->id_detalle_grado_asignatura;
+    }
+
+    /**
+     * Set the value of id_detalle_grado_asignatura
+     */
+    public function setIdDetalleGradoAsignatura($id_detalle_grado_asignatura): self {
+        $this->id_detalle_grado_asignatura = $id_detalle_grado_asignatura;
+        return $this;
+    }
+
+    /**
+     * Get the value of id_matricula
+     */
+    public function getIdMatricula() {
+        return $this->id_matricula;
+    }
+
+    /**
+     * Set the value of id_matricula
+     */
+    public function setIdMatricula($id_matricula): self {
+        $this->id_matricula = $id_matricula;
+        return $this;
+    }
+
+    /**
+     * Get the value of Nota
+     */
+    public function getNota() {
+        return $this->Nota;
+    }
+
+    /**
+     * Set the value of Nota
+     */
+    public function setNota($Nota): self {
+        $this->Nota = $Nota;
+        return $this;
+    }
 }
 ?>

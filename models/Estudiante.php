@@ -18,5 +18,50 @@ class Estudiante extends ActiveRecord {
     }
 
     
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Cod_estudiante
+     */
+    public function getCodEstudiante() {
+        return $this->Cod_estudiante;
+    }
+
+    /**
+     * Set the value of Cod_estudiante
+     */
+    public function setCodEstudiante($Cod_estudiante): self {
+        $this->Cod_estudiante = $Cod_estudiante;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Usuario
+     */
+    public function getIdUsuario() {
+        return $this->Id_Usuario;
+    }
+
+    /**
+     * Set the value of Id_Usuario
+     */
+    public function setIdUsuario($Id_Usuario): self {
+        $this->Id_Usuario = $Id_Usuario;
+        return $this;
+    }
 }
 ?>

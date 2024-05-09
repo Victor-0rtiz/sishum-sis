@@ -18,5 +18,50 @@ class Administrador extends ActiveRecord {
     }
 
     
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Cod_administrador
+     */
+    public function getCodAdministrador() {
+        return $this->Cod_administrador;
+    }
+
+    /**
+     * Set the value of Cod_administrador
+     */
+    public function setCodAdministrador($Cod_administrador): self {
+        $this->Cod_administrador = $Cod_administrador;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Usuario
+     */
+    public function getIdUsuario() {
+        return $this->Id_Usuario;
+    }
+
+    /**
+     * Set the value of Id_Usuario
+     */
+    public function setIdUsuario($Id_Usuario): self {
+        $this->Id_Usuario = $Id_Usuario;
+        return $this;
+    }
 }
 ?>

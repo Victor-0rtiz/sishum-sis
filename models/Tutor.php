@@ -20,5 +20,65 @@ class Tutor extends ActiveRecord {
     }
 
     
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of Cedula
+     */
+    public function getCedula() {
+        return $this->Cedula;
+    }
+
+    /**
+     * Set the value of Cedula
+     */
+    public function setCedula($Cedula): self {
+        $this->Cedula = $Cedula;
+        return $this;
+    }
+
+    /**
+     * Get the value of Ocupacion
+     */
+    public function getOcupacion() {
+        return $this->Ocupacion;
+    }
+
+    /**
+     * Set the value of Ocupacion
+     */
+    public function setOcupacion($Ocupacion): self {
+        $this->Ocupacion = $Ocupacion;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Usuario
+     */
+    public function getIdUsuario() {
+        return $this->Id_Usuario;
+    }
+
+    /**
+     * Set the value of Id_Usuario
+     */
+    public function setIdUsuario($Id_Usuario): self {
+        $this->Id_Usuario = $Id_Usuario;
+        return $this;
+    }
 }
 ?>

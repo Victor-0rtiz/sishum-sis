@@ -1,47 +1,157 @@
-body{
-    background: #eee;
-   }
-   
-   #side_nav{
-    background: #153742;
-    min-width: 250px;
-    max-width: 250px;
-    transition: all 0.3s;
-   }
-   #navbar_nav{
-    background: #153742;
-    
-    transition: all 0.3s;
-   }
-   .content{
-      min-height: 100vh;
-      width: 100%;
-   }
-   hr.h-color{
-     background: #eee;
-   }
-   
-   .sidebar li.active{
-      background: #eee;
-      border-radius: 8px;
-   }
-   
-   .sidebar li.active a, .sidebar li.active a:hover {
-    color: #000;
-   }
-   .sidebar li a{
-    color: #fff;
-   }
-   
-   @media(max-width: 767px){
-    #side_nav{
-      margin-left: -250px;
-      position: absolute;
-      min-height: 100vh;
-      z-index: 1;
-   
+@use '../base/variables' as v;
+@import '../base/mixins';
+
+
+body {
+  background: #eee;
+}
+
+#side_nav {
+  background: #153742;
+  min-width: 250px;
+  max-width: 250px;
+  transition: all 0.3s;
+}
+
+#navbar_nav {
+  background: #153742;
+
+  transition: all 0.3s;
+}
+
+.content {
+  min-height: 100vh;
+  width: 100%;
+}
+
+hr.h-color {
+  background: #eee;
+}
+
+.sidebar li.active {
+  background: #eee;
+  border-radius: 8px;
+}
+
+.sidebar li.active a,
+.sidebar li.active a:hover {
+  color: #000;
+}
+
+.sidebar li a {
+  color: #fff;
+}
+
+@media(max-width: 767px) {
+  #side_nav {
+    margin-left: -250px;
+    position: absolute;
+    min-height: 100vh;
+    z-index: 1;
+
+  }
+
+  #side_nav.active {
+    margin-left: 0;
+  }
+}
+
+
+.tabsistema {
+  width: 45rem;
+  padding: .2rem 2rem;
+  border: 1px solid v.$negro;
+  border-radius: 0.6rem;
+
+  &__titulo {
+    color: v.$azuloscuro;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+
+  &__busqueda {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+
+    &--agregar {
+      @include boton(v.$azul, v.$blanco)
     }
-    #side_nav.active{
-      margin-left: 0;
-     }
-   }
+
+    &--input {
+      border: 1px solid v.$negro;
+      border-radius: .5rem;
+    }
+  }
+
+  &__tabla {
+    border-collapse: collapse;
+    width: 100%;
+
+    &--encabezado {
+
+      color: v.$blanco;
+      background-color: v.$azuloscuro2;
+
+      & th {
+
+        padding: .4rem;
+      }
+    }
+
+    &--cuerpo {
+      & td {
+        padding: .4rem;
+        text-align: center;
+      }
+
+      &--par {
+        background: rgb(212, 211, 211);
+
+        &:hover {
+          cursor: pointer;
+          background-color: darken(v.$blanco, 30%);
+        }
+      }
+
+      &--impar {
+        &:hover {
+          cursor: pointer;
+          background-color: darken(v.$blanco, 30%);
+        }
+      }
+
+    }
+
+  }
+
+  &__td--acciones {
+    display: flex;
+    justify-content: space-evenly;
+
+    gap: 1rem;
+
+    .btn-azul {
+      @include boton(v.$azul, v.$blanco);
+
+    }
+
+    .btn-verde {
+      @include boton(v.$verde, v.$blanco);
+    }
+
+    .btn-rojo {
+      @include boton(v.$rojo, v.$blanco);
+    }
+  }
+}
+
+.contcontainer {
+ max-height: calc(100vh - 60px); /* Ajusta este valor según el tamaño de tu navbar y/o sidebar */
+  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede la altura máxima */
+  padding-bottom: 20px;
+/* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+scrollbar-width: none; /* Desactiva la barra de desplazamiento */
+  scrollbar-color: transparent transparent;
+  
+}

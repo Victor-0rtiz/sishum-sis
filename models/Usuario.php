@@ -20,5 +20,65 @@ class Usuario extends ActiveRecord {
     }
 
 
+
+    /**
+     * Get the value of Id
+     */
+    public function getId() {
+        return $this->Id;
+    }
+
+    /**
+     * Set the value of Id
+     */
+    public function setId($Id): self {
+        $this->Id = $Id;
+        return $this;
+    }
+
+    /**
+     * Get the value of usser
+     */
+    public function getUsser() {
+        return $this->usser;
+    }
+
+    /**
+     * Set the value of usser
+     */
+    public function setUsser($usser): self {
+        $this->usser = $usser;
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword() {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     */
+    public function setPassword($password): self {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * Get the value of Id_Tipo_Usuario
+     */
+    public function getIdTipoUsuario() {
+        return $this->Id_Tipo_Usuario;
+    }
+
+    /**
+     * Set the value of Id_Tipo_Usuario
+     */
+    public function setIdTipoUsuario($Id_Tipo_Usuario): self {
+        $this->Id_Tipo_Usuario = $Id_Tipo_Usuario;
+        return $this;
+    }
 }
 ?>

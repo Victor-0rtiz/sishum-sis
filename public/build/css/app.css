@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Document
  * ========================================================================== */
 /**
@@ -379,7 +380,9 @@ template {
   display: none;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -412,6 +415,28 @@ a {
 
 img {
   max-width: 100%;
+}
+
+.modifywapper {
+  text-decoration: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0.5rem;
+}
+.modifywapper:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  background-color: #F59E0B;
+  transition: all 0.2s ease-in-out;
+}
+.modifywapper:hover:after {
+  width: 100%;
 }
 
 h1, h2, h3 {
@@ -454,6 +479,7 @@ p {
   backdrop-filter: saturate(200%) blur(25px);
 }
 
+/** Media Queries **/
 body {
   background: #eee;
 }
@@ -484,7 +510,8 @@ hr.h-color {
   border-radius: 8px;
 }
 
-.sidebar li.active a, .sidebar li.active a:hover {
+.sidebar li.active a,
+.sidebar li.active a:hover {
   color: #000;
 }
 
@@ -502,4 +529,156 @@ hr.h-color {
   #side_nav.active {
     margin-left: 0;
   }
+}
+.tabsistema {
+  width: 45rem;
+  padding: 0.2rem 2rem;
+  border: 1px solid #000;
+  border-radius: 0.6rem;
+}
+.tabsistema__titulo {
+  color: #153742;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+.tabsistema__busqueda {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}
+.tabsistema__busqueda--agregar {
+  background-color: #3d5296;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .tabsistema__busqueda--agregar {
+    width: auto;
+  }
+}
+.tabsistema__busqueda--agregar:hover {
+  background-color: #2e3e72;
+  cursor: pointer;
+}
+.tabsistema__busqueda--input {
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+}
+.tabsistema__tabla {
+  border-collapse: collapse;
+  width: 100%;
+}
+.tabsistema__tabla--encabezado {
+  color: #FFFFFF;
+  background-color: rgb(11, 81, 100);
+}
+.tabsistema__tabla--encabezado th {
+  padding: 0.4rem;
+}
+.tabsistema__tabla--cuerpo td {
+  padding: 0.4rem;
+  text-align: center;
+}
+.tabsistema__tabla--cuerpo--par {
+  background: rgb(212, 211, 211);
+}
+.tabsistema__tabla--cuerpo--par:hover {
+  cursor: pointer;
+  background-color: #b3b3b3;
+}
+.tabsistema__tabla--cuerpo--impar:hover {
+  cursor: pointer;
+  background-color: #b3b3b3;
+}
+.tabsistema__td--acciones {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+.tabsistema__td--acciones .btn-azul {
+  background-color: #3d5296;
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .tabsistema__td--acciones .btn-azul {
+    width: auto;
+  }
+}
+.tabsistema__td--acciones .btn-azul:hover {
+  background-color: #2e3e72;
+  cursor: pointer;
+}
+.tabsistema__td--acciones .btn-verde {
+  background-color: rgb(54, 122, 54);
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .tabsistema__td--acciones .btn-verde {
+    width: auto;
+  }
+}
+.tabsistema__td--acciones .btn-verde:hover {
+  background-color: #265726;
+  cursor: pointer;
+}
+.tabsistema__td--acciones .btn-rojo {
+  background-color: rgb(189, 77, 77);
+  padding: 1.5rem 4rem;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .tabsistema__td--acciones .btn-rojo {
+    width: auto;
+  }
+}
+.tabsistema__td--acciones .btn-rojo:hover {
+  background-color: #9d3a3a;
+  cursor: pointer;
+}
+
+.contcontainer {
+  max-height: calc(100vh - 60px); /* Ajusta este valor según el tamaño de tu navbar y/o sidebar */
+  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede la altura máxima */
+  padding-bottom: 20px;
+  /* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+  scrollbar-width: none; /* Desactiva la barra de desplazamiento */
+  scrollbar-color: transparent transparent;
 }/*# sourceMappingURL=app.css.map */
