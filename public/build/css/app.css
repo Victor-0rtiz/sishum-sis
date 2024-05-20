@@ -417,13 +417,16 @@ img {
   max-width: 100%;
 }
 
-.modifywapper {
+.wapperlist {
+  padding: 0.5rem;
   text-decoration: none;
   color: white;
+  display: inline-block;
+}
+
+.modifywapper {
   position: relative;
   overflow: hidden;
-  display: inline-block;
-  padding: 0.5rem;
 }
 .modifywapper:after {
   content: "";
@@ -486,9 +489,14 @@ body {
 
 #side_nav {
   background: #153742;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 200px;
+  max-width: 200px;
   transition: all 0.3s;
+}
+
+.activa {
+  background-color: #09181d;
+  border-radius: 10px;
 }
 
 #navbar_nav {

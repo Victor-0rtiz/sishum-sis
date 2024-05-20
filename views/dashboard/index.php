@@ -3,30 +3,31 @@
 
     <main class="content px-3 py-2 d-flex flex-column gap-5">
 
-
-        <div class="d-flex justify-content-evenly">
-            <div class="card" style="width: 30rem;">
+    
+         <div class="row justify-content-evenly">
+        <div class="col-11 col-md-4 mb-4">
+            <div class="card animate__animated animate__rubberBand" style="width: 100%;">
                 <div class="card-body">
                     <h3 class="card-title text-center">Estudiantes</h3>
                     <div class="d-flex justify-content-center gap-5 fs-1">
                         <h2 class="fs-1">50</h2>
                         <i class="fa-solid fa-children"></i>
                     </div>
-
-                </div>
-            </div>
-
-            <div class="card" style="width: 30rem;">
-                <div class="card-body">
-                    <h3 class="card-title text-center">Docentes</h3>
-                    <div class="d-flex  justify-content-center gap-5 fs-1">
-                        <h2 class="fs-1">50</h2>
-                        <i class="fa-solid fa-chalkboard-user"></i>
-                    </div>
-
                 </div>
             </div>
         </div>
+        <div class="col-11 col-md-4 mb-4">
+            <div class="card animate__animated animate__rubberBand" style="width: 100%;">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Docentes</h3>
+                    <div class="d-flex justify-content-center gap-5 fs-1">
+                        <h2 class="fs-1">50</h2>
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="d-flex justify-content-center">
 
             <div class="grafica w-75  ">
@@ -45,15 +46,10 @@
                             Agregar
                         </button>
                     </h5>
-                    <h6 class="col">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </h6>
+                   
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover display" id="tablaMatriculas">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -114,6 +110,8 @@
                     </table>
                 </div>
 
+
+
             </div>
         </div>
     </main>
@@ -145,4 +143,5 @@
 
 <?php $script = '
     <script src="build/js/graficas.js"></script>
+    <script src="build/js/tablaindex.js"></script>
 '; ?>

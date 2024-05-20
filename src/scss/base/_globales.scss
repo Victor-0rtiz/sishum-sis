@@ -37,14 +37,20 @@ img {
     max-width: 100%;
 }
 
-
-.modifywapper {
+.wapperlist{
+    padding: 0.5rem;
     text-decoration: none;
     color: white;
+    display: inline-block;
+}
+
+
+.modifywapper {
+    
     position: relative;
     overflow: hidden;
-    display: inline-block;
-    padding: 0.5rem;
+   
+    
 
     &:after {
       content: "";
