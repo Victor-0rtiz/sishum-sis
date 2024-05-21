@@ -23,18 +23,16 @@
         <div class="">
           <div class="">
             <form id="formlogin">
-
-
               <div class="mb-3 row d-flex justify-content-start ">
                 <label for="usser" class="col-3 col-form-label text-white text-start d-flex  gap-3">Usuario </label>
                 <div class="col-9">
-                  <input type="text" class="form-control" id="usser" placeholder="usuario">
+                  <input type="text" class="form-control" name="usser" id="usser" placeholder="usuario">
                 </div>
               </div>
               <div class="mb-3 row justify-content-end">
                 <label for="password" class="col-3 text-white text-start  ">Contraseña </label>
                 <div class="col-9">
-                  <input type="password" class="form-control" id="password" placeholder="contraseña">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="contraseña">
                 </div>
               </div>
 

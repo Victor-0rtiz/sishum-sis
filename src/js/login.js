@@ -11,13 +11,19 @@
   });
 
   async function login() {
+
+    const formularioLogin = document.querySelector("#formlogin");
+    formularioLogin.addEventListener("submit", async(e)=>{
+      e.preventDefault();
+    })
     
     try {
-      const resultado = await fetch("http://localhost:3210/login", { method: "POST" });
+      const fomrlogin = new FormData(formularioLogin);
+      const resultado = await fetch("http://localhost:6060/login", { method: "POST", body: fomrlogin });
       const respuesta = await resultado.json();     
       console.log(respuesta);
       if (respuesta.respuesta == true) {
-        window.location.href = "http://localhost:3210/dashboard";
+        window.location.href = "http://localhost:6060/dashboard";
       }
     } catch (error) {
         console.log(error);
