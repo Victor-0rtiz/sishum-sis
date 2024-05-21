@@ -12,10 +12,11 @@ function s($html): string
     $s = htmlspecialchars($html);
     return $s;
 }
-function pagina_actual($path)
-{
-    return str_contains($_SERVER["PATH_INFO"] ?? "/", $path) ? true : false;
+function pagina_actual($path) {
+    $currentPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+    return rtrim($currentPath, '/') === rtrim($path, '/');
 }
+
 function is_auth()
 {
     if (!$_SESSION) {

@@ -18,15 +18,10 @@
                             Agregar
                         </button>
                     </h5>
-                    <h6 class="col">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        </div>
-                    </h6>
+                   
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover display" id="tablaMatriculas">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -118,3 +113,7 @@
 
 </div>
 </div>
+<?php $script = '
+ 
+    <script src="../build/js/tablamatricula.js"></script>
+'; ?>

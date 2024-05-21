@@ -2,10 +2,12 @@
     <div class="d-flex justify-content-center align-items-center flex-column w-100">
         <div>
 
-            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Asignaturas</h3>
+            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Usuarios</h3>
         </div>
 
 
+
+        <!-- Table Element -->
         <div class="container-fluid w-100">
             <!-- Table Element -->
             <div class="card border-0 p-5 ">
@@ -16,27 +18,25 @@
                             Agregar
                         </button>
                     </h5>
-
+                   
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover display" id="tablaAsignaturas">
+                    <table class="table table-striped table-hover display" id="tablaUsuarios">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Asignatura</th>
-                                <th scope="col">Docente</th>
+                                <th scope="col">Estudiante</th>
+                                <th scope="col">Tutor</th>
                                 <th scope="col">Grado</th>
-                                <th scope="col">Turno</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Matemáticas</td>
-                                <td>Profesor A</td>
+                                <td>Estudiante A</td>
+                                <td>Tutor A</td>
                                 <td>10°</td>
-                                <td>Mañana</td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
@@ -48,10 +48,9 @@
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
-                                <td>Ciencias</td>
-                                <td>Profesor B</td>
+                                <td>Estudiante B</td>
+                                <td>Tutor B</td>
                                 <td>11°</td>
-                                <td>Tarde</td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
@@ -63,10 +62,9 @@
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
-                                <td>Lenguaje</td>
-                                <td>Profesor C</td>
+                                <td>Estudiante C</td>
+                                <td>Tutor C</td>
                                 <td>9°</td>
-                                <td>Mañana</td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
@@ -78,10 +76,9 @@
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>Historia</td>
-                                <td>Profesor D</td>
+                                <td>Estudiante D</td>
+                                <td>Tutor D</td>
                                 <td>8°</td>
-                                <td>Tarde</td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
@@ -93,10 +90,9 @@
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>Geografía</td>
-                                <td>Profesor E</td>
+                                <td>Estudiante E</td>
+                                <td>Tutor E</td>
                                 <td>7°</td>
-                                <td>Mañana</td>
                                 <td>
                                     <button type="button" class="btn btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
@@ -113,9 +109,12 @@
         </div>
 
     </div>
+
+
+</div>
 </div>
 
 <?php $script = '
  
-    <script src="../build/js/tablaasignaturas.js"></script>
+    <script src="../build/js/tablausuarios.js"></script>
 '; ?>
