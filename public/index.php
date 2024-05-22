@@ -34,6 +34,9 @@ $router->get("/dashboard/tutores", [TutoresController::class, "index"]);
 $router->get("/dashboard/usuarios", [UsuariosController::class, "index"]);
 
 
+//api
+$router->get("/api/usuarios/all", [UsuariosController::class, "allusers"]);
+
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

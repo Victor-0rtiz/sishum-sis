@@ -17,6 +17,28 @@
              }
          }
      });
+
+
+     $.ajax({
+        url: "http://localhost:6060/login",
+        type: "POST",
+        data: formLogin,
+        success: function(respuesta) {
+          console.log(respuesta);
+
+          if (respuesta.respuesta == true) {
+            window.location.href = "http://localhost:6060/dashboard";
+          } else if (respuesta.respuesta.error) {
+            mostrarAlertasErrorSecuenciales(respuesta.respuesta.error);
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+     })
+
+
+
  
  
  
