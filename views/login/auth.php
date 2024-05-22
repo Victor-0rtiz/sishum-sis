@@ -51,7 +51,7 @@
 
 <?php
 $script = '
-    <script src="build/js/login.js"></script>
+    <script  src="build/js/login.js"></script>
 ';
 
 ?>

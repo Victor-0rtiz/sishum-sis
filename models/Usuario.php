@@ -23,11 +23,11 @@ class Usuario extends ActiveRecord {
        // Validar el Login de Usuarios
        public function validarLogin() {
         if(!$this->usser) {
-            self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
+            self::$alertas['error'][] = 'El  Usuario es Obligatorio';
         }
       
         if(!$this->password) {
-            self::$alertas['error'][] = 'La contraseña no puede ir vacia';
+            self::$alertas['error'][] = 'La Contraseña no puede ir vacía';
         }
         return self::$alertas;
 
