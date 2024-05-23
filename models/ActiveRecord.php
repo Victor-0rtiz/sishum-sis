@@ -181,4 +181,40 @@ class ActiveRecord {
           }
         }
     }
+
+    ////////////////////////////////////////////procedimiento almacenados/////////////////////////////////
+
+    // Método para ejecutar procedimientos almacenados
+    public static function ejecutarSP($nombreSP, $parametros = []) {
+        $placeholders = implode(',', array_fill(0, count($parametros), '?'));
+        $query = "CALL $nombreSP(" . ($placeholders ?: '') . ")";
+        $stmt = self::$db->prepare($query);
+
+        if ($stmt === false) {
+            throw new Exception('Error en la preparación del statement: ' . self::$db->error);
+        }
+
+        if (!empty($parametros)) {
+            $types = str_repeat('s', count($parametros));
+            $stmt->bind_param($types, ...$parametros);
+        }
+
+        if (!$stmt->execute()) {
+            throw new Exception('Error en la ejecución del statement: ' . $stmt->error);
+        }
+
+        $resultado = $stmt->get_result();
+        $resultados = [];
+        while ($fila = $resultado->fetch_assoc()) {
+            $resultados[] = $fila;
+        }
+
+        // while($registro = $resultado->fetch_assoc()) {
+        //     $resultados[] = static::crearObjeto($registro);
+        // }
+
+
+        $stmt->close();
+        return $resultados;
+    }
 }

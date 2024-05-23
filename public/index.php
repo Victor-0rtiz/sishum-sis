@@ -37,6 +37,8 @@ $router->get("/dashboard/usuarios", [UsuariosController::class, "index"]);
 
 //api
 $router->get("/api/usuarios/all", [UsuariosController::class, "allusers"]);
+$router->post("/api/usuarios/add", [UsuariosController::class, "createUser"]);
+$router->get("/api/usuarios/tipouser", [UsuariosController::class, "getTipoUsers"]);
 
 
 

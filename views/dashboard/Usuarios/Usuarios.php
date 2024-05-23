@@ -14,94 +14,25 @@
 
                 <div class="card-header row">
                     <h5 class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal-dialog-scrollable" data-bs-target="#staticBackdrop">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
                             Agregar
                         </button>
                     </h5>
-                   
+
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover display" id="tablaUsuarios">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Estudiante</th>
-                                <th scope="col">Tutor</th>
-                                <th scope="col">Grado</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Usser</th>
+                                <th scope="col">Tipo de Usuario</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Estudiante A</td>
-                                <td>Tutor A</td>
-                                <td>10°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Estudiante B</td>
-                                <td>Tutor B</td>
-                                <td>11°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Estudiante C</td>
-                                <td>Tutor C</td>
-                                <td>9°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Estudiante D</td>
-                                <td>Tutor D</td>
-                                <td>8°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Estudiante E</td>
-                                <td>Tutor E</td>
-                                <td>7°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
+
+
                         </tbody>
                     </table>
                 </div>
@@ -112,7 +43,63 @@
 
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarUsuario">
+                    <div class="mb-3">
+                        <label for="editarUsser" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="editarUsser">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
+                        <select class="form-select" id="editarIdTipoUsuario">
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- modal de agregar -->
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarModalLabel">Agregar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddUsuario">
+                    <div class="mb-3">
+                        <label for="agregarUsser" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" name="usser" id="agregarUsser">
+                    </div>
+                    <div class="mb-3">
+                        <label for="agregarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
+                        <select class="form-select" name="Id_Tipo_Usuario" id="agregarIdTipoUsuario">
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <?php $script = '
  
