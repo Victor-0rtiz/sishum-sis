@@ -20,6 +20,7 @@ $router = new Router();
 
 $router->get("/", [LoginController::class, "index"]);
 $router->post("/login", [LoginController::class, "login"]);
+$router->get("/unlogin", [LoginController::class, "deslogearse"]);
 
 
 

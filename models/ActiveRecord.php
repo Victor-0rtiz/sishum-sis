@@ -31,7 +31,7 @@ class ActiveRecord {
     // Registros - CRUD
     public function guardar() {
         $resultado = '';
-        if(!is_null($this->id)) {
+        if(!is_null($this->Id)) {
             // actualizar
             $resultado = $this->actualizar();
         } else {
@@ -49,7 +49,7 @@ class ActiveRecord {
 
     // Busca un registro por su id
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE Id = ${id}";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -92,7 +92,7 @@ class ActiveRecord {
 
         return [
            'resultado' =>  $resultado,
-           'id' => self::$db->insert_id
+           'Id' => self::$db->insert_id
         ];
     }
 
@@ -108,7 +108,7 @@ class ActiveRecord {
 
         $query = "UPDATE " . static::$tabla ." SET ";
         $query .=  join(', ', $valores );
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " WHERE Id = '" . self::$db->escape_string($this->Id) . "' ";
         $query .= " LIMIT 1 "; 
 
         // debuguear($query);
@@ -119,7 +119,7 @@ class ActiveRecord {
 
     // Eliminar un registro - Toma el ID de Active Record
     public function eliminar() {
-        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $query = "DELETE FROM "  . static::$tabla . " WHERE Id = " . self::$db->escape_string($this->Id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
     }
@@ -159,7 +159,7 @@ class ActiveRecord {
     public function atributos() {
         $atributos = [];
         foreach(static::$columnasDB as $columna) {
-            if($columna === 'id') continue;
+            if($columna === 'Id') continue;
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;

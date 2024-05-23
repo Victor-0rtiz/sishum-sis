@@ -22,14 +22,15 @@
     try {
       const formLogin = new FormData(formularioLogin);
       const resultado = await fetch("http://localhost:6060/login", { method: "POST", body: formLogin });
+     
       const respuesta = await resultado.json();
-      console.log(respuesta);
+
    
-      if (respuesta.respuesta == true) {
-        window.location.href = "http://localhost:6060/dashboard";
-      } else if (respuesta.respuesta.error) {
-        await mostrarAlertasErrorSecuenciales(respuesta.respuesta.error);
-      }
+      if (respuesta == true) {
+        window.location.href = "/dashboard";
+      } else if (respuesta.error) {
+        await mostrarAlertasErrorSecuenciales(respuesta.error);
+      } 
     } catch (error) {
       console.log(error);
     }
