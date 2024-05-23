@@ -27,19 +27,19 @@ class UsuariosController
     {
         $alertas = [];
         if (!is_auth()) {
-            
+
             return;
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $auth = new Usuario($_POST);
+            $newuser = new Usuario($_POST);
 
-            echo json_encode($_POST);
-            return;
+            // echo json_encode($_POST);
+            // return;
 
 
 
-            $alertas =  $auth->validarLogin();
+            $alertas =  $newuser->validarCreacion();
 
 
             if (!empty($alertas)) {
@@ -47,17 +47,18 @@ class UsuariosController
                 return;
             }
 
-            $usuario = Usuario::where("usser", $auth->usser);
+            $usuario = Usuario::where("usser", $newuser->usser);
 
             if ($usuario) {
                 echo json_encode(["error" => ["Usuario ya existe "]]);
                 return;
             }
 
-            echo json_encode(['respuesta' => true]);
+            $newuser->password = password_hash($newuser->usser, PASSWORD_BCRYPT); 
+
+            echo json_encode(['respuesta' => $newuser]);
             return;
         }
-        
     }
 
 

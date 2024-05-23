@@ -33,6 +33,17 @@ class Usuario extends ActiveRecord
         }
         return self::$alertas;
     }
+    public function validarCreacion()
+    {
+        if (!$this->usser) {
+            self::$alertas['error'][] = 'El  Usuario es Obligatorio';
+        }
+
+        if (!$this->Id_Tipo_Usuario) {
+            self::$alertas['error'][] = 'El tipo de usuario no puede ir vacío';
+        }
+        return self::$alertas;
+    }
 
     public static function obtenerUsuarios()
     {

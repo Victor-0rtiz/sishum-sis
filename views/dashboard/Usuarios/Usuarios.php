@@ -54,13 +54,14 @@
             </div>
             <div class="modal-body">
                 <form id="formEditarUsuario">
+                    <input type="number"id="editarId" name="Id" hidden>
                     <div class="mb-3">
                         <label for="editarUsser" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="editarUsser">
+                        <input type="text" name="usser" class="form-control" id="editarUsser">
                     </div>
                     <div class="mb-3">
                         <label for="editarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
-                        <select class="form-select" id="editarIdTipoUsuario">
+                        <select class="form-select" name="Id_Tipo_Usuario" id="editarIdTipoUsuario">
                         </select>
                     </div>
 
