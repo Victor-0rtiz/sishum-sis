@@ -17,12 +17,11 @@ function pagina_actual($path) {
     return rtrim($currentPath, '/') === rtrim($path, '/');
 }
 
-function is_auth()
-{
-    if (!$_SESSION) {
+function is_auth() : bool {
+    if( !isset($_SESSION) ) {
         session_start();
     }
-    return isset($_SESSION["nombre"]) && !empty($_SESSION);
+    return isset($_SESSION['usser']) && !empty($_SESSION);
 }
 
 function is_admin()

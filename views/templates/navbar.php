@@ -6,7 +6,7 @@
       <div class="d-flex justify-content-center gap-3 align-items-center">
         <p class="text-white m-0 modifywapper pb-2">Usuario</p>
 
-        <a href="/" class="text-white p-2 modifywapper">  <span>
+        <a href="/unlogin" class="text-white p-2 modifywapper">  <span>
         Cerrar Sesión
         </span>
           <span>
