@@ -6,7 +6,7 @@
         success: function (response) {
             // Manejar la respuesta del servidor
             console.log(response);
-            const table = $('#tablaasingas').DataTable({
+            const table = $('#tablaCaliAsign').DataTable({
                 data: response,
                 columns: [
                     { data: 'Id' },

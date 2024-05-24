@@ -28,6 +28,7 @@ $router->get("/dashboard", [DashboardController::class, "index"]);
 $router->get("/dashboard/perfil", [PerfilController::class, "index"]);
 $router->get("/dashboard/matriculas", [MatriculasController::class, "index"]);
 $router->get("/dashboard/calificaciones", [CalificacionesController::class, "index"]);
+$router->get("/dashboard/calificaciones-asignaturas", [CalificacionesController::class, "calificacionAsignatura"]);
 $router->get("/dashboard/asignaturas", [AsignaturasController::class, "index"]);
 $router->get("/dashboard/docentes", [DocentesController::class, "index"]);
 $router->get("/dashboard/estudiantes", [EstudiantesController::class, "index"]);
