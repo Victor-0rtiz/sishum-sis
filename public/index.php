@@ -36,11 +36,28 @@ $router->get("/dashboard/usuarios", [UsuariosController::class, "index"]);
 
 
 //api
+
+//usuarios
 $router->get("/api/usuarios/all", [UsuariosController::class, "allusers"]);
 $router->post("/api/usuarios/add", [UsuariosController::class, "createUser"]);
 $router->get("/api/usuarios/tipouser", [UsuariosController::class, "getTipoUsers"]);
 
 
+//tutores
+$router->get("/api/tutores/all", [TutoresController::class, "getAllTutores"]);
 
+
+//estudiantes
+$router->get("/api/estudiantes/all", [EstudiantesController::class, "getAllEstudent"]);
+
+
+//matricula 
+$router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
+
+
+
+//matricula 
+$router->get("/api/grado/calificacion/all", [CalificacionesController::class, "getAllCali"]);
+$router->get("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

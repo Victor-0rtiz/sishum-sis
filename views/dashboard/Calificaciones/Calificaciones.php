@@ -21,93 +21,18 @@
 
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover display" id="tablaCalificaciones">
+                    <table class="table table-striped table-hover display" id="tablaasingas">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Estudiante</th>
-                                <th scope="col">Asignatura</th>
-                                <th scope="col">Nota</th>
-                                <th scope="col">Docente</th>
+                                <th scope="col">Grado</th>
+                                <th scope="col">Turno</th>
+                               
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>Matemáticas</td>
-                                <td>90</td>
-                                <td>Profesor A</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>Ciencias</td>
-                                <td>85</td>
-                                <td>Profesor B</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>Lenguaje</td>
-                                <td>95</td>
-                                <td>Profesor C</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Emily Williams</td>
-                                <td>Historia</td>
-                                <td>88</td>
-                                <td>Profesor D</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>David Brown</td>
-                                <td>Geografía</td>
-                                <td>92</td>
-                                <td>Profesor E</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
@@ -118,6 +43,10 @@
 
 
 </div>
+
+
+
+
 
 <?php $script = '
  

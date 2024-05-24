@@ -19,6 +19,14 @@ class Tutor extends ActiveRecord {
         $this->Id_Usuario = $args['Id_Usuario'] ?? null;
     }
 
+
+    public static function obtenerTutores()
+    {
+        $nombreSP = 'sp_Get_Tutores';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
     
 
     /**

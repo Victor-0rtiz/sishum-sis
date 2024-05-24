@@ -23,6 +23,15 @@ class Matricula extends ActiveRecord {
         $this->id_anio_lectivo = $args['id_anio_lectivo'] ?? null;
     }
 
+
+    public static function obtenerMatriculas()
+    {
+        $nombreSP = 'sp_Get_Matriculas';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
+
     
 
     /**

@@ -4,18 +4,35 @@ namespace Model;
 
 class DetalleAnioLectivoGrado extends ActiveRecord {
     protected static $tabla = 'detalle_aniolectivo_grado';
-    protected static $columnasDB = ['Id', 'Id_anio_lectivo', 'id_grado'];
+    protected static $columnasDB = ['Id', 'Id_anio_lectivo', 'id_grado', 'id_turno'];
 
     public $Id;
     public $Id_anio_lectivo;
     public $id_grado;
+    public $id_turno;
 
     public function __construct($args = [])
     {
         $this->Id = $args['Id'] ?? null;
         $this->Id_anio_lectivo = $args['Id_anio_lectivo'] ?? null;
         $this->id_grado = $args['id_grado'] ?? null;
+        $this->id_turno = $args['id_turno'] ?? null;
     }
+
+    public static function obtenerGradoanio()
+    {
+        $nombreSP = 'sp_Get_Detalle_aniolectivo_grado_turno';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
+    public static function obtenerCalificacionAsignatura()
+    {
+        $nombreSP = 'sp_Get_Detalle_aniolectivo_grado_turno';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
 
     
 

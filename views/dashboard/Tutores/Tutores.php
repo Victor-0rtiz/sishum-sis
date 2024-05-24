@@ -25,83 +25,14 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Estudiante</th>
                                 <th scope="col">Tutor</th>
-                                <th scope="col">Grado</th>
+                                <th scope="col">Estudiante</th>
+                                
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Estudiante A</td>
-                                <td>Tutor A</td>
-                                <td>10°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Estudiante B</td>
-                                <td>Tutor B</td>
-                                <td>11°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Estudiante C</td>
-                                <td>Tutor C</td>
-                                <td>9°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Estudiante D</td>
-                                <td>Tutor D</td>
-                                <td>8°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Estudiante E</td>
-                                <td>Tutor E</td>
-                                <td>7°</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Borrar
-                                    </button>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>

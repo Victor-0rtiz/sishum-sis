@@ -4,7 +4,7 @@
         dataType: 'json',
         success: function (result) {
             console.log(result);
-            var table = $('#tablaUsuarios').DataTable({
+            const table = $('#tablaUsuarios').DataTable({
                 data: result,
                 columns: [
                     { data: 'Id' },
@@ -35,7 +35,7 @@
             });
 
             $('#tablaUsuarios tbody').on('click', '.btn-editar', function () {
-                var data = table.row($(this).parents('tr')).data();
+                const data = table.row($(this).parents('tr')).data();
                 $('#editarId').val(data.Id);
                 $('#editarUsser').val(data.usser);
                 $('#editarIdTipoUsuario').val(data.Id_Tipo_Usuario);

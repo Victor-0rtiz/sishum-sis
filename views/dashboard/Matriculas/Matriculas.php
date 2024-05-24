@@ -24,9 +24,10 @@
                     <table class="table table-striped table-hover display" id="tablaMatriculas">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">Año Lectivo</th>
                                 <th scope="col">Estudiante</th>
                                 <th scope="col">Tutor</th>
+                                <th scope="col">Turno</th>
                                 <th scope="col">Grado</th>
                                 <th scope="col">Acciones</th>
                             </tr>
