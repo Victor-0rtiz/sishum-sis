@@ -52,7 +52,7 @@ CREATE TABLE `anio_lectivo` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `anio` int DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +61,7 @@ CREATE TABLE `anio_lectivo` (
 
 LOCK TABLES `anio_lectivo` WRITE;
 /*!40000 ALTER TABLE `anio_lectivo` DISABLE KEYS */;
+INSERT INTO `anio_lectivo` VALUES (1,2023),(2,2024);
 /*!40000 ALTER TABLE `anio_lectivo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,14 +102,14 @@ CREATE TABLE `datos_personales` (
   `Apellidos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Telefono` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `id_sexo` int NOT NULL,
-  `id_Usuario` int NOT NULL,
+  `Id_sexo` int NOT NULL,
+  `Id_Usuario` int NOT NULL,
   PRIMARY KEY (`Id`),
-  KEY `datos_personales_usuario_FK` (`id_Usuario`),
-  KEY `datos_personales_sexo_FK` (`id_sexo`),
-  CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`Id`),
-  CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+  KEY `datos_personales_usuario_FK` (`Id_Usuario`),
+  KEY `datos_personales_sexo_FK` (`Id_sexo`),
+  CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
+  CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +118,7 @@ CREATE TABLE `datos_personales` (
 
 LOCK TABLES `datos_personales` WRITE;
 /*!40000 ALTER TABLE `datos_personales` DISABLE KEYS */;
+INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2),(2,'pedro pedro','pedrito','22222','2222',1,3),(3,'pedro pancho','mocho','22222','2222',1,4),(4,'pedrito panchito','mochito','22222','2222',1,5),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6);
 /*!40000 ALTER TABLE `datos_personales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,12 +157,15 @@ CREATE TABLE `detalle_aniolectivo_grado` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Id_anio_lectivo` int NOT NULL,
   `id_grado` int NOT NULL,
+  `id_turno` int DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `Detalle_aniolectivo_grado_grado_FK` (`id_grado`),
   KEY `Detalle_aniolectivo_grado_anio_lectivo_FK` (`Id_anio_lectivo`),
+  KEY `detalle_aniolectivo_grado_turno_FK` (`id_turno`),
   CONSTRAINT `Detalle_aniolectivo_grado_anio_lectivo_FK` FOREIGN KEY (`Id_anio_lectivo`) REFERENCES `anio_lectivo` (`Id`),
-  CONSTRAINT `Detalle_aniolectivo_grado_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+  CONSTRAINT `Detalle_aniolectivo_grado_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
+  CONSTRAINT `detalle_aniolectivo_grado_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,6 +174,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
 
 LOCK TABLES `detalle_aniolectivo_grado` WRITE;
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` DISABLE KEYS */;
+INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1);
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +254,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
   KEY `Detalle_Tutor_Estudiante_estudiante_FK` (`Id_Estudiante`),
   CONSTRAINT `Detalle_Tutor_Estudiante_estudiante_FK` FOREIGN KEY (`Id_Estudiante`) REFERENCES `estudiante` (`Id`),
   CONSTRAINT `Detalle_Tutor_Estudiante_tutor_FK` FOREIGN KEY (`Id_Tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,6 +263,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
 
 LOCK TABLES `detalle_tutor_estudiante` WRITE;
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` DISABLE KEYS */;
+INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1),(2,2,2),(3,2,3),(4,1,4);
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +310,7 @@ CREATE TABLE `estudiante` (
   KEY `estudiante_municipio_FK` (`IdMunicipio`),
   CONSTRAINT `estudiante_municipio_FK` FOREIGN KEY (`IdMunicipio`) REFERENCES `municipio` (`IdMunicipio`),
   CONSTRAINT `Estudiante_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,6 +319,7 @@ CREATE TABLE `estudiante` (
 
 LOCK TABLES `estudiante` WRITE;
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
+INSERT INTO `estudiante` VALUES (1,'0090091',3,3),(2,'10101010',5,3),(3,'111212222',6,3),(4,'99899889',7,3);
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +334,7 @@ CREATE TABLE `grado` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,6 +343,7 @@ CREATE TABLE `grado` (
 
 LOCK TABLES `grado` WRITE;
 /*!40000 ALTER TABLE `grado` DISABLE KEYS */;
+INSERT INTO `grado` VALUES (1,'1ro'),(2,'2do'),(3,'3ro'),(4,'4to'),(5,'5to');
 /*!40000 ALTER TABLE `grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,6 +361,7 @@ CREATE TABLE `matricula` (
   `id_grado` int NOT NULL,
   `id_turno` int NOT NULL,
   `id_anio_lectivo` int NOT NULL,
+  `Estado` int DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Matricula_estudiante_FK` (`Id_estudiante`),
   KEY `Matricula_tutor_FK` (`Id_tutor`),
@@ -363,7 +373,7 @@ CREATE TABLE `matricula` (
   CONSTRAINT `Matricula_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `Matricula_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`),
   CONSTRAINT `Matricula_tutor_FK` FOREIGN KEY (`Id_tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,6 +382,7 @@ CREATE TABLE `matricula` (
 
 LOCK TABLES `matricula` WRITE;
 /*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
+INSERT INTO `matricula` VALUES (1,1,1,1,1,1,1),(2,2,2,3,2,2,0),(3,3,2,3,2,1,1);
 /*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -489,7 +500,7 @@ CREATE TABLE `tutor` (
   PRIMARY KEY (`Id`),
   KEY `Tutor_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Tutor_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -498,6 +509,7 @@ CREATE TABLE `tutor` (
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
+INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2),(2,'00000000000001','maistro',4);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,7 +528,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -525,13 +537,209 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1);
+INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'dbsishum'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Detalle_aniolectivo_grado_turno` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Detalle_aniolectivo_grado_turno`()
+begin
+	
+	select 
+	dagt.Id as Id,
+	dagt.id_anio_lectivo as id_anio_lectivo,
+	anl.anio as id_anio_lectivo_nombre,
+	dagt.id_grado as id_grado,
+	gr.Nombre as id_grado_nombre,
+	dagt.id_turno as id_turno,
+	turn.Nombre as id_turno_nombre
+	
+	from
+	detalle_aniolectivo_grado as dagt
+	inner join
+	grado as gr on gr.Id = dagt.id_grado
+	inner join
+	turno as turn on turn.Id = dagt.id_turno
+	inner join
+	anio_lectivo as anl on anl.Id = dagt.id_anio_lectivo
+;
+	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Estudiantes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Estudiantes`()
+begin
+	
+select
+	est.Id as Id,
+	est.Cod_estudiante as Cod_estudiante,
+	est.Id_Usuario as Id_Usuario,
+	est.IdMunicipio as Id_Municipio,
+	dp_estu.Nombres as Nombres,
+	dp_estu.Apellidos as Apellidos,
+	dp_estu.Id_sexo as Id_sexo,
+	sex.Nombre as Id_sexo_nombre,
+	mat.id_grado as Id_grado,
+	grd.Nombre as Id_grado_nombre,
+	dt_tutor.Id_Tutor as Id_tutor,
+	dp_tutor.Nombres as Tutor_Nombres,
+	dp_tutor.Apellidos as Tutor_Apellidos
+		
+from 
+	estudiante as est
+inner join 
+	datos_personales as dp_estu on dp_estu.Id_Usuario = est.Id_Usuario
+inner join 
+	detalle_tutor_estudiante  as dt_tutor on dt_tutor.Id_Estudiante  = est.Id
+inner join 
+	tutor  as tut on tut.Id  = dt_tutor.Id_Tutor 
+inner join 
+	datos_personales  as dp_tutor on dp_tutor.Id_Usuario  = tut.Id_Usuario  
+inner join 
+	matricula as mat on mat.Id_estudiante  = est.Id
+inner join 
+	grado as grd on grd.Id  = mat.id_grado 
+inner join 
+	sexo as sex on sex.Id = dp_estu.Id_sexo;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Matriculas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Matriculas`()
+begin
+	
+	select 
+	mat.Id,
+	mat.Id_estudiante,
+	mat.Id_tutor,
+	mat.id_grado,
+	grd.Nombre as Id_grado_nombre,
+	mat.id_turno,
+	tur.Nombre as Id_turno_nombre,
+	mat.id_anio_lectivo,
+	an.anio as Id_anio_lectivo_anio,
+	est.Cod_estudiante, 
+	tut.Cedula,
+	dp_estu.Nombres as Nombres_estudiante,
+	dp_estu.Apellidos as Apellidos_estudiante,
+	dp_tut.Nombres as Nombres_tutor,
+	dp_tut.Apellidos as Apellidos_tutor,
+	mat.Estado
+		
+	from 
+	matricula  as mat 
+	inner join
+	estudiante  as est on est.Id  = mat.Id_estudiante
+	inner join
+	datos_personales  as dp_estu on dp_estu.Id_Usuario  = est.Id_Usuario 
+	inner join
+	tutor  as tut on tut.Id  = mat.Id_tutor
+	inner join
+	datos_personales  as dp_tut on dp_tut.Id_Usuario  = est.Id_Usuario
+	inner join
+	grado  as grd on grd.Id  = mat.id_grado 
+	inner join
+	turno  as tur on tur.Id  = mat.id_turno 
+	inner join
+	anio_lectivo  as an on an.Id  = mat.id_anio_lectivo
+-- 	where mat.Estado = 1
+; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Tutores` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Tutores`()
+begin
+	    
+SELECT 
+    t.Id AS Id,
+    t.Cedula AS Cedula, 
+    t.Ocupacion AS Ocupacion,
+    t.Id_Usuario AS Id_Usuario,
+    dp_tutor.Id AS Id_datos_personales,
+    dp_tutor.Nombres AS Nombres,
+    dp_tutor.Apellidos AS Apellidos,
+    dp_tutor.Direccion AS Direccion, 
+    dp_tutor.Id_sexo AS Id_sexo_Tutor,
+    s_tutor.Nombre AS Id_sexo_Nombre,
+    e.Id_Estudiante AS Id_Estudiante,
+    dp_estudiante.Nombres AS Nombre_Estudiante,
+    dp_estudiante.Apellidos AS Apellidos_Estudiante,
+    dp_estudiante.Id_sexo AS Id_sexo_Estudiante,
+    s_estudiante.Nombre AS Id_sexo_Nombre_Estudiante
+FROM 
+    tutor t
+INNER JOIN 
+    datos_personales dp_tutor ON dp_tutor.Id_Usuario = t.Id_Usuario 
+INNER JOIN 
+    sexo s_tutor ON s_tutor.Id = dp_tutor.Id_sexo
+INNER JOIN 
+    (SELECT Id_Tutor, MIN(Id_Estudiante) AS Id_Estudiante
+     FROM detalle_tutor_estudiante
+     GROUP BY Id_Tutor) e ON e.Id_Tutor = t.Id
+INNER JOIN 
+    estudiante est ON est.Id = e.Id_Estudiante
+INNER JOIN 
+    datos_personales dp_estudiante ON dp_estudiante.Id_Usuario = est.Id_Usuario
+INNER JOIN 
+    sexo s_estudiante ON s_estudiante.Id = dp_estudiante.Id_sexo;  
+   
+   
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Usuarios` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -563,4 +771,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-23 16:22:57
+-- Dump completed on 2024-05-24 15:42:41
