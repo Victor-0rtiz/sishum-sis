@@ -109,7 +109,7 @@ CREATE TABLE `datos_personales` (
   KEY `datos_personales_sexo_FK` (`Id_sexo`),
   CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
   CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `datos_personales` (
 
 LOCK TABLES `datos_personales` WRITE;
 /*!40000 ALTER TABLE `datos_personales` DISABLE KEYS */;
-INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2),(2,'pedro pedro','pedrito','22222','2222',1,3),(3,'pedro pancho','mocho','22222','2222',1,4),(4,'pedrito panchito','mochito','22222','2222',1,5),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6);
+INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2),(2,'pedro pedro','pedrito','22222','2222',1,3),(3,'pedro pancho','mocho','22222','2222',1,4),(4,'pedrito panchito','mochito','22222','2222',1,5),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6),(6,'estu 4','4','22222','2222',2,7),(7,'profe 1','1','22222','2222',1,8),(8,'profe 2','2','22222','2222',1,9);
 /*!40000 ALTER TABLE `datos_personales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +227,7 @@ CREATE TABLE `detalle_nota_asignatura` (
   KEY `detalle_nota_asignatura_matricula_FK` (`id_matricula`),
   CONSTRAINT `detalle_nota_asignatura_detalle_grado_asignaturas_FK` FOREIGN KEY (`id_detalle_grado_asignatura`) REFERENCES `detalle_grado_asignaturas` (`Id`),
   CONSTRAINT `detalle_nota_asignatura_matricula_FK` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,6 +236,7 @@ CREATE TABLE `detalle_nota_asignatura` (
 
 LOCK TABLES `detalle_nota_asignatura` WRITE;
 /*!40000 ALTER TABLE `detalle_nota_asignatura` DISABLE KEYS */;
+INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90),(2,2,2,90);
 /*!40000 ALTER TABLE `detalle_nota_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,6 +547,51 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'dbsishum'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_asignaturas_grado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_asignaturas_grado`()
+begin
+	
+	select 
+	dga.Id,
+	dga.Id_detalle_aniolectivo_grado,
+	dga.Id_asignatura ,
+	asg.Nombre as Asignatura_Nombre,
+	dga.Id_docente,
+	dp.Nombres as Docente_Nombres,
+	dag.id_grado ,
+	grd.Nombre as Grado_Nombre,
+	dag.id_turno ,
+	turn.Nombre as Turno_Nombre
+	from
+	detalle_grado_asignaturas as dga 
+	inner join
+	detalle_aniolectivo_grado  as dag on dag.Id  = dga.Id_detalle_aniolectivo_grado 
+	inner join 
+	asignatura as asg on asg.Id = dga.Id_asignatura 
+	inner join 
+	turno as turn on turn.Id = dag.id_turno 
+	inner join 
+	grado as grd on grd.Id = dag.id_grado 
+	inner join 
+	docente as doc on doc.Id = dga.Id_docente 
+	inner join 
+	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
+;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Detalle_aniolectivo_grado_turno` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -584,7 +630,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Detalle_Grado_Asignatura` */;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Detalle_grado_asignatura` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -594,34 +640,74 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Detalle_Grado_Asignatura`( grad int, turn int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Detalle_grado_asignatura`( grad int, turn int)
 begin
 	
 	select 
 	dga.Id as Id,
 	dga.Id_detalle_aniolectivo_grado as Id_detalle_aniolectivo_grado,
 	dga.Id_asignatura as Id_asignatura,
-	asi.Nombre  as Id_asignatura_Nombre,
 	dga.Id_docente as Id_docente,
 	doc.Cod_docente as Cod_docente,
-	dp.Nombres as Id_docente_Nombre,
-	dp.Apellidos as Id_docente_apellidos,
+	asg.Nombre as Asignatura_nombre,
+	dp.Nombres as Nombres,
+	dp.Apellidos as Apellidos,
+	doc.Id_Usuario as Id_Usuario, 
 	dag.id_grado as id_grado,
-	grad.Nombre as id_grado_Nombre,
 	dag.id_turno as id_turno
-	from
+	from 
 	detalle_grado_asignaturas as dga
+	inner join
+	docente as doc on doc.Id = dga.Id_docente
 	inner join 
-	asignatura as asi on asi.Id = dga.Id_asignatura 
+	asignatura as asg on asg.Id = dga.Id_asignatura  
 	inner join 
-	docente  as doc on doc.Id = dga.Id_docente
-	inner  join 
-	detalle_aniolectivo_grado  as dag on dag.Id  = dga.Id_detalle_aniolectivo_grado 
-	inner join 
-	grado  as grad on grad.Id = dag.id_grado
-	inner  join 
-	datos_personales as dp on dp.Id_Usuario  = doc.Id_Usuario  
+	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
+	inner join
+	detalle_aniolectivo_grado as dag on dag.Id = dga.Id_detalle_aniolectivo_grado 
 	where dag.id_grado = grad and dag.id_turno = turn
+	;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_detalle_nota_asignatura` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_detalle_nota_asignatura`( idDGA int)
+begin
+	
+	select 
+	dna.Id as Id,
+	dna.id_detalle_grado_asignatura ,
+	dna.id_matricula,
+	dna.Nota ,
+	asig.Nombre as Nombre_asignatura,
+	dp.Nombres as Nombres,
+	mat.Id_estudiante as Id_estudiante,
+	est.Id_Usuario as Id_Usuario_estudiante
+	from
+	detalle_nota_asignatura as dna
+	inner join
+	detalle_grado_asignaturas  as dga on dga.Id = dna.id_detalle_grado_asignatura 
+	inner join
+	asignatura as asig on asig.Id = dga.Id_asignatura
+	inner join 
+	matricula as mat on mat.Id = dna.id_matricula 
+	inner join 
+	estudiante as est on est.Id = mat.Id_estudiante 
+	inner join 
+	datos_personales as dp on dp.Id_Usuario = est.Id_Usuario
+	where  dna.id_detalle_grado_asignatura = idDGA
 	;
 END ;;
 DELIMITER ;
@@ -726,7 +812,7 @@ begin
 	turno  as tur on tur.Id  = mat.id_turno 
 	inner join
 	anio_lectivo  as an on an.Id  = mat.id_anio_lectivo
--- 	where mat.Estado = 1
+
 ; 
 END ;;
 DELIMITER ;
@@ -818,4 +904,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24 16:51:18
+-- Dump completed on 2024-05-26 22:04:00

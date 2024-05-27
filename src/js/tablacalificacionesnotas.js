@@ -1,25 +1,34 @@
 (function () {
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Obtiene el valor del parámetro 'grado'
    
+    const asignatura = params.get('asignatura');
+  
+    // Imprime el valor en la consola
+    console.log( "asignatura", asignatura);
+
     $.ajax({
-        url: '/api/asignaturas/all', // Especifica la URL de tu controlador
+        url: '/api/calificaciones/notas/all', // Especifica la URL de tu controlador,
+        type: 'POST',
+        data:{ "asignatura": asignatura},
         dataType: 'json', // El tipo de datos esperado en la respuesta
         success: function (response) {
             // Manejar la respuesta del servidor
             console.log(response);
-            const table = $('#tablaAsignaturas').DataTable({
+            const table = $('#tablaCaliAsign').DataTable({
                 data: response,
                 columns: [
                     { data: 'Id' },
-                    { data: 'Asignatura_Nombre' },
-                    { data: 'Docente_Nombres' },
-                    { data: 'Grado_Nombre' },
-                    { data: 'Turno_Nombre' },
+                    { data: 'Nombres' },
+                    { data: 'Nota' },
                     {
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.id_grado}&turno=${row.id_turno}" class="btn btn-primary btn-editar">
-                            Editar ${row.Id}
+                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id}" class="btn btn-primary btn-editar">
+                            Ver Asignaturas ${row.Id}
                              </a> 
                             <button type="button" class="btn btn-danger">Borrar</button>
                                         `;
@@ -50,7 +59,7 @@
             console.error(xhr.responseText);
         }
     });
- 
- 
- 
- })()
+
+
+
+})()

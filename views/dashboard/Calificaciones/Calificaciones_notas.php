@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center align-items-center flex-column w-100">
         <div>
 
-            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Calificaciones - Asignaturas</h3>
+            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Calificaciones - Notas</h3>
         </div>
         <!-- Table Element -->
         <div class="container-fluid w-100">
@@ -22,8 +22,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Asignatura</th>
-                                <th scope="col">Tutor</th>
+                                <th scope="col">Estudiante</th>
+                                <th scope="col">Nota</th>
                                
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -47,5 +47,5 @@
 
 <?php $script = '
  
-    <script src="../build/js/tablacalificacionesasignaturas.js"></script>
+    <script src="../build/js/tablacalificacionesnotas.js"></script>
 '; ?>

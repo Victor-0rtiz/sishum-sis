@@ -29,6 +29,7 @@ $router->get("/dashboard/perfil", [PerfilController::class, "index"]);
 $router->get("/dashboard/matriculas", [MatriculasController::class, "index"]);
 $router->get("/dashboard/calificaciones", [CalificacionesController::class, "index"]);
 $router->get("/dashboard/calificaciones-asignaturas", [CalificacionesController::class, "calificacionAsignatura"]);
+$router->get("/dashboard/calificaciones-notas", [CalificacionesController::class, "calificacionNotas"]);
 $router->get("/dashboard/asignaturas", [AsignaturasController::class, "index"]);
 $router->get("/dashboard/docentes", [DocentesController::class, "index"]);
 $router->get("/dashboard/estudiantes", [EstudiantesController::class, "index"]);
@@ -57,8 +58,12 @@ $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
 
 
 
-//matricula 
+//calificaciones
 $router->get("/api/grado/calificacion/all", [CalificacionesController::class, "getAllCali"]);
-$router->get("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
+$router->post("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
+$router->post("/api/calificaciones/notas/all", [CalificacionesController::class, "getAllCaliNotas"]);
+
+//asignaturas
+$router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

@@ -1,22 +1,34 @@
 (function () {
 
+    const params = new URLSearchParams(window.location.search);
+
+    // Obtiene el valor del parámetro 'grado'
+    const grado = params.get('grado');
+    const turno = params.get('turno');
+  
+    // Imprime el valor en la consola
+    console.log('Grado:', grado, "  turno", turno);
+ 
     $.ajax({
-        url: '/api/grado/calificacion/all', // Especifica la URL de tu controlador
+        url: '/api/calificaciones/asignaturas/all', // Especifica la URL de tu controlador
+        type: 'POST',
+        data:{ "grado": grado, "turno": turno},
         dataType: 'json', // El tipo de datos esperado en la respuesta
         success: function (response) {
             // Manejar la respuesta del servidor
             console.log(response);
             const table = $('#tablaCaliAsign').DataTable({
+
                 data: response,
                 columns: [
                     { data: 'Id' },
-                    { data: 'id_grado_nombre' },
-                    { data: 'id_turno_nombre' },
+                    { data: 'Asignatura_nombre' },
+                    { data: 'Nombres' },
                     {
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id}" class="btn btn-primary btn-editar">
+                            <a href="/dashboard/calificaciones-notas?asignatura=${row.Id}" class="btn btn-primary btn-editar">
                             Ver Asignaturas ${row.Id}
                              </a> 
                             <button type="button" class="btn btn-danger">Borrar</button>

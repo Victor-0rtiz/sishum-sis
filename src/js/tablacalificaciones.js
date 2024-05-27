@@ -16,7 +16,7 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id}" class="btn btn-primary btn-editar">
+                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.id_grado}&turno=${row.id_turno}" class="btn btn-primary btn-editar">
                             Ver Asignaturas ${row.Id}
                              </a> 
                             <button type="button" class="btn btn-danger">Borrar</button>

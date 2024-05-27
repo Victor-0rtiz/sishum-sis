@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center align-items-center flex-column w-100">
         <div>
 
-            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Calificaciones</h3>
+            <h3 class="border  border-end-0 border-top-0 border-start-0 border-warning border-5 p-0">Calificaciones - Grados</h3>
         </div>
 
 

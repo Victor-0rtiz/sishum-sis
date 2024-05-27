@@ -15,7 +15,13 @@ class Asignatura extends ActiveRecord {
         $this->Nombre = $args['Nombre'] ?? '';
     }
 
-   
+    public static function obtenerAsingaturas()
+    {
+        $nombreSP = 'sp_Get_asignaturas_grado';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
 
     /**
      * Get the value of Id
