@@ -56,6 +56,8 @@ $router->get("/api/estudiantes/all", [EstudiantesController::class, "getAllEstud
 //matricula 
 $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
 
+//docentes
+$router->get("/api/docentes/all", [DocentesController::class, "getAllDocentes"]);
 
 
 //calificaciones

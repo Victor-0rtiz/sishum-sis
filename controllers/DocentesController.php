@@ -1,5 +1,7 @@
 <?php 
 namespace Controllers;
+
+use Model\Docente;
 use MVC\Router;
 
 class DocentesController 
@@ -16,6 +18,20 @@ class DocentesController
            return;
         }
         $router->render("dashboard/Docentes/Docentes",[]);
+    }
+
+    public static function getAllDocentes(Router $router)
+    {
+        if (!is_auth()) {
+            header('Location: /');
+            return;
+        }
+
+        $docentes =  Docente::obtenerDocentes();
+
+
+        echo json_encode($docentes);
+        return;
     }
    
     

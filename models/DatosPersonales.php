@@ -13,8 +13,8 @@ class DatosPersonales extends ActiveRecord {
     public $Apellidos;
     public $Telefono;
     public $Direccion;
-    public $id_sexo;
-    public $id_Usuario;
+    public $Id_sexo;
+    public $Id_Usuario;
 
     public function __construct($args = [])
     {
@@ -23,8 +23,8 @@ class DatosPersonales extends ActiveRecord {
         $this->Apellidos = $args['Apellidos'] ?? '';
         $this->Telefono = $args['Telefono'] ?? '';
         $this->Direccion = $args['Direccion'] ?? '';
-        $this->id_sexo = $args['id_sexo'] ?? null;
-        $this->id_Usuario = $args['id_Usuario'] ?? null;
+        $this->Id_sexo = $args['Id_sexo'] ?? null;
+        $this->Id_Usuario = $args['Id_Usuario'] ?? null;
     }
 
 
@@ -108,14 +108,14 @@ class DatosPersonales extends ActiveRecord {
      * Get the value of id_sexo
      */
     public function getIdSexo() {
-        return $this->id_sexo;
+        return $this->Id_sexo;
     }
 
     /**
      * Set the value of id_sexo
      */
     public function setIdSexo($id_sexo): self {
-        $this->id_sexo = $id_sexo;
+        $this->Id_sexo = $id_sexo;
         return $this;
     }
 
@@ -123,14 +123,14 @@ class DatosPersonales extends ActiveRecord {
      * Get the value of id_Usuario
      */
     public function getIdUsuario() {
-        return $this->id_Usuario;
+        return $this->Id_Usuario;
     }
 
     /**
      * Set the value of id_Usuario
      */
     public function setIdUsuario($id_Usuario): self {
-        $this->id_Usuario = $id_Usuario;
+        $this->Id_Usuario = $id_Usuario;
         return $this;
     }
 }

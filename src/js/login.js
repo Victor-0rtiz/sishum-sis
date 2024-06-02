@@ -25,8 +25,12 @@
      
       const respuesta = await resultado.json();
 
+      // console.log(respuesta.data);
+
    
-      if (respuesta == true) {
+      if (respuesta.resp == true) { 
+        const dataLogin = JSON.stringify(respuesta.data);
+        sessionStorage.setItem("data", dataLogin)
         window.location.href = "/dashboard";
       } else if (respuesta.error) {
         await mostrarAlertasErrorSecuenciales(respuesta.error);

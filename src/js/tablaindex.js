@@ -17,6 +17,10 @@
             }
         }
     });
+  
+
+    // const data = sessionStorage.getItem("data");
+    // console.log( data);
 
 
 

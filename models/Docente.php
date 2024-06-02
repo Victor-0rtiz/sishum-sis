@@ -17,6 +17,14 @@ class Docente extends ActiveRecord {
         $this->Id_Usuario = $args['Id_Usuario'] ?? null;
     }
 
+
+    public static function obtenerDocentes()
+    {
+        $nombreSP = 'sp_Get_Docentes';
+
+        return self::ejecutarSP($nombreSP);
+    }
+
  
 
     /**

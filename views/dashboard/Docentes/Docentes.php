@@ -23,89 +23,15 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Asignatura</th>
-                        <th scope="col">Turno</th>
-                        <th scope="col">Sexo</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Codigo Docente</th>
+                     
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>John Doe</td>
-                        <td>Matemáticas</td>
-                        <td>Mañana</td>
-                        <td>Masculino</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Borrar
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jane Smith</td>
-                        <td>Ciencias</td>
-                        <td>Tarde</td>
-                        <td>Femenino</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Borrar
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Michael Johnson</td>
-                        <td>Lenguaje</td>
-                        <td>Mañana</td>
-                        <td>Masculino</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Borrar
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Emily Williams</td>
-                        <td>Historia</td>
-                        <td>Tarde</td>
-                        <td>Femenino</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Borrar
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>David Brown</td>
-                        <td>Geografía</td>
-                        <td>Mañana</td>
-                        <td>Masculino</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="bi bi-trash"></i> Borrar
-                            </button>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
