@@ -7,39 +7,101 @@
 
 
         <div class="container-fluid w-100">
-    <!-- Table Element -->
-    <div class="card border-0 p-5 ">
+            <!-- Table Element -->
+            <div class="card border-0 p-5 ">
 
-        <div class="card-header row">
-            <h5 class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal-dialog-scrollable" data-bs-target="#staticBackdrop">
-                    Agregar
-                </button>
-            </h5>
-           
+                <div class="card-header row">
+                    <h5 class="col">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarModal">
+                            Agregar
+                        </button>
+                    </h5>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover display " id="tablaDocentes">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Codigo Docente</th>
+
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <table class="table table-striped table-hover display " id="tablaDocentes">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Codigo Docente</th>
-                     
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
-        </div>
+
+
+
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Agregar Docente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <h3 class="fs-2">Información y Datos Personales del Docente</h3>
 
 
+                </div>
+
+
+                <form id="formAddDatosPersonales">
+                    <div class="mb-3">
+                        <label for="nombresUsser" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="Nombres" id="nombresUsser">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidosUsser" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="Apellidos" id="apellidosUsser">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" name="Telefono" id="Telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Dirección</label>
+                        <textarea name="Direccion" id="Direccion" class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-select" name="Id_sexo" id="sexo">
+                        </select>
+                    </div>
+
+
+
+                </form>
+
+                <form id="formDocente">
+                    <div class="mb-3">
+                        <label for="agregarCodDocente" class="form-label">Código Docente</label>
+                        <input type="text" class="form-control" name="Cod_docente" id="agregarCodDocente">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+                </form>
+              
+
+
+            </div>
+        </div>
     </div>
 </div>
 

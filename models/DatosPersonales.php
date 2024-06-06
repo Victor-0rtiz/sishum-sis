@@ -6,7 +6,7 @@ namespace Model;
 
 class DatosPersonales extends ActiveRecord {
     protected static $tabla = 'datos_personales';
-    protected static $columnasDB = ['Id', 'Nombres', 'Apellidos', 'Telefono', 'Direccion', 'id_sexo', 'id_Usuario'];
+    protected static $columnasDB = ['Id', 'Nombres', 'Apellidos', 'Telefono', 'Direccion', 'Id_sexo', 'Id_Usuario'];
 
     public $Id;
     public $Nombres;

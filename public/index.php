@@ -58,6 +58,7 @@ $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
 
 //docentes
 $router->get("/api/docentes/all", [DocentesController::class, "getAllDocentes"]);
+$router->post("/api/docentes/add", [DocentesController::class, "addDocente"]);
 
 
 //calificaciones
