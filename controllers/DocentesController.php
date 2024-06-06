@@ -52,6 +52,7 @@ class DocentesController
         $ussername = substr($userNombres, 0, 3) . substr($userApellidos, 0, 3) . $fechaCreacion . $numeroRandom;
 
         // 'usser', 'password', 'Id_Tipo_Usuario'
+        $ussername = trim($ussername);
         $nwuser = new Usuario(["usser" => $ussername,  "Id_Tipo_Usuario" => 2]);
 
         $nwuser->password = password_hash($nwuser->usser, PASSWORD_BCRYPT);
