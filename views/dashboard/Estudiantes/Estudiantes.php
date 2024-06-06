@@ -26,6 +26,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Estudiante</th>
+                                <th scope="col">Codigo</th>
                                 <th scope="col">Tutor</th>
                                 <th scope="col">Grado</th>
                                 <th scope="col">Acciones</th>

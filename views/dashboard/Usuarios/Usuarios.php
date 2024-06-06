@@ -54,7 +54,7 @@
             </div>
             <div class="modal-body">
                 <form id="formEditarUsuario">
-                    <input type="number"id="editarId" name="Id" hidden>
+                    <input type="number" id="editarId" name="Id" hidden>
                     <div class="mb-3">
                         <label for="editarUsser" class="form-label">Usuario</label>
                         <input type="text" name="usser" class="form-control" id="editarUsser">
@@ -82,19 +82,67 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formAddUsuario">
-                    <div class="mb-3">
-                        <label for="agregarUsser" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="usser" id="agregarUsser">
+
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-dp-form-tab" data-bs-toggle="tab" data-bs-target="#nav-dp-form" type="button" role="tab" aria-controls="nav-dp-form" aria-selected="true">Datos Personales</button>
+                    <button class="nav-link" id="nav-usser-tab" data-bs-toggle="tab" data-bs-target="#nav-usser" type="button" role="tab" aria-controls="nav-usser" aria-selected="false">Usuario</button>
+                </div>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-dp-form" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <form id="formAddDatosPersonales">
+                            <div class="mb-3">
+                                <label for="nombresUsser" class="form-label">Nombres</label>
+                                <input type="text" class="form-control" name="Nombres" id="nombresUsser">
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellidosUsser" class="form-label">Apellidos</label>
+                                <input type="text" class="form-control" name="Apellidos" id="apellidosUsser">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Telefono</label>
+                                <input type="number" class="form-control" name="telefono" id="telefono">
+                            </div>
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="number" class="form-control" name="direccion" id="direccion">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="sexo" class="form-label">Sexo</label>
+                                <select class="form-select" name="sexo" id="sexo">
+                                </select>
+                            </div>
+
+
+
+                        </form>
+
                     </div>
-                    <div class="mb-3">
-                        <label for="agregarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
-                        <select class="form-select" name="Id_Tipo_Usuario" id="agregarIdTipoUsuario">
-                        </select>
+                    <div class="tab-pane fade" id="nav-usser" role="tabpanel" aria-labelledby="nav-usser-tab">
+                        <form id="formAddUsuario">
+                            <div class="mb-3">
+                                <label for="agregarUsser" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" name="usser" id="agregarUsser">
+                            </div>
+                            <div class="mb-3">
+                                <label for="agregarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
+                                <select class="form-select" name="Id_Tipo_Usuario" id="agregarIdTipoUsuario">
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </form>
+                </div>
+
+
+
+
+
+
             </div>
         </div>
     </div>

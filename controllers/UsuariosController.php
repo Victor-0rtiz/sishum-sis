@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Sexo;
 use Model\Usuario;
 use Model\TipoUsuario;
 use MVC\Router;
@@ -34,8 +35,8 @@ class UsuariosController
 
             $newuser = new Usuario($_POST);
 
-            // echo json_encode($_POST);
-            // return;
+            echo json_encode($_POST);
+            return;
 
 
 
@@ -69,6 +70,16 @@ class UsuariosController
         // $data = Usuario::all();
 
         $data = Usuario::obtenerUsuarios();
+        echo json_encode($data);
+        return;
+    }
+    public static function getAllsexo(Router $router)
+    {
+
+        // $data = $_GET;
+        // $data = Usuario::all();
+
+        $data = Sexo::all();
         echo json_encode($data);
         return;
     }

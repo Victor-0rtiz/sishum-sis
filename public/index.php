@@ -67,5 +67,10 @@ $router->post("/api/calificaciones/notas/all", [CalificacionesController::class,
 
 //asignaturas
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
+
+// sexo
+$router->get("/api/sexo/all", [UsuariosController::class, "getAllsexo"]);
+
+
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

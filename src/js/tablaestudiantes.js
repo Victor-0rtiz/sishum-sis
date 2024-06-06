@@ -11,6 +11,7 @@
                 columns: [
                     { data: 'Id' },
                     { data: 'Nombres' },
+                    { data: 'Cod_estudiante' },
                     { data: 'Tutor_Nombres' },
                     { data: 'Id_grado_nombre' },
                     {
