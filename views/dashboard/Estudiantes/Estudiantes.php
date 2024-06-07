@@ -18,7 +18,7 @@
                             Agregar Estudiante
                         </button>
                     </h5>
-                   
+
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover display" id="tablaEstudiantes">
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -48,70 +48,114 @@
 
 <!-- Modal -->
 <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-5">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarModalLabel">Editar Usuario</h5>
+                <h5 class="modal-title fs-2" id="editarModalLabel">Agregar Estudiante</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-dp-form-tab" data-bs-toggle="tab" data-bs-target="#nav-dp-form" type="button" role="tab" aria-controls="nav-dp-form" aria-selected="true">Datos Personales</button>
-                    <button class="nav-link" id="nav-usser-tab" data-bs-toggle="tab" data-bs-target="#nav-usser" type="button" role="tab" aria-controls="nav-usser" aria-selected="false">Usuario</button>
+
+                <div>
+
+                    <h3 class="fs-2">Información y Datos Personales del Estudiante</h3>
+
+
                 </div>
 
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-dp-form" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <form id="formAddDatosPersonales">
-                            <div class="mb-3">
-                                <label for="nombresUsser" class="form-label">Nombres</label>
-                                <input type="text" class="form-control" name="Nombres" id="nombresUsser">
-                            </div>
-                            <div class="mb-3">
-                                <label for="apellidosUsser" class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" name="Apellidos" id="apellidosUsser">
-                            </div>
-                            <div class="mb-3">
-                                <label for="telefono" class="form-label">Telefono</label>
-                                <input type="number" class="form-control" name="telefono" id="telefono">
-                            </div>
-                            <div class="mb-3">
-                                <label for="direccion" class="form-label">Dirección</label>
-                                <input type="number" class="form-control" name="direccion" id="direccion">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="sexo" class="form-label">Sexo</label>
-                                <select class="form-select" name="sexo" id="sexo">
-                                </select>
-                            </div>
 
 
-
-                        </form>
-
+                <form id="formAddDatosPersonales">
+                    <div class="mb-3">
+                        <label for="nombresUsser" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="Nombres" id="nombresUsser">
                     </div>
-                    <div class="tab-pane fade" id="nav-usser" role="tabpanel" aria-labelledby="nav-usser-tab">
-                        <form id="formAddUsuario">
-                            <div class="mb-3">
-                                <label for="agregarUsser" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" name="usser" id="agregarUsser">
-                            </div>
-                            <div class="mb-3">
-                                <label for="agregarIdTipoUsuario" class="form-label">Tipo de Usuario select</label>
-                                <select class="form-select" name="Id_Tipo_Usuario" id="agregarIdTipoUsuario">
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                        </form>
-
+                    <div class="mb-3">
+                        <label for="apellidosUsser" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="Apellidos" id="apellidosUsser">
                     </div>
+                    <div class="mb-3">
+                        <label for="Telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" name="Telefono" id="Telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Dirección</label>
+                        <textarea name="Direccion" id="Direccion" class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-select" name="Id_sexo" id="sexo">
+                        </select>
+                    </div>
+
+
+                </form>
+
+                <div class="mt-5">
+
+                    <h3 class="fs-2">Código del Estudiante y Ubicación </h3>
+
 
                 </div>
+
+                <form id="formEstudiante">
+
+                    <div class="mb-3">
+                        <label for="Cod_estudiante" class="form-label">Código de Estudiante</label>
+                        <input name="Cod_estudiante" id="Cod_estudiante" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Departamento" class="form-label">Departamento</label>
+                        <select class="form-select" name="IdDepartamento" id="Departamento">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Municipio" class="form-label">Municipio</label>
+                        <select class="form-select" name="IdMunicipio" id="Municipio">
+                        </select>
+                    </div>
+
+                </form>
+
+
+                <div>
+
+                    <h3 class="fs-2"> Tutor</h3>
+
+
+                </div>
+
+                
+                <div>
+                    <label for="tutorExistente1">Tutor Existente</label>
+                    <input type="radio" name="tutorExistente" id="tutorExistente1" value="1">
+                    <label for="tutorExistente1">Nuevo Tutor</label>
+                    <input type="radio" name="tutorExistente" id="tutorExistente2" value="2">
+                </div>
+
+                <div id="tutorchange">
+
+               
+                
+
+                </div>
+                <button id="GuardarEstudiante"class="btn btn-primary">Guardar</button>
+
+
+
+
+
             </div>
+
+
+
+
         </div>
     </div>
+</div>
+</div>
 </div>
 
 

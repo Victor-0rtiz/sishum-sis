@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\AsignaturasController;
 use Controllers\CalificacionesController;
 use Controllers\DashboardController;
+use Controllers\DepartamentosController;
 use Controllers\DocentesController;
 use Controllers\EstudiantesController;
 use Controllers\LoginController;
@@ -43,6 +44,11 @@ $router->get("/dashboard/usuarios", [UsuariosController::class, "index"]);
 $router->get("/api/usuarios/all", [UsuariosController::class, "allusers"]);
 $router->post("/api/usuarios/add", [UsuariosController::class, "createUser"]);
 $router->get("/api/usuarios/tipouser", [UsuariosController::class, "getTipoUsers"]);
+
+
+//departamentos y municipios
+$router->get("/api/departamentos/all", [DepartamentosController::class, "getAllDepartamentos"]);
+$router->get("/api/municipios/all", [DepartamentosController::class, "getAllMunicipios"]);
 
 
 //tutores

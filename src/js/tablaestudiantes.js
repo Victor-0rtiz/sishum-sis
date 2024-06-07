@@ -1,5 +1,10 @@
 (function () {
-   
+    let sexo;
+
+    let tutorOption;
+
+    let tutorInfo; 
+
     $.ajax({
         url: '/api/estudiantes/all', // Especifica la URL de tu controlador
         dataType: 'json', // El tipo de datos esperado en la respuesta
@@ -46,6 +51,213 @@
             console.error(xhr.responseText);
         }
     });
+
+    $.ajax({
+        url: "/api/sexo/all",
+        dataType: 'json',
+        success: function (result) {
+            sexo = result;
+            console.log(result, "del sexo");
+            $('#sexo').empty();
+            // Agrega una opción por cada dato del tipo de usuario
+            result.forEach(function (sexo) {
+                $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+            });
+
+
+
+
+        },
+        error: function (params) {
+
+        }
+    });
+    $.ajax({
+        url: "/api/departamentos/all",
+        dataType: 'json',
+        success: function (result) {
+            console.log(result, "del departamento");
+            $('#Departamento').empty();
+            // Agrega una opción por cada dato del tipo de usuario
+            result.forEach(function (departament) {
+                $('#Departamento').append('<option value="' + departament.IdDepartamento + '">' + departament.Nombre + '</option>');
+            });
+        },
+        error: function (params) {
+
+        }
+    });
+    $.ajax({
+        url: "/api/municipios/all",
+        dataType: 'json',
+        success: function (result) {
+            console.log(result, "del municipios");
+            $('#Municipio').empty();
+            // Agrega una opción por cada dato del tipo de usuario
+            result.forEach(function (Municipio) {
+                $('#Municipio').append('<option value="' + Municipio.IdMunicipio + '">' + Municipio.Nombre + '</option>');
+            });
+        },
+        error: function (params) {
+
+        }
+    });
+
+    $.ajax({
+        url: '/api/tutores/all', // Especifica la URL de tu controlador
+        dataType: 'json', // El tipo de datos esperado en la respuesta
+        success: function (response) {
+            // Manejar la respuesta del servidor
+            console.log(response, "de los tutores");
+
+            tutorInfo = response;
+          
+            // Por ejemplo, cerrar el modal
+            // $('#addModal').modal('hide');
+            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores de la solicitud AJAX
+            console.error(xhr.responseText);
+        }
+    });
+
+
+
+
+    $(document).ready(() => {
+        $('input[name="tutorExistente"]').change(function () {
+            const selectedValue = $(this).val();
+            // Realizar acciones basadas en el valor seleccionado
+            $('#tutorchange').empty();
+            if (selectedValue === '2') {
+
+                tutorOption = 2;
+                console.log('Tutor existente seleccionado');
+                $('#tutorchange').append(` <form id='formTutorNuevo'>
+                <div class='mb-3'>
+                        <label for='nombresUsser' class='form-label'>Nombres</label>
+                        <input type='text' class='form-control' name='Nombres' id='nombresUsser'>
+                    </div>
+                    <div class='mb-3'>
+                        <label for='apellidosUsser' class='form-label'>Apellidos</label>
+                        <input type='text' class='form-control' name='Apellidos' id='apellidosUsser'>
+                    </div>
+                    <div class='mb-3'>
+                        <label for='Telefono' class='form-label'>Telefono</label>
+                        <input type='number' class='form-control' name='Telefono' id='Telefono'>
+                    </div>
+                    <div class='mb-3'>
+                        <label for='Cedula' class='form-label'>Cédula</label>
+                        <input type='text' class='form-control' name='Cedula' id='Cedula'>
+                    </div>
+                    <div class='mb-3'>
+                        <label for='Ocupacion' class='form-label'>Ocupación</label>
+                        <input type='text' class='form-control' name='Ocupacion' id='Ocupacion'>
+                    </div>
+                    <div class='mb-3'>
+                        <label for='Direccion' class='form-label'>Dirección</label>
+                        <textarea name='Direccion' id='Direccion' class='form-control'></textarea>
+                    </div>
+
+                    <div class='mb-3'>
+                        <label for='sexoTutor' class='form-label'>Sexo</label>
+                        <select class='form-select' name='Id_sexo' id='sexoTutor'>
+                        </select>
+                    </div>
+                </form>`);
+
+                sexo.forEach(function (sexo) {
+                    $('#sexoTutor').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+                });
+
+
+            } else if (selectedValue === '1') {
+
+                tutorOption = 1;
+                console.log('Nuevo tutor seleccionado');
+                $('#tutorchange').append(`<form id='formTutorExistente'>
+
+                <div class='mb-3'>
+                        <label for='Tutor' class='form-label'>Tutor</label>
+                        <select class='form-select' name='Id_Tutor' id='Tutor'>
+                        </select>
+                    </div>
+
+
+                </form>`);
+
+                tutorInfo.forEach(function (tutordata) {
+                    $('#Tutor').append('<option value="' + tutordata.Id + '">' + tutordata.Nombres + " "+ tutordata.Apellidos +'</option>');
+                });
+            }
+        });
+
+        $(document).ready(() => {
+            $("#GuardarEstudiante").click(() => {
+                const formDpE = new FormData($("#formAddDatosPersonales")[0]);
+                const formEstudiante = new FormData($("#formEstudiante")[0]);
+        
+                function formDataToObject(formData) {
+                    let obj = {};
+                    formData.forEach((value, key) => {
+                        obj[key] = value;
+                    });
+                    return obj;
+                }
+        
+                const form1 = formDataToObject(formDpE);
+                const form2 = formDataToObject(formEstudiante);
+        
+                const dataForms = {
+                    datos_personales: form1,
+                    estudiante: form2,
+                };
+        
+                // Verificar si se seleccionó un radio button
+                const tutorOption = $("input[name='tutorExistente']:checked").val();
+        
+                if (!tutorOption) {
+                    alert("Debe seleccionar una opción de tutor.");
+                    return;
+                }
+        
+                if (tutorOption == 1) {
+                    const formTutorExistente = new FormData($("#formTutorExistente")[0]);
+                    const form3 = formDataToObject(formTutorExistente);
+                    dataForms.TutorExistente = form3;
+                    delete dataForms.TutorNuevo;
+                } else {
+                    const formNuevoTutor = new FormData($("#formTutorNuevo")[0]);
+                    const form4 = formDataToObject(formNuevoTutor);
+                    dataForms.TutorNuevo = form4;
+                    delete dataForms.TutorExistente;
+                }
+        
+                function isFormComplete(formObj) {
+                    for (let key in formObj) {
+                        if (formObj[key].trim() === "") {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+        
+                if (!isFormComplete(form1) || !isFormComplete(form2) || 
+                    (tutorOption == 1 && !isFormComplete(dataForms.TutorExistente)) || 
+                    (tutorOption != 1 && !isFormComplete(dataForms.TutorNuevo))) {
+                    alert("Todos los campos deben estar llenos.");
+                    return;
+                }
+        
+                // Aquí puedes enviar dataForms al servidor
+                console.log(dataForms);
+            });
+        });
+        
+        
+    })
+
 
 
 

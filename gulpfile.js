@@ -3,7 +3,7 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import terser from 'gulp-terser';
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify'; // Importa gulp-notify
+import notify from 'gulp-notify';
 
 const sass = gulpSass(dartSass);
 
@@ -13,19 +13,18 @@ const paths = {
 };
 
 export function css(done) {
-    src(paths.scss, {sourcemaps: true})
-      .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")})) // Maneja errores con gulp-notify
-      .pipe(sass({
-            outputStyle: 'expanded'
-        }).on('error', sass.logError))
-      .pipe(dest('./public/build/css', {sourcemaps: '.'}));
+    src(paths.scss, { sourcemaps: true })
+        .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })) // Maneja errores con gulp-notify
+        .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+        .pipe(dest('./public/build/css', { sourcemaps: '.' }));
     done();
 }
 
 export function js(done) {
-    src(paths.js)
-    .pipe(terser())
-    .pipe(dest('./public/build/js'));
+    src(paths.js, { sourcemaps: true })
+        .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })) // Maneja errores con gulp-notify
+        .pipe(terser().on('error', function (err) { notify.onError(err.toString())(err); this.emit('end'); }))
+        .pipe(dest('./public/build/js', { sourcemaps: '.' }));
     done();
 }
 
