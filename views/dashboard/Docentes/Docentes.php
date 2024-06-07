@@ -26,6 +26,7 @@
                                 <th scope="col">Nombres</th>
                                 <th scope="col">Apellidos</th>
                                 <th scope="col">Codigo Docente</th>
+                                <th scope="col">Usuario</th>
 
                                 <th scope="col">Acciones</th>
                             </tr>

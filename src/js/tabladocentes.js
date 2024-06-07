@@ -14,6 +14,7 @@
                     { data: 'Nombres' },
                     { data: 'Apellidos' },
                     { data: 'Cod_docente' },
+                    { data: 'usser' },
                     {
                         data: null,
                         render: function (data, type, row) {
@@ -127,7 +128,7 @@
             dataType: 'json', // El tipo de datos esperado en la respuesta
             success: function (response) {
                 // Manejar la respuesta del servidor
-                console.log(response.act);
+                console.log(response);
 
                 if (response.error) {
                     Swal.fire({

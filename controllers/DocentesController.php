@@ -56,6 +56,7 @@ class DocentesController
         $nwuser = new Usuario(["usser" => $ussername,  "Id_Tipo_Usuario" => 2]);
 
         $nwuser->password = password_hash($nwuser->usser, PASSWORD_BCRYPT);
+        
 
 
         $idNewUser = $nwuser->guardar();

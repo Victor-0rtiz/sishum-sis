@@ -21,7 +21,6 @@
                 <?php  } ?>
                 <li class="wapperlist"><a href="/dashboard/perfil" class="text-decoration-none px-3 py-2 d-block <?php echo pagina_actual("/dashboard/perfil") ? "activa" : "modifywapper"; ?> "> <i class="pe-2 fa-solid fa-user"></i>Perfil</a></li>
                 <?php if ($_SESSION["Id_Tipo_Usuario"] == 1) { ?>
-                        <li class="wapperlist"><a href="/dashboard/estudiantes" class="text-decoration-none px-3 py-2 d-block <?php echo pagina_actual("/dashboard/estudiantes") ? "activa" : "modifywapper"; ?> "> <i class=" pe-2 fa-solid fa-children"></i>Estudiantes</a></li>
                         <li class="wapperlist"><a href="/dashboard/tutores" class="text-decoration-none px-3 py-2 d-block <?php echo pagina_actual("/dashboard/tutores") ? "activa" : "modifywapper"; ?> "> <i class="pe-2 fa-solid fa-person-half-dress"></i>Tutores</a></li>
                         <li class="wapperlist"><a href="/dashboard/matriculas" class="text-decoration-none px-3 py-2 d-block <?php echo pagina_actual("/dashboard/matriculas") ? "activa" : "modifywapper"; ?>"> <span><i class="pe-2 fa-solid fa-file"></i> Matriculas</span> </a></li>
 
