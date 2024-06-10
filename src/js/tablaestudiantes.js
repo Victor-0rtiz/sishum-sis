@@ -3,7 +3,7 @@
 
     let tutorOption;
 
-    let tutorInfo; 
+    let tutorInfo;
 
     $.ajax({
         url: '/api/estudiantes/all', // Especifica la URL de tu controlador
@@ -18,7 +18,7 @@
                     { data: 'Nombres' },
                     { data: 'Cod_estudiante' },
                     { data: 'Tutor_Nombres' },
-                    { data: 'Id_grado_nombre' },
+                   
                     {
                         data: null,
                         render: function (data, type, row) {
@@ -63,10 +63,6 @@
             result.forEach(function (sexo) {
                 $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
             });
-
-
-
-
         },
         error: function (params) {
 
@@ -111,7 +107,7 @@
             console.log(response, "de los tutores");
 
             tutorInfo = response;
-          
+
             // Por ejemplo, cerrar el modal
             // $('#addModal').modal('hide');
             // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
@@ -188,16 +184,16 @@
                 </form>`);
 
                 tutorInfo.forEach(function (tutordata) {
-                    $('#Tutor').append('<option value="' + tutordata.Id + '">' + tutordata.Nombres + " "+ tutordata.Apellidos +'</option>');
+                    $('#Tutor').append('<option value="' + tutordata.Id + '">' + tutordata.Nombres + " " + tutordata.Apellidos + '</option>');
                 });
             }
         });
 
         $(document).ready(() => {
-            $("#GuardarEstudiante").click(() => {
+            $("#GuardarEstudiante").click(async () => {
                 const formDpE = new FormData($("#formAddDatosPersonales")[0]);
                 const formEstudiante = new FormData($("#formEstudiante")[0]);
-        
+
                 function formDataToObject(formData) {
                     let obj = {};
                     formData.forEach((value, key) => {
@@ -205,23 +201,33 @@
                     });
                     return obj;
                 }
-        
+
                 const form1 = formDataToObject(formDpE);
                 const form2 = formDataToObject(formEstudiante);
-        
+
                 const dataForms = {
                     datos_personales: form1,
                     estudiante: form2,
                 };
-        
+
                 // Verificar si se seleccionó un radio button
                 const tutorOption = $("input[name='tutorExistente']:checked").val();
-        
+
                 if (!tutorOption) {
-                    alert("Debe seleccionar una opción de tutor.");
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">Debe seleccionar una opción para el tutor</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
                     return;
                 }
-        
+
                 if (tutorOption == 1) {
                     const formTutorExistente = new FormData($("#formTutorExistente")[0]);
                     const form3 = formDataToObject(formTutorExistente);
@@ -233,7 +239,7 @@
                     dataForms.TutorNuevo = form4;
                     delete dataForms.TutorExistente;
                 }
-        
+
                 function isFormComplete(formObj) {
                     for (let key in formObj) {
                         if (formObj[key].trim() === "") {
@@ -242,21 +248,157 @@
                     }
                     return true;
                 }
-        
-                if (!isFormComplete(form1) || !isFormComplete(form2) || 
-                    (tutorOption == 1 && !isFormComplete(dataForms.TutorExistente)) || 
+
+                if (!isFormComplete(form1) || !isFormComplete(form2) ||
+                    (tutorOption == 1 && !isFormComplete(dataForms.TutorExistente)) ||
                     (tutorOption != 1 && !isFormComplete(dataForms.TutorNuevo))) {
-                    alert("Todos los campos deben estar llenos.");
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">Todos los campos son obligatorios</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 199, 199)',
+                        showConfirmButton: false,
+                    });
                     return;
                 }
-        
+
+                $.ajax({
+                    url: "/api/estudiantes/add",
+                    dataType: 'json',
+                    type: 'POST',
+                    data:  dataForms,
+                    success: async function (result) {
+                        console.log(result, "del back");
+                        if (result.alert) {
+                            await Swal.fire({
+                                icon: "warning",
+                                html: `<span style="font-size: 1.5rem; font-weight: 900;">${result.alert}</span>`,
+                                toast: true,
+                                position: 'bottom-end',
+                                iconColor: 'red',
+                                timer: 1500,
+                                padding: "2rem",
+                                background: '#FFFFB8',
+                                showConfirmButton: false,
+                            });
+                            return;
+                        }
+
+                        if (result.exito) {
+                            await atualizarLista();
+                            $('#formAddDatosPersonales')[0].reset();
+                            $('#formEstudiante')[0].reset();
+                            $('#formTutorNuevo')[0].reset();
+                            $('#tutorchange').empty();
+                
+                            // Limpiar radios seleccionados
+                            $('input[name="tutorExistente"]').prop('checked', false);
+
+                            $('#agregarModal').modal('hide');
+                            await Swal.fire({
+                                icon: "success",
+                                html: `<span style="font-size: 1.5rem; font-weight: 900;">${result.exito}</span>`,
+                                toast: true,
+                                position: 'bottom-end',
+                                iconColor: 'green',
+                                timer: 1500,
+                                padding: "2rem",
+                                background: '#B8FFB8',
+                                showConfirmButton: false,
+                            });
+
+                            
+                            return;
+                            
+                        }
+
+                        if (result.error) {
+                            await Swal.fire({
+                                icon: "error",
+                                html: `<span style="font-size: 1.5rem; font-weight: 900;">${result.error}</span>`,
+                                toast: true,
+                                position: 'bottom-end',
+                                iconColor: 'red',
+                                timer: 1500,
+                                padding: "2rem",
+                                background: '#FFB8B8',
+                                showConfirmButton: false,
+                            });
+                            return;
+                            
+                        }
+
+                    },
+                    error: function (params) {
+
+                    }
+                });
+
+
+
+
                 // Aquí puedes enviar dataForms al servidor
                 console.log(dataForms);
             });
         });
-        
-        
+
+
     })
+
+
+
+   async function atualizarLista(){
+        $.ajax({
+            url: '/api/estudiantes/all', // Especifica la URL de tu controlador
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success: function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                const table = $('#tablaEstudiantes').DataTable({
+                    destroy: true, 
+                    data: response,
+                    columns: [
+                        { data: 'Id' },
+                        { data: 'Nombres' },
+                        { data: 'Cod_estudiante' },
+                        { data: 'Tutor_Nombres' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
+                            }
+                        }
+                    ],
+                    language: {
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "No hay registros disponibles",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
+                            "sortDescending": ": activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+                // Por ejemplo, cerrar el modal
+                // $('#addModal').modal('hide');
+                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    }
 
 
 

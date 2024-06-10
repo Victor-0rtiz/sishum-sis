@@ -57,6 +57,7 @@ $router->get("/api/tutores/all", [TutoresController::class, "getAllTutores"]);
 
 //estudiantes
 $router->get("/api/estudiantes/all", [EstudiantesController::class, "getAllEstudent"]);
+$router->post("/api/estudiantes/add", [EstudiantesController::class, "addEstudent"]);
 
 
 //matricula 
@@ -74,6 +75,8 @@ $router->post("/api/calificaciones/notas/all", [CalificacionesController::class,
 
 //asignaturas
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
+$router->get("/api/asignaturas/list", [AsignaturasController::class, "getAsignaturasList"]);
+$router->post("/api/asignaturas/add", [AsignaturasController::class, "addAsignaturas"]);
 
 // sexo
 $router->get("/api/sexo/all", [UsuariosController::class, "getAllsexo"]);

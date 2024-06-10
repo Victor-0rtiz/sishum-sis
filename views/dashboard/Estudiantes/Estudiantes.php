@@ -28,7 +28,7 @@
                                 <th scope="col">Estudiante</th>
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Tutor</th>
-                                <th scope="col">Grado</th>
+                              
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -119,7 +119,7 @@
 
                 </form>
 
-
+ 
                 <div>
 
                     <h3 class="fs-2"> Tutor</h3>
