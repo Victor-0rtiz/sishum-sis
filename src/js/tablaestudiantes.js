@@ -292,7 +292,9 @@
                             await atualizarLista();
                             $('#formAddDatosPersonales')[0].reset();
                             $('#formEstudiante')[0].reset();
+                           if (tutorOption != 1) {
                             $('#formTutorNuevo')[0].reset();
+                           }
                             $('#tutorchange').empty();
                 
                             // Limpiar radios seleccionados
