@@ -76,7 +76,7 @@ CREATE TABLE `asignatura` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `asignatura` (
 
 LOCK TABLES `asignatura` WRITE;
 /*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
-INSERT INTO `asignatura` VALUES (1,'Matemáticas'),(2,'Ciencias Naturales'),(3,'Historia'),(4,'Geografía'),(5,'Arte'),(6,'Música'),(7,'Educación Física'),(8,'Inglés'),(9,'Ciudadanía'),(10,'Tecnología'),(11,'Informática'),(12,'Literatura'),(13,'Filosofía'),(14,'Psicología'),(15,'Sociología'),(16,'Biología'),(17,'Química'),(18,'Física'),(19,'Astronomía'),(20,'Geología');
+INSERT INTO `asignatura` VALUES (1,'Matemáticas'),(2,'Ciencias Naturales'),(3,'Historia'),(4,'Geografía'),(5,'Arte'),(6,'Música'),(7,'Educación Física'),(8,'Inglés'),(9,'Ciudadanía'),(10,'Tecnología'),(11,'Informática'),(12,'Literatura'),(13,'Filosofía'),(14,'Psicología'),(15,'Sociología'),(16,'Biología'),(17,'Química'),(18,'Física'),(19,'Astronomía'),(20,'Geología'),(22,'Historia de Nicaragua ');
 /*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ CREATE TABLE `datos_personales` (
   KEY `datos_personales_sexo_FK` (`Id_sexo`),
   CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
   CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +256,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
   KEY `Detalle_Tutor_Estudiante_estudiante_FK` (`Id_Estudiante`),
   CONSTRAINT `Detalle_Tutor_Estudiante_estudiante_FK` FOREIGN KEY (`Id_Estudiante`) REFERENCES `estudiante` (`Id`),
   CONSTRAINT `Detalle_Tutor_Estudiante_tutor_FK` FOREIGN KEY (`Id_Tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `docente` (
   PRIMARY KEY (`Id`),
   KEY `docente_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `docente_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +292,7 @@ CREATE TABLE `docente` (
 
 LOCK TABLES `docente` WRITE;
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-INSERT INTO `docente` VALUES (1,'191919191',8),(2,'191919191',9),(23,'123',31);
+INSERT INTO `docente` VALUES (1,'191919191',8),(2,'191919191',9);
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +313,7 @@ CREATE TABLE `estudiante` (
   KEY `estudiante_municipio_FK` (`IdMunicipio`),
   CONSTRAINT `estudiante_municipio_FK` FOREIGN KEY (`IdMunicipio`) REFERENCES `municipio` (`IdMunicipio`),
   CONSTRAINT `Estudiante_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -503,7 +503,7 @@ CREATE TABLE `tutor` (
   PRIMARY KEY (`Id`),
   KEY `Tutor_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Tutor_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -531,7 +531,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -540,7 +540,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2);
+INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2),(49,'41475','$2y$10$K9RbkKhfaOVAddLbpA./4u/RYUbIYHrFGcv3tejj8df0Y721pEKhq',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -766,12 +766,12 @@ select
 	dp_estu.Nombres as Nombres,
 	dp_estu.Apellidos as Apellidos,
 	dp_estu.Id_sexo as Id_sexo,
-	sex.Nombre as Id_sexo_nombre,
-	mat.id_grado as Id_grado,
-	grd.Nombre as Id_grado_nombre,
+-- 	mat.id_grado as Id_grado,
+-- 	grd.Nombre as Id_grado_nombre,
 	dt_tutor.Id_Tutor as Id_tutor,
 	dp_tutor.Nombres as Tutor_Nombres,
-	dp_tutor.Apellidos as Tutor_Apellidos
+	dp_tutor.Apellidos as Tutor_Apellidos,
+	sex.Nombre as Id_sexo_nombre
 		
 from 
 	estudiante as est
@@ -783,12 +783,14 @@ inner join
 	tutor  as tut on tut.Id  = dt_tutor.Id_Tutor 
 inner join 
 	datos_personales  as dp_tutor on dp_tutor.Id_Usuario  = tut.Id_Usuario  
+-- inner join 
+-- 	matricula as mat on mat.Id_estudiante  = est.Id
+-- inner join 
+-- 	grado as grd on grd.Id  = mat.id_grado 
 inner join 
-	matricula as mat on mat.Id_estudiante  = est.Id
-inner join 
-	grado as grd on grd.Id  = mat.id_grado 
-inner join 
-	sexo as sex on sex.Id = dp_estu.Id_sexo;
+	sexo as sex on sex.Id = dp_estu.Id_sexo
+order by est.Id asc 
+;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -934,4 +936,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-07 13:57:41
+-- Dump completed on 2024-06-09 23:04:26
