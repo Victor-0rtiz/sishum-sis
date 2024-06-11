@@ -27,6 +27,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Estudiante</th>
                                 <th scope="col">Codigo</th>
+                                <th scope="col">Usuario</th>
                                 <th scope="col">Tutor</th>
                               
                                 <th scope="col">Acciones</th>
@@ -57,10 +58,7 @@
             <div class="modal-body">
 
                 <div>
-
                     <h3 class="fs-2">Información y Datos Personales del Estudiante</h3>
-
-
                 </div>
 
 

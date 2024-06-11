@@ -17,8 +17,9 @@
                     { data: 'Id' },
                     { data: 'Nombres' },
                     { data: 'Cod_estudiante' },
+                    { data: 'usser' },
                     { data: 'Tutor_Nombres' },
-                   
+
                     {
                         data: null,
                         render: function (data, type, row) {
@@ -270,7 +271,7 @@
                     url: "/api/estudiantes/add",
                     dataType: 'json',
                     type: 'POST',
-                    data:  dataForms,
+                    data: dataForms,
                     success: async function (result) {
                         console.log(result, "del back");
                         if (result.alert) {
@@ -292,11 +293,11 @@
                             await atualizarLista();
                             $('#formAddDatosPersonales')[0].reset();
                             $('#formEstudiante')[0].reset();
-                           if (tutorOption != 1) {
-                            $('#formTutorNuevo')[0].reset();
-                           }
+                            if (tutorOption != 1) {
+                                $('#formTutorNuevo')[0].reset();
+                            }
                             $('#tutorchange').empty();
-                
+
                             // Limpiar radios seleccionados
                             $('input[name="tutorExistente"]').prop('checked', false);
 
@@ -313,9 +314,9 @@
                                 showConfirmButton: false,
                             });
 
-                            
+
                             return;
-                            
+
                         }
 
                         if (result.error) {
@@ -331,7 +332,7 @@
                                 showConfirmButton: false,
                             });
                             return;
-                            
+
                         }
 
                     },
@@ -353,7 +354,7 @@
 
 
 
-   async function atualizarLista(){
+    async function atualizarLista() {
         $.ajax({
             url: '/api/estudiantes/all', // Especifica la URL de tu controlador
             dataType: 'json', // El tipo de datos esperado en la respuesta
@@ -361,12 +362,13 @@
                 // Manejar la respuesta del servidor
                 console.log(response);
                 const table = $('#tablaEstudiantes').DataTable({
-                    destroy: true, 
+                    destroy: true,
                     data: response,
                     columns: [
                         { data: 'Id' },
                         { data: 'Nombres' },
                         { data: 'Cod_estudiante' },
+                        { data: 'usser' },
                         { data: 'Tutor_Nombres' },
                         {
                             data: null,
@@ -401,8 +403,6 @@
             }
         });
     }
-
-
 
 
 

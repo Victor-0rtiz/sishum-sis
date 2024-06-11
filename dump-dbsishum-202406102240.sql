@@ -26,6 +26,7 @@ CREATE TABLE `administrador` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Cod_administrador` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_Usuario` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Administrador_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Administrador_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
@@ -51,6 +52,7 @@ DROP TABLE IF EXISTS `anio_lectivo`;
 CREATE TABLE `anio_lectivo` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `anio` int DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,7 +63,7 @@ CREATE TABLE `anio_lectivo` (
 
 LOCK TABLES `anio_lectivo` WRITE;
 /*!40000 ALTER TABLE `anio_lectivo` DISABLE KEYS */;
-INSERT INTO `anio_lectivo` VALUES (1,2023),(2,2024);
+INSERT INTO `anio_lectivo` VALUES (1,2023,1),(2,2024,1);
 /*!40000 ALTER TABLE `anio_lectivo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,8 +77,9 @@ DROP TABLE IF EXISTS `asignatura`;
 CREATE TABLE `asignatura` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +88,7 @@ CREATE TABLE `asignatura` (
 
 LOCK TABLES `asignatura` WRITE;
 /*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
-INSERT INTO `asignatura` VALUES (1,'Matemáticas'),(2,'Ciencias Naturales'),(3,'Historia'),(4,'Geografía'),(5,'Arte'),(6,'Música'),(7,'Educación Física'),(8,'Inglés'),(9,'Ciudadanía'),(10,'Tecnología'),(11,'Informática'),(12,'Literatura'),(13,'Filosofía'),(14,'Psicología'),(15,'Sociología'),(16,'Biología'),(17,'Química'),(18,'Física'),(19,'Astronomía'),(20,'Geología'),(22,'Historia de Nicaragua ');
+INSERT INTO `asignatura` VALUES (1,'Matemáticas',1),(2,'Ciencias Naturales',1),(3,'Historia',1),(4,'Geografía',1),(5,'Arte',1),(6,'Música',1),(7,'Educación Física',1),(8,'Inglés',1),(9,'Ciudadanía',1),(10,'Tecnología',1),(11,'Informática',1),(12,'Literatura',1),(13,'Filosofía',1),(14,'Psicología',1),(15,'Sociología',1),(16,'Biología',1),(17,'Química',1),(18,'Física',1),(19,'Astronomía',1),(20,'Geología',1),(22,'Historia de Nicaragua ',1),(24,'Fisica 2 ',1);
 /*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,6 +161,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
   `Id_anio_lectivo` int NOT NULL,
   `id_grado` int NOT NULL,
   `id_turno` int DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Detalle_aniolectivo_grado_grado_FK` (`id_grado`),
   KEY `Detalle_aniolectivo_grado_anio_lectivo_FK` (`Id_anio_lectivo`),
@@ -165,7 +169,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
   CONSTRAINT `Detalle_aniolectivo_grado_anio_lectivo_FK` FOREIGN KEY (`Id_anio_lectivo`) REFERENCES `anio_lectivo` (`Id`),
   CONSTRAINT `Detalle_aniolectivo_grado_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `detalle_aniolectivo_grado_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +178,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
 
 LOCK TABLES `detalle_aniolectivo_grado` WRITE;
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` DISABLE KEYS */;
-INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1),(2,1,1,2);
+INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1,1),(2,1,1,2,1),(3,1,2,2,1),(4,2,4,2,1),(5,1,3,2,1),(6,2,3,2,1);
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,6 +194,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
   `Id_detalle_aniolectivo_grado` int NOT NULL,
   `Id_asignatura` int NOT NULL,
   `Id_docente` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `detalle_grado_asignaturas_docente_FK` (`Id_docente`),
   KEY `detalle_grado_asignaturas_asignatura_FK` (`Id_asignatura`),
@@ -197,7 +202,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
   CONSTRAINT `detalle_grado_asignaturas_asignatura_FK` FOREIGN KEY (`Id_asignatura`) REFERENCES `asignatura` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_detalle_aniolectivo_grado_FK` FOREIGN KEY (`Id_detalle_aniolectivo_grado`) REFERENCES `detalle_aniolectivo_grado` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_docente_FK` FOREIGN KEY (`Id_docente`) REFERENCES `docente` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +211,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
 
 LOCK TABLES `detalle_grado_asignaturas` WRITE;
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` DISABLE KEYS */;
-INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1),(2,2,1,2);
+INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1,1),(2,2,1,2,1),(3,3,20,2,1),(4,4,18,2,1),(5,5,24,2,1),(6,6,11,2,1);
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,6 +227,7 @@ CREATE TABLE `detalle_nota_asignatura` (
   `id_detalle_grado_asignatura` int NOT NULL,
   `id_matricula` int NOT NULL,
   `Nota` int DEFAULT '0',
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `detalle_nota_asignatura_detalle_grado_asignaturas_FK` (`id_detalle_grado_asignatura`),
   KEY `detalle_nota_asignatura_matricula_FK` (`id_matricula`),
@@ -236,7 +242,7 @@ CREATE TABLE `detalle_nota_asignatura` (
 
 LOCK TABLES `detalle_nota_asignatura` WRITE;
 /*!40000 ALTER TABLE `detalle_nota_asignatura` DISABLE KEYS */;
-INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90),(2,2,2,90);
+INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,1),(2,2,2,90,1);
 /*!40000 ALTER TABLE `detalle_nota_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,6 +257,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Id_Tutor` int NOT NULL,
   `Id_Estudiante` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Detalle_Tutor_Estudiante_tutor_FK` (`Id_Tutor`),
   KEY `Detalle_Tutor_Estudiante_estudiante_FK` (`Id_Estudiante`),
@@ -265,7 +272,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
 
 LOCK TABLES `detalle_tutor_estudiante` WRITE;
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` DISABLE KEYS */;
-INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1),(2,2,2),(3,2,3),(4,1,4);
+INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1,1),(2,2,2,1),(3,2,3,1),(4,1,4,1);
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,6 +287,7 @@ CREATE TABLE `docente` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Cod_docente` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_Usuario` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `docente_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `docente_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
@@ -292,7 +300,7 @@ CREATE TABLE `docente` (
 
 LOCK TABLES `docente` WRITE;
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-INSERT INTO `docente` VALUES (1,'191919191',8),(2,'191919191',9);
+INSERT INTO `docente` VALUES (1,'191919191',8,1),(2,'191919191',9,1);
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,6 +316,7 @@ CREATE TABLE `estudiante` (
   `Cod_estudiante` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_Usuario` int NOT NULL,
   `IdMunicipio` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Estudiante_usuario_FK` (`Id_Usuario`),
   KEY `estudiante_municipio_FK` (`IdMunicipio`),
@@ -322,7 +331,7 @@ CREATE TABLE `estudiante` (
 
 LOCK TABLES `estudiante` WRITE;
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-INSERT INTO `estudiante` VALUES (1,'0090091',3,3),(2,'10101010',5,3),(3,'111212222',6,3),(4,'99899889',7,3);
+INSERT INTO `estudiante` VALUES (1,'0090091',3,3,1),(2,'10101010',5,3,1),(3,'111212222',6,3,1),(4,'99899889',7,3,1);
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,6 +509,7 @@ CREATE TABLE `tutor` (
   `Cedula` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Ocupacion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_Usuario` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Tutor_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Tutor_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
@@ -512,7 +522,7 @@ CREATE TABLE `tutor` (
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2),(2,'00000000000001','maistro',4);
+INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2,1),(2,'00000000000001','maistro',4,1);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,6 +538,7 @@ CREATE TABLE `usuario` (
   `usser` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_Tipo_Usuario` int DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
@@ -540,7 +551,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2),(49,'41475','$2y$10$K9RbkKhfaOVAddLbpA./4u/RYUbIYHrFGcv3tejj8df0Y721pEKhq',2);
+INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1,1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2,1),(49,'41475','$2y$10$K9RbkKhfaOVAddLbpA./4u/RYUbIYHrFGcv3tejj8df0Y721pEKhq',2,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -584,7 +595,8 @@ begin
 	inner join 
 	docente as doc on doc.Id = dga.Id_docente 
 	inner join 
-	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
+	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
+	where dga.Estado = 1
 ;
 END ;;
 DELIMITER ;
@@ -607,12 +619,12 @@ begin
 	
 	select 
 	dagt.Id as Id,
-	dagt.id_anio_lectivo as id_anio_lectivo,
-	anl.anio as id_anio_lectivo_nombre,
-	dagt.id_grado as id_grado,
-	gr.Nombre as id_grado_nombre,
-	dagt.id_turno as id_turno,
-	turn.Nombre as id_turno_nombre
+	dagt.id_anio_lectivo as Id_anio_lectivo,
+	anl.anio as Id_anio_lectivo_nombre,
+	dagt.id_grado as Id_grado,
+	gr.Nombre as Id_grado_nombre,
+	dagt.id_turno as Id_turno,
+	turn.Nombre as Id_turno_nombre
 	
 	from
 	detalle_aniolectivo_grado as dagt
@@ -621,7 +633,8 @@ begin
 	inner join
 	turno as turn on turn.Id = dagt.id_turno
 	inner join
-	anio_lectivo as anl on anl.Id = dagt.id_anio_lectivo
+	anio_lectivo as anl on anl.Id = dagt.id_anio_lectivo
+	where dagt.Estado = 1
 ;
 	
 END ;;
@@ -665,7 +678,7 @@ begin
 	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
 	inner join
 	detalle_aniolectivo_grado as dag on dag.Id = dga.Id_detalle_aniolectivo_grado 
-	where dag.id_grado = grad and dag.id_turno = turn
+	where dag.id_grado = grad and dag.id_turno = turn and dga.Estado = 1
 	;
 END ;;
 DELIMITER ;
@@ -707,7 +720,7 @@ begin
 	estudiante as est on est.Id = mat.Id_estudiante 
 	inner join 
 	datos_personales as dp on dp.Id_Usuario = est.Id_Usuario
-	where  dna.id_detalle_grado_asignatura = idDGA
+	where  dna.id_detalle_grado_asignatura = idDGA and dna.Estado = 1
 	;
 END ;;
 DELIMITER ;
@@ -737,7 +750,7 @@ begin
 	inner join
 	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario
 	inner join 
-	usuario as us on us.Id = doc.Id_Usuario
+	usuario as us on us.Id = doc.Id_Usuario and doc.Estado = 1
 	;
 END ;;
 DELIMITER ;
@@ -771,6 +784,7 @@ select
 	dt_tutor.Id_Tutor as Id_tutor,
 	dp_tutor.Nombres as Tutor_Nombres,
 	dp_tutor.Apellidos as Tutor_Apellidos,
+	uss.usser as usser,
 	sex.Nombre as Id_sexo_nombre
 		
 from 
@@ -783,12 +797,14 @@ inner join
 	tutor  as tut on tut.Id  = dt_tutor.Id_Tutor 
 inner join 
 	datos_personales  as dp_tutor on dp_tutor.Id_Usuario  = tut.Id_Usuario  
--- inner join 
--- 	matricula as mat on mat.Id_estudiante  = est.Id
+ inner join 
+ 	usuario as uss on uss.Id = est.Id_Usuario 
 -- inner join 
 -- 	grado as grd on grd.Id  = mat.id_grado 
 inner join 
 	sexo as sex on sex.Id = dp_estu.Id_sexo
+where 
+est.Estado = 1
 order by est.Id asc 
 ;
 end ;;
@@ -843,7 +859,9 @@ begin
 	inner join
 	turno  as tur on tur.Id  = mat.id_turno 
 	inner join
-	anio_lectivo  as an on an.Id  = mat.id_anio_lectivo
+	anio_lectivo  as an on an.Id  = mat.id_anio_lectivo
+	where 
+	mat.Estado = 1
 
 ; 
 END ;;
@@ -896,7 +914,10 @@ INNER JOIN
 INNER JOIN 
     datos_personales dp_estudiante ON dp_estudiante.Id_Usuario = est.Id_Usuario
 INNER JOIN 
-    sexo s_estudiante ON s_estudiante.Id = dp_estudiante.Id_sexo;  
+    sexo s_estudiante ON s_estudiante.Id = dp_estudiante.Id_sexo
+ where 
+ t.Estado = 1
+    ;  
    
    
 end ;;
@@ -919,7 +940,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Usuarios`()
 BEGIN
     SELECT u.Id as Id, u.usser as usser, u.Id_Tipo_Usuario, t.Nombre as Nombre
     FROM usuario AS u
-    INNER JOIN tipo_usuario AS t ON u.Id_Tipo_Usuario = t.Id;
+    INNER JOIN tipo_usuario AS t ON u.Id_Tipo_Usuario = t.Id
+   where u.Estado = 1
+    ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -936,4 +959,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-09 23:04:26
+-- Dump completed on 2024-06-10 22:40:03

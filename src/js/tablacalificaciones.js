@@ -10,8 +10,8 @@
                 data: response,
                 columns: [
                     { data: 'Id' },
-                    { data: 'id_grado_nombre' },
-                    { data: 'id_turno_nombre' },
+                    { data: 'Id_grado_nombre' },
+                    { data: 'Id_turno_nombre' },
                     {
                         data: null,
                         render: function (data, type, row) {

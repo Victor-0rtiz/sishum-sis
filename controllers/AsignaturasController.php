@@ -2,7 +2,12 @@
 
 namespace Controllers;
 
+use Model\AnioLectivo;
 use Model\Asignatura;
+use Model\DetalleAnioLectivoGrado;
+use Model\DetalleGradoAsignaturas;
+use Model\Grado;
+use Model\Turno;
 use MVC\Router;
 
 class AsignaturasController
@@ -67,6 +72,78 @@ class AsignaturasController
             }
             echo json_encode(['error' => 'No se guardo correctamente la asignatura']);
             return;
+        }
+    }
+    public static function allAniosLectivos(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        $aniosLectivos = AnioLectivo::all();
+
+        echo json_encode($aniosLectivos);
+        return;
+    }
+    public static function allGrados(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        $Grados = Grado::all();
+
+        echo json_encode($Grados);
+        return;
+    }
+    public static function allTurnos(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        $Turnos = Turno::all();
+
+        echo json_encode($Turnos);
+        return;
+    }
+    public static function addAsignaturaAsignada(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $detalleAnGr = new DetalleAnioLectivoGrado($_POST);
+
+            $resp = $detalleAnGr->guardar();
+
+            if (!isset($resp['Id'])) {
+                echo json_encode(['error' => 'No se guardo correctamente la asignación de la asignatura']);
+                return;
+            }
+
+            $detalleAnGr->Id = $resp['Id'];
+            // $detalleAnGr->Id = 13;
+
+            $detalleGraAsi = new DetalleGradoAsignaturas($_POST);
+            $detalleGraAsi->Id_detalle_aniolectivo_grado =  $detalleAnGr->Id;
+
+
+            $resp2 = $detalleGraAsi->guardar();
+            if (!isset($resp2['Id'])) {
+                echo json_encode(['error' => 'No se guardo correctamente la asignación del docente a la asignatura']);
+                return;
+            }
+
+            echo json_encode(['exito' => 'Se guardo correctamente la asignatura y su asignación']);
+            return;
+            // echo json_encode($detalleGraAsi);
+            // return;
         }
     }
 }

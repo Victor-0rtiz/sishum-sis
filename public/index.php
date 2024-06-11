@@ -77,6 +77,10 @@ $router->post("/api/calificaciones/notas/all", [CalificacionesController::class,
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
 $router->get("/api/asignaturas/list", [AsignaturasController::class, "getAsignaturasList"]);
 $router->post("/api/asignaturas/add", [AsignaturasController::class, "addAsignaturas"]);
+$router->get("/api/anioslectivos/all", [AsignaturasController::class, "allAniosLectivos"]);
+$router->get("/api/grados/all", [AsignaturasController::class, "allGrados"]);
+$router->get("/api/turnos/all", [AsignaturasController::class, "allTurnos"]);
+$router->post("/api/asignaturas-asignadas/add", [AsignaturasController::class, "addAsignaturaAsignada"]);
 
 // sexo
 $router->get("/api/sexo/all", [UsuariosController::class, "getAllsexo"]);

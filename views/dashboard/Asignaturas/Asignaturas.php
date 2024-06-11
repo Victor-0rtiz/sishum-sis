@@ -48,6 +48,14 @@
                     </div>
                     <div class="tab-pane fade" id="asignaturas-asignadas" role="tabpanel" aria-labelledby="asignaturas-asignadas-tab">
                         <div class="card-body">
+                            <div class="card-header row">
+                                <h5 class="col">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarAsignaturaGradoModal">
+                                        Agregar
+                                    </button>
+                                </h5>
+
+                            </div>
                             <table class="table table-striped table-hover display" id="tablaAsignaturas">
                                 <thead>
                                     <tr>
@@ -88,9 +96,60 @@
                             <label for="nombresUsser" class="form-label">Nombre de la Asignatura</label>
                             <input type="text" class="form-control" name="Nombre" id="nombresUsser">
                         </div>
-                       
+
 
                         <button id="GuardarAsignatura" class="btn btn-primary">Guardar</button>
+                    </form>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="agregarAsignaturaGradoModal" tabindex="-1" aria-labelledby="agregarAsignaturaGradoModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-2" id="editarModalLabel">Agregar Asignatura a un Grado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form id="formAsigAnioLec">
+                        <div class="mb-3">
+                            <label for="AnioLectivo" class="form-label">Año Lectivo</label>
+                            <select class="form-select" name="Id_anio_lectivo" id="AnioLectivo">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Grado" class="form-label">Grado</label>
+                            <select class="form-select" name="id_grado" id="Grado">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Turno" class="form-label">Turno</label>
+                            <select class="form-select" name="id_turno" id="Turno">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Asignatura" class="form-label">Asignatura</label>
+                            <select class="form-select" name="Id_asignatura" id="Asignatura">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Docente" class="form-label">Docente</label>
+                            <select class="form-select" name="Id_docente" id="Docente">
+                            </select>
+                        </div>
+
+
+                        <button id="GuardarAsigAnioLec" class="btn btn-primary">Guardar</button>
                     </form>
 
 
