@@ -67,7 +67,7 @@
 
                     </div>
 
-                   
+
 
                     <div>
                         <h3 class="fs-2"> Tutor</h3>
@@ -84,7 +84,31 @@
                     <div id="tutorchange">
 
                     </div>
-                    <button id="GuardarEstudiante" class="btn btn-primary">Guardar</button>
+
+
+                    <div>
+                        <h3 class="fs-2"> Datos de Académicos</h3>
+
+                        <form id="FormDatosAcademicos">
+                            <div class="mb-3">
+                                <label for="grado" class="form-label">Grado</label>
+                                <select class="form-select" name="id_grado" id="Grado">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="turno" class="form-label">Turno</label>
+                                <select class="form-select" name="id_turno" id="Turno">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="aniolectivo" class="form-label">Año Lectivo</label>
+                                <select class="form-select" name="id_anio_lectivo" id="AnioLectivo">
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                    <button id="GuardarMatricula" class="btn btn-primary">Guardar</button>
 
                 </div>
 

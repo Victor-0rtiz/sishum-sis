@@ -56,7 +56,7 @@
                                 </h5>
 
                             </div>
-                            <table class="table table-striped table-hover display" id="tablaAsignaturas">
+                            <table class="table table-striped table-hover display" id="tablaAsignaturas" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -89,8 +89,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
-
                     <form id="formAsignatura">
                         <div class="mb-3">
                             <label for="nombresUsser" class="form-label">Nombre de la Asignatura</label>

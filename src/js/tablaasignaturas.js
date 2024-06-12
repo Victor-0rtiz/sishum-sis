@@ -92,7 +92,7 @@
             });
 
             response.forEach(function (asignatura) {
-                $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre  + '</option>');
+                $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
             });
 
 
@@ -194,9 +194,9 @@
         $("#formAsigAnioLec").on('submit', function (event) {
             event.preventDefault();
 
-        
 
-           const formAsinaturasAnio = new FormData($("#formAsigAnioLec")[0]);
+
+            const formAsinaturasAnio = new FormData($("#formAsigAnioLec")[0]);
 
             function formDataToObject(formData) {
                 let obj = {};
@@ -287,7 +287,6 @@
                     columns: [
                         { data: 'Id' },
                         { data: 'Nombre' },
-
                         {
                             data: null,
                             render: function (data, type, row) {
@@ -318,7 +317,7 @@
                 });
 
                 response.forEach(function (asignatura) {
-                    $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre  + '</option>');
+                    $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
                 });
 
 
@@ -330,11 +329,11 @@
         });
 
 
-        
+
     }
     async function cargarLista2() {
 
-        
+
 
 
         $.ajax({
@@ -380,8 +379,8 @@
                         }
                     }
                 });
-    
-    
+
+
             },
             error: function (xhr, status, error) {
                 // Manejar errores de la solicitud AJAX
@@ -401,7 +400,7 @@
             // Manejar la respuesta del servidor
             console.log(response, "del listado del grado");
             response.forEach(function (grado) {
-                $('#Grado').append('<option value="' + grado.Id + '">' + grado.Nombre  + '</option>');
+                $('#Grado').append('<option value="' + grado.Id + '">' + grado.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -416,7 +415,7 @@
             // Manejar la respuesta del servidor
             console.log(response, "del listado del turno");
             response.forEach(function (Turnos) {
-                $('#Turno').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre  + '</option>');
+                $('#Turno').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -431,7 +430,7 @@
             // Manejar la respuesta del servidor
             console.log(response, "del listado del anio lectivo");
             response.forEach(function (anioLec) {
-                $('#AnioLectivo').append('<option value="' + anioLec.Id + '">' + anioLec.anio  + '</option>');
+                $('#AnioLectivo').append('<option value="' + anioLec.Id + '">' + anioLec.anio + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -446,7 +445,7 @@
             // Manejar la respuesta del servidor
             console.log(response, "del listado del docente");
             response.forEach(function (docente) {
-                $('#Docente').append('<option value="' + docente.Id + '">' + docente.Nombres  + ' ' + docente.Apellidos  + '</option>');
+                $('#Docente').append('<option value="' + docente.Id + '">' + docente.Nombres + ' ' + docente.Apellidos + '</option>');
             });
         },
         error: function (xhr, status, error) {

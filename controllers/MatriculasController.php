@@ -34,4 +34,19 @@ class MatriculasController
         echo json_encode($matriculas);
         return;
     }
+    public static function addMatricula(Router $router)
+    {
+        if (!is_auth()) {
+            header('Location: /');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            echo json_encode($_POST);
+            return;
+        }
+        echo json_encode("false");
+        return;
+    }
 }
