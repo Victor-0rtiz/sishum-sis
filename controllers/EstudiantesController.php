@@ -101,6 +101,7 @@ class EstudiantesController
 
 
         if (isset($_POST["TutorNuevo"])) {
+            
             $tutorNewNombre =  str_replace(" ", "", $_POST["TutorNuevo"]["Nombres"]);
             $tutorNewApellido =  str_replace(" ", "", $_POST["TutorNuevo"]["Apellidos"]);
             $numeroRandom2 = random_int(0, 99);

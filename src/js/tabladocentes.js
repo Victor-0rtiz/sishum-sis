@@ -168,13 +168,13 @@
                             console.log(response);
                             const table = $('#tablaDocentes').DataTable({
                                 destroy: true, 
-                                data: response,
                                 columns: [
                                     { data: 'Id' },
                                     { data: 'Nombres' },
                                     { data: 'Apellidos' },
                                     { data: 'Cod_docente' },
-                                    {
+                                    { data: 'usser' },
+                                    { 
                                         data: null,
                                         render: function (data, type, row) {
                                             return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
