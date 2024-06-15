@@ -11,8 +11,8 @@
 
                 <div class="card-header row">
                     <h5 class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal-dialog-scrollable" data-bs-target="#staticBackdrop">
-                            Agregar
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarAsignatura">
+                            Agregar Asignatura
                         </button>
                     </h5>
 
@@ -36,6 +36,43 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="modal fade" id="asignarAsignatura" tabindex="-1" aria-labelledby="asignarAsignatura" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <h3 class="fs-2">Agregar Asignatura</h3>
+
+                        <form id="FormAsigAsignaturaDoc">
+                            <div class="mb-3">
+                                <label for="asignatura" class="form-label">Asignatura</label>
+                                <select class="form-select" name="Id_asignatura" id="asignatura">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="docente" class="form-label">Docente</label>
+                                <select class="form-select" name="Id_docente" id="docente">
+                                </select>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                    <button id="GuardarAsigDocAnio" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
     </div>
 
 

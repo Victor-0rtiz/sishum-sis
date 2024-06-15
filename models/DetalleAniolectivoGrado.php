@@ -26,11 +26,11 @@ class DetalleAnioLectivoGrado extends ActiveRecord {
         return self::ejecutarSP($nombreSP);
     }
 
-    public static function obtenerCalificacionAsignatura($grado, $turno)
+    public static function obtenerCalificacionAsignatura($iddag, )
     {
         $nombreSP = 'sp_Get_Detalle_grado_asignatura';
 
-        return self::ejecutarSP($nombreSP, [$grado,$turno]);
+        return self::ejecutarSP($nombreSP, [$iddag,]);
     }
     public static function obtenerCalificacionNotas($idDGA)
     {

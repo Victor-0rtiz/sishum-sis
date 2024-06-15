@@ -14,8 +14,8 @@
 
                 <div class="card-header row">
                     <h5 class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal-dialog-scrollable" data-bs-target="#staticBackdrop">
-                            Agregar
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarTurnoGrado">
+                            Asignar Grado a un Turno
                         </button>
                     </h5>
 
@@ -39,6 +39,48 @@
             </div>
         </div>
 
+    </div>
+
+
+    <div class="modal fade" id="asignarTurnoGrado" tabindex="-1" aria-labelledby="asignarTurnoGrado" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <h3 class="fs-2">Asignar Grado a un Turno</h3>
+
+                        <form id="FormAnioGradoTurno">
+                            <div class="mb-3">
+                                <label for="grado" class="form-label">Grado</label>
+                                <select class="form-select" name="id_grado" id="Grado">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="turno" class="form-label">Turno</label>
+                                <select class="form-select" name="id_turno" id="Turno">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="aniolectivo" class="form-label">Año Lectivo</label>
+                                <select class="form-select" name="Id_anio_lectivo" id="AnioLectivo">
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+                    <button id="GuardarAnioGradoTurno" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
     </div>
 
 

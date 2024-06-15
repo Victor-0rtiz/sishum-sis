@@ -102,7 +102,7 @@
 
                 </form>`);
 
-            
+
 
                 estudianteList.forEach(function (tutordata) {
                     $('#estudianteSelect').append('<option value="' + tutordata.Id + '">' + tutordata.Nombres + " " + tutordata.Apellidos + '</option>');
@@ -186,7 +186,7 @@
             let formDataMatricula = new FormData($("#FormDatosAcademicos")[0]);
 
             formDataMatricula = formDataToObject(formDataMatricula)
-            
+
 
             console.log(formDataMatricula, " de prueba")
 
@@ -261,7 +261,7 @@
             } else {
                 let formNuevoTutor = new FormData($("#formTutorNuevo")[0]);
 
-                formNuevoTutor = formDataToObject( formNuevoTutor);
+                formNuevoTutor = formDataToObject(formNuevoTutor);
                 DatosMatricula.TutorNuevo = formNuevoTutor;
                 delete DatosMatricula.TutorExistente;
             }
@@ -280,10 +280,10 @@
                     // Manejar la respuesta del servidor
                     console.log(response, 'de agregar');
 
-                    return;
+
                     if (response.exito) {
                         await cargarLista()
-                        $('#agregarAsignaturaModal').modal('hide');
+                        $('#agregarMatriculaModal').modal('hide');
                         await Swal.fire({
                             icon: "success",
                             html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
@@ -310,6 +310,21 @@
                             timer: 1500,
                             padding: "2rem",
                             background: '#FFB8B8',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
+                    if (response.alert) {
+                        await Swal.fire({
+                            icon: "warning",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.alert}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'yellow',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#F6FBC2',
                             showConfirmButton: false,
                         });
                         return;
@@ -455,7 +470,7 @@
             console.log(response, "del estudiante");
 
             estudianteList = response;
-           
+
         },
         error: function (xhr, status, error) {
             // Manejar errores de la solicitud AJAX
@@ -510,13 +525,66 @@
     });
 
 
-    
+
     function formDataToObject(formData) {
         let obj = {};
         formData.forEach((value, key) => {
             obj[key] = value;
         });
         return obj;
+    }
+
+
+    async function cargarLista() {
+
+        $.ajax({
+            url: '/api/matricula/all', // Especifica la URL de tu controlador
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success: function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                const table = $('#tablaMatriculas').DataTable({
+                    destroy: true,
+                    data: response,
+                    columns: [
+                        { data: 'Id_anio_lectivo_anio' },
+                        { data: 'Nombres_estudiante' },
+                        { data: 'Nombres_tutor' },
+                        { data: 'Id_turno_nombre' },
+                        { data: 'Id_grado_nombre' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
+                            }
+                        }
+                    ],
+                    language: {
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "No hay registros disponibles",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
+                            "sortDescending": ": activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+                // Por ejemplo, cerrar el modal
+                // $('#addModal').modal('hide');
+                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    
     }
 
 

@@ -62,6 +62,7 @@ $router->post("/api/estudiantes/add", [EstudiantesController::class, "addEstuden
 
 //matricula 
 $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
+$router->post("/api/matricula-grado/all", [MatriculasController::class, "getAllMatPorGrado"]);
 $router->post("/api/matricula/add", [MatriculasController::class, "addMatricula"]);
 
 //docentes
@@ -71,7 +72,9 @@ $router->post("/api/docentes/add", [DocentesController::class, "addDocente"]);
 
 //calificaciones
 $router->get("/api/grado/calificacion/all", [CalificacionesController::class, "getAllCali"]);
+$router->post("/api/grado/calificacion/add", [CalificacionesController::class, "addDetalleGradAnioAsig"]);
 $router->post("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
+$router->post("/api/calificaciones/asignaturas/add", [CalificacionesController::class, "addDetalleGradoAsig"]);
 $router->post("/api/calificaciones/notas/all", [CalificacionesController::class, "getAllCaliNotas"]);
 
 //asignaturas

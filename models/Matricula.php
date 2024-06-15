@@ -30,6 +30,12 @@ class Matricula extends ActiveRecord {
 
         return self::ejecutarSP($nombreSP);
     }
+    public static function obtenerMatriculasPorGrado($idGrado)
+    {
+        $nombreSP = 'sp_Get_MatriculasPorGrado';
+
+        return self::ejecutarSP($nombreSP,[$idGrado]);
+    }
 
 
     

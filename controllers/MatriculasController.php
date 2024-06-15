@@ -38,6 +38,19 @@ class MatriculasController
         echo json_encode($matriculas);
         return;
     }
+    public static function getAllMatPorGrado(Router $router)
+    {
+        if (!is_auth()) {
+            header('Location: /');
+            return;
+        }
+
+        $matriculas = Matricula::obtenerMatriculasPorGrado($_POST);
+
+
+        echo json_encode($matriculas);
+        return;
+    }
     public static function addMatricula(Router $router)
     {
         if (!is_auth()) {

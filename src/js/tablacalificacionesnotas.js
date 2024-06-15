@@ -4,15 +4,15 @@
 
     // Obtiene el valor del parámetro 'grado'
    
-    const asignatura = params.get('asignatura');
+    const dga = params.get('dga');
   
     // Imprime el valor en la consola
-    console.log( "asignatura", asignatura);
+    console.log( "dga", dga);
 
     $.ajax({
         url: '/api/calificaciones/notas/all', // Especifica la URL de tu controlador,
         type: 'POST',
-        data:{ "asignatura": asignatura},
+        data:{ "dga": dga},
         dataType: 'json', // El tipo de datos esperado en la respuesta
         success: function (response) {
             // Manejar la respuesta del servidor
@@ -27,7 +27,7 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id}" class="btn btn-primary btn-editar">
+                            <a href="" class="btn btn-primary btn-editar">
                             Ver Asignaturas ${row.Id}
                              </a> 
                             <button type="button" class="btn btn-danger">Borrar</button>
@@ -53,6 +53,24 @@
             });
 
 
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores de la solicitud AJAX
+            console.error(xhr.responseText);
+        }
+    });
+
+
+    $.ajax({
+        url: '/api/matricula-grado/all', // Especifica la URL de tu controlador
+        dataType: 'json', // El tipo de datos esperado en la respuesta
+        success: function (response) {
+            // Manejar la respuesta del servidor
+            console.log(response);
+           
+            // Por ejemplo, cerrar el modal
+            // $('#addModal').modal('hide');
+            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
         },
         error: function (xhr, status, error) {
             // Manejar errores de la solicitud AJAX
