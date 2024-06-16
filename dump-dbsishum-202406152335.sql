@@ -107,12 +107,13 @@ CREATE TABLE `datos_personales` (
   `Direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Id_sexo` int NOT NULL,
   `Id_Usuario` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `datos_personales_usuario_FK` (`Id_Usuario`),
   KEY `datos_personales_sexo_FK` (`Id_sexo`),
   CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
   CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +122,7 @@ CREATE TABLE `datos_personales` (
 
 LOCK TABLES `datos_personales` WRITE;
 /*!40000 ALTER TABLE `datos_personales` DISABLE KEYS */;
-INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2),(2,'pedro pedro','pedrito','22222','2222',1,3),(3,'pedro pancho','mocho','22222','2222',1,4),(4,'pedrito panchito','mochito','22222','2222',1,5),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6),(6,'estu 4','4','22222','2222',2,7),(7,'profe 1','1','22222','2222',1,8),(8,'profe 2','2','22222','2222',1,9),(27,'VICTOR','BERMUDEZ','12121212','aasssss',1,31);
+INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2,1),(2,'pedro pedro','pedrito','22222','2222',1,3,1),(3,'pedro pancho','mocho','22222','2222',1,4,1),(4,'pedrito panchito','mochito','22222','2222',1,5,1),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6,1),(6,'estu 4','4','22222','2222',2,7,1),(7,'profe 1','1','22222','2222',1,8,1),(8,'profe 2','2','22222','2222',1,9,1),(27,'VICTOR','BERMUDEZ','12121212','aasssss',1,31,1),(48,'Andres','Manuel','82548329','sdasdasdasdasd',1,53,1),(49,'Victor Jose','Ortiz Bermudez','82548329','De la farmacia mariem 1/2',1,54,1),(50,'Victor Jose','Ortiz Bermudez','82548329','dadadadasdas',1,55,1),(51,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,56,1),(52,'caisilla','ramirez','82548329','dadadasdasdasd',1,57,1),(53,'cas cas','tulo tulo','82548329','dasdasdasdasdasdasdad',1,58,1),(54,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,59,1),(55,'Pepito','jose','82548329','dasdadasdasdada',1,60,1),(56,'Super','Usuario ','12345678','Super usuario prueba',1,1,1),(57,'caisilla','ramirez','82548329','Villa libertad, farmacia Marien, media cuadra abajo, 9 andenes al sur, tope sur.',1,61,1);
 /*!40000 ALTER TABLE `datos_personales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,6 +136,7 @@ DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
   `IdDepartamento` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`IdDepartamento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -145,7 +147,7 @@ CREATE TABLE `departamento` (
 
 LOCK TABLES `departamento` WRITE;
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
-INSERT INTO `departamento` VALUES (1,'Boaco'),(2,'Carazo'),(3,'Chinandega'),(4,'Chontales'),(5,'RACCN'),(6,'RACCS'),(7,'Estelí'),(8,'Granada'),(9,'Jinotega'),(10,'León'),(11,'Madriz'),(12,'Managua'),(13,'Masaya'),(14,'Matagalpa'),(15,'Nueva Segovia'),(16,'Río San Juan'),(17,'Rivas');
+INSERT INTO `departamento` VALUES (1,'Boaco',1),(2,'Carazo',1),(3,'Chinandega',1),(4,'Chontales',1),(5,'RACCN',1),(6,'RACCS',1),(7,'Estelí',1),(8,'Granada',1),(9,'Jinotega',1),(10,'León',1),(11,'Madriz',1),(12,'Managua',1),(13,'Masaya',1),(14,'Matagalpa',1),(15,'Nueva Segovia',1),(16,'Río San Juan',1),(17,'Rivas',1);
 /*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +171,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
   CONSTRAINT `Detalle_aniolectivo_grado_anio_lectivo_FK` FOREIGN KEY (`Id_anio_lectivo`) REFERENCES `anio_lectivo` (`Id`),
   CONSTRAINT `Detalle_aniolectivo_grado_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `detalle_aniolectivo_grado_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +180,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
 
 LOCK TABLES `detalle_aniolectivo_grado` WRITE;
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` DISABLE KEYS */;
-INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1,1),(2,1,1,2,1),(3,1,2,2,1),(4,2,4,2,1),(5,1,3,2,1),(6,2,3,2,1);
+INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1,1),(2,1,1,2,1),(3,1,2,2,1),(4,2,4,2,1),(5,1,3,2,1),(6,2,3,2,1),(8,1,5,1,1);
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +204,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
   CONSTRAINT `detalle_grado_asignaturas_asignatura_FK` FOREIGN KEY (`Id_asignatura`) REFERENCES `asignatura` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_detalle_aniolectivo_grado_FK` FOREIGN KEY (`Id_detalle_aniolectivo_grado`) REFERENCES `detalle_aniolectivo_grado` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_docente_FK` FOREIGN KEY (`Id_docente`) REFERENCES `docente` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +213,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
 
 LOCK TABLES `detalle_grado_asignaturas` WRITE;
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` DISABLE KEYS */;
-INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1,1),(2,2,1,2,1),(3,3,20,2,1),(4,4,18,2,1),(5,5,24,2,1),(6,6,11,2,1);
+INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1,1),(2,2,1,2,1),(3,3,20,2,1),(4,4,18,2,1),(5,5,24,2,1),(6,6,11,2,1),(8,1,1,26,1),(9,1,3,2,1);
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +235,7 @@ CREATE TABLE `detalle_nota_asignatura` (
   KEY `detalle_nota_asignatura_matricula_FK` (`id_matricula`),
   CONSTRAINT `detalle_nota_asignatura_detalle_grado_asignaturas_FK` FOREIGN KEY (`id_detalle_grado_asignatura`) REFERENCES `detalle_grado_asignaturas` (`Id`),
   CONSTRAINT `detalle_nota_asignatura_matricula_FK` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +244,7 @@ CREATE TABLE `detalle_nota_asignatura` (
 
 LOCK TABLES `detalle_nota_asignatura` WRITE;
 /*!40000 ALTER TABLE `detalle_nota_asignatura` DISABLE KEYS */;
-INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,1),(2,2,2,90,1);
+INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,1),(2,2,2,90,1),(3,1,2,30,1),(7,1,10,80,1);
 /*!40000 ALTER TABLE `detalle_nota_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +265,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
   KEY `Detalle_Tutor_Estudiante_estudiante_FK` (`Id_Estudiante`),
   CONSTRAINT `Detalle_Tutor_Estudiante_estudiante_FK` FOREIGN KEY (`Id_Estudiante`) REFERENCES `estudiante` (`Id`),
   CONSTRAINT `Detalle_Tutor_Estudiante_tutor_FK` FOREIGN KEY (`Id_Tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +274,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
 
 LOCK TABLES `detalle_tutor_estudiante` WRITE;
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` DISABLE KEYS */;
-INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1,1),(2,2,2,1),(3,2,3,1),(4,1,4,1);
+INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1,1),(2,2,2,1),(3,2,3,1),(4,1,4,1),(16,2,17,1),(17,2,20,1),(18,1,21,1);
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +293,7 @@ CREATE TABLE `docente` (
   PRIMARY KEY (`Id`),
   KEY `docente_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `docente_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +302,7 @@ CREATE TABLE `docente` (
 
 LOCK TABLES `docente` WRITE;
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-INSERT INTO `docente` VALUES (1,'191919191',8,1),(2,'191919191',9,1);
+INSERT INTO `docente` VALUES (1,'191919191',8,1),(2,'191919191',9,1),(25,'asdasdasdasd',53,1),(26,'asdasdasdasd',59,1);
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +324,7 @@ CREATE TABLE `estudiante` (
   KEY `estudiante_municipio_FK` (`IdMunicipio`),
   CONSTRAINT `estudiante_municipio_FK` FOREIGN KEY (`IdMunicipio`) REFERENCES `municipio` (`IdMunicipio`),
   CONSTRAINT `Estudiante_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +333,7 @@ CREATE TABLE `estudiante` (
 
 LOCK TABLES `estudiante` WRITE;
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-INSERT INTO `estudiante` VALUES (1,'0090091',3,3,1),(2,'10101010',5,3,1),(3,'111212222',6,3,1),(4,'99899889',7,3,1);
+INSERT INTO `estudiante` VALUES (1,'0090091',3,3,1),(2,'10101010',5,3,1),(3,'111212222',6,3,1),(4,'99899889',7,3,1),(17,'asdasdasdasdasdasdada',54,1,1),(18,'adasdasdasd',55,1,1),(19,'',57,1,1),(20,'asdasdasdsadasdasdasda',60,1,1),(21,'adasdasdasdasdadadad',61,1,1);
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,6 +347,7 @@ DROP TABLE IF EXISTS `grado`;
 CREATE TABLE `grado` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -355,7 +358,7 @@ CREATE TABLE `grado` (
 
 LOCK TABLES `grado` WRITE;
 /*!40000 ALTER TABLE `grado` DISABLE KEYS */;
-INSERT INTO `grado` VALUES (1,'1ro'),(2,'2do'),(3,'3ro'),(4,'4to'),(5,'5to');
+INSERT INTO `grado` VALUES (1,'1ro',1),(2,'2do',1),(3,'3ro',1),(4,'4to',1),(5,'5to',1);
 /*!40000 ALTER TABLE `grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,7 +388,7 @@ CREATE TABLE `matricula` (
   CONSTRAINT `Matricula_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `Matricula_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`),
   CONSTRAINT `Matricula_tutor_FK` FOREIGN KEY (`Id_tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,7 +397,7 @@ CREATE TABLE `matricula` (
 
 LOCK TABLES `matricula` WRITE;
 /*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
-INSERT INTO `matricula` VALUES (1,1,1,1,1,1,1),(2,2,2,3,2,2,0),(3,3,2,3,2,1,1);
+INSERT INTO `matricula` VALUES (1,1,1,1,1,1,1),(2,2,2,3,2,2,0),(3,3,2,3,2,1,1),(8,2,2,1,1,1,1),(9,1,1,2,1,1,1),(10,17,1,1,1,1,1);
 /*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,6 +412,7 @@ CREATE TABLE `municipio` (
   `IdMunicipio` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `IdDepartamento` int NOT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`IdMunicipio`),
   KEY `Municipio_Departamento_FK` (`IdDepartamento`),
   CONSTRAINT `Municipio_Departamento_FK` FOREIGN KEY (`IdDepartamento`) REFERENCES `departamento` (`IdDepartamento`)
@@ -421,7 +425,7 @@ CREATE TABLE `municipio` (
 
 LOCK TABLES `municipio` WRITE;
 /*!40000 ALTER TABLE `municipio` DISABLE KEYS */;
-INSERT INTO `municipio` VALUES (1,'Larreynaga',10),(2,'Boaco',1),(3,'Camoapa',1),(4,'San José de los Remates',1),(5,'San Lorenzo',1),(6,'Santa Lucía',1),(7,'Teustepe',1),(8,'Diriamba',2),(9,'Dolores',2),(10,'El Rosario',2),(11,'Jinotepe',2),(12,'La Conquista',2),(13,'La Paz de Oriente',2),(14,'San Marcos',2),(15,'Santa Teresa',2),(16,'Chichigalpa',3),(17,'Chinandega',3),(18,'Cinco Pinos',3),(19,'Corinto',3),(20,'El Realejo',3),(21,'El Viejo',3),(22,'Posoltega',3),(23,'Puerto Morazán',3),(24,'San Francisco del Norte',3),(25,'San Pedro del Norte',3),(26,'Santo Tomás del Norte',3),(27,'Somotillo',3),(28,'Villanueva',3),(29,'Acoyapa',4),(30,'Comalapa',4),(31,'Cuapa',4),(32,'El Coral',4),(33,'Juigalpa',4),(34,'La Libertad',4),(35,'San Pedro de Lóvago',4),(36,'Santo Domingo',4),(37,'Santo Tomás',4),(38,'Villa Sandino',4),(39,'Bonanza',5),(40,'Mulukukú',5),(41,'Prinzapolka',5),(42,'Bilwi - Puerto Cabezas',5),(43,'Rosita',5),(44,'Siuna',5),(45,'Waslala',5),(46,'Waspán',5),(47,'Bluefields',6),(48,'Corn Island',6),(49,'Desembocadura de Río Grande',6),(50,'El Ayote',6),(51,'El Rama',6),(52,'El Tortuguero',6),(53,'Kukra Hill',6),(54,'La Cruz de Río Grande',6),(55,'Laguna de Perlas',6),(56,'Muelle de los Bueyes',6),(57,'Nueva Guinea',6),(58,'Paiwas',6),(59,'Condega',7),(60,'Estelí',7),(61,'La Trinidad',7),(62,'Pueblo Nuevo',7),(63,'San Juan de Limay',7),(64,'San Nicolás',7),(65,'Diriá',8),(66,'Diriomo',8),(67,'Granada',8),(68,'Nandaime',8),(69,'El Cuá',9),(70,'Jinotega',9),(71,'La Concordia',9),(72,'San José de Bocay',9),(73,'San Rafael del Norte',9),(74,'San Sebastián de Yalí',9),(75,'Santa María de Pantasma',9),(76,'Wiwilí de Jinotega',9),(77,'Achuapa',10),(78,'El Jicaral',10),(79,'El Sauce',10),(80,'La Paz Centro',10),(81,'León',10),(82,'Nagarote',10),(83,'Quezalguaque',10),(84,'Santa Rosa del Peñón',10),(85,'Telica',10),(86,'Las Sabanas',11),(87,'Palacagüina',11),(88,'San José de Cusmapa',11),(89,'San Juan de Río Coco',11),(90,'Somoto',11),(91,'Telpaneca',11),(92,'Totogalpa',11),(93,'Yalagüina',11),(94,'Ciudad Sandino',12),(95,'El Crucero',12),(96,'Managua',12),(97,'Mateare',12),(98,'San Francisco Libre',12),(99,'Ticuantepe',12),(100,'Tipitapa',12),(101,'Villa El Carmen',12),(102,'Catarina',13),(103,'La Concepción',13),(104,'Masatepe',13),(105,'Masaya',13),(106,'Nandasmo',13),(107,'Nindirí',13),(108,'San Juan de Oriente',13),(109,'Tisma',13),(110,'Ciudad Darío',14),(111,'El Tuma - La Dalia',14),(112,'Esquipulas',14),(113,'Matagalpa',14),(114,'Matiguás',14),(115,'Muy Muy',14),(116,'Rancho Grande',14),(117,'San Dionisio',14),(118,'San Isidro',14),(119,'San Ramón',14),(120,'Sébaco',14),(121,'Terrabona',14),(122,'Ciudad Antigua',15),(123,'Dipilto',15),(124,'El Jícaro',15),(125,'Jalapa',15),(126,'Macuelizo',15),(127,'Mozonte',15),(128,'Murra',15),(129,'Ocotal',15),(130,'Quilalí',15),(131,'San Fernando',15),(132,'Santa María',15),(133,'Wiwilí de Nueva Segovia',15),(134,'El Almendro',16),(135,'El Castillo',16),(136,'San Carlos',16),(137,'San Juan del Norte',16),(138,'San Miguelito',16),(139,'Altagracia',17),(140,'Belén',17),(141,'Buenos Aires',17),(142,'Cárdenas',17),(143,'Moyogalpa',17),(144,'Potosí',17),(145,'San Jorge',17),(146,'San Juan del Sur',17),(147,'Tola',17);
+INSERT INTO `municipio` VALUES (1,'Larreynaga',10,1),(2,'Boaco',1,1),(3,'Camoapa',1,1),(4,'San José de los Remates',1,1),(5,'San Lorenzo',1,1),(6,'Santa Lucía',1,1),(7,'Teustepe',1,1),(8,'Diriamba',2,1),(9,'Dolores',2,1),(10,'El Rosario',2,1),(11,'Jinotepe',2,1),(12,'La Conquista',2,1),(13,'La Paz de Oriente',2,1),(14,'San Marcos',2,1),(15,'Santa Teresa',2,1),(16,'Chichigalpa',3,1),(17,'Chinandega',3,1),(18,'Cinco Pinos',3,1),(19,'Corinto',3,1),(20,'El Realejo',3,1),(21,'El Viejo',3,1),(22,'Posoltega',3,1),(23,'Puerto Morazán',3,1),(24,'San Francisco del Norte',3,1),(25,'San Pedro del Norte',3,1),(26,'Santo Tomás del Norte',3,1),(27,'Somotillo',3,1),(28,'Villanueva',3,1),(29,'Acoyapa',4,1),(30,'Comalapa',4,1),(31,'Cuapa',4,1),(32,'El Coral',4,1),(33,'Juigalpa',4,1),(34,'La Libertad',4,1),(35,'San Pedro de Lóvago',4,1),(36,'Santo Domingo',4,1),(37,'Santo Tomás',4,1),(38,'Villa Sandino',4,1),(39,'Bonanza',5,1),(40,'Mulukukú',5,1),(41,'Prinzapolka',5,1),(42,'Bilwi - Puerto Cabezas',5,1),(43,'Rosita',5,1),(44,'Siuna',5,1),(45,'Waslala',5,1),(46,'Waspán',5,1),(47,'Bluefields',6,1),(48,'Corn Island',6,1),(49,'Desembocadura de Río Grande',6,1),(50,'El Ayote',6,1),(51,'El Rama',6,1),(52,'El Tortuguero',6,1),(53,'Kukra Hill',6,1),(54,'La Cruz de Río Grande',6,1),(55,'Laguna de Perlas',6,1),(56,'Muelle de los Bueyes',6,1),(57,'Nueva Guinea',6,1),(58,'Paiwas',6,1),(59,'Condega',7,1),(60,'Estelí',7,1),(61,'La Trinidad',7,1),(62,'Pueblo Nuevo',7,1),(63,'San Juan de Limay',7,1),(64,'San Nicolás',7,1),(65,'Diriá',8,1),(66,'Diriomo',8,1),(67,'Granada',8,1),(68,'Nandaime',8,1),(69,'El Cuá',9,1),(70,'Jinotega',9,1),(71,'La Concordia',9,1),(72,'San José de Bocay',9,1),(73,'San Rafael del Norte',9,1),(74,'San Sebastián de Yalí',9,1),(75,'Santa María de Pantasma',9,1),(76,'Wiwilí de Jinotega',9,1),(77,'Achuapa',10,1),(78,'El Jicaral',10,1),(79,'El Sauce',10,1),(80,'La Paz Centro',10,1),(81,'León',10,1),(82,'Nagarote',10,1),(83,'Quezalguaque',10,1),(84,'Santa Rosa del Peñón',10,1),(85,'Telica',10,1),(86,'Las Sabanas',11,1),(87,'Palacagüina',11,1),(88,'San José de Cusmapa',11,1),(89,'San Juan de Río Coco',11,1),(90,'Somoto',11,1),(91,'Telpaneca',11,1),(92,'Totogalpa',11,1),(93,'Yalagüina',11,1),(94,'Ciudad Sandino',12,1),(95,'El Crucero',12,1),(96,'Managua',12,1),(97,'Mateare',12,1),(98,'San Francisco Libre',12,1),(99,'Ticuantepe',12,1),(100,'Tipitapa',12,1),(101,'Villa El Carmen',12,1),(102,'Catarina',13,1),(103,'La Concepción',13,1),(104,'Masatepe',13,1),(105,'Masaya',13,1),(106,'Nandasmo',13,1),(107,'Nindirí',13,1),(108,'San Juan de Oriente',13,1),(109,'Tisma',13,1),(110,'Ciudad Darío',14,1),(111,'El Tuma - La Dalia',14,1),(112,'Esquipulas',14,1),(113,'Matagalpa',14,1),(114,'Matiguás',14,1),(115,'Muy Muy',14,1),(116,'Rancho Grande',14,1),(117,'San Dionisio',14,1),(118,'San Isidro',14,1),(119,'San Ramón',14,1),(120,'Sébaco',14,1),(121,'Terrabona',14,1),(122,'Ciudad Antigua',15,1),(123,'Dipilto',15,1),(124,'El Jícaro',15,1),(125,'Jalapa',15,1),(126,'Macuelizo',15,1),(127,'Mozonte',15,1),(128,'Murra',15,1),(129,'Ocotal',15,1),(130,'Quilalí',15,1),(131,'San Fernando',15,1),(132,'Santa María',15,1),(133,'Wiwilí de Nueva Segovia',15,1),(134,'El Almendro',16,1),(135,'El Castillo',16,1),(136,'San Carlos',16,1),(137,'San Juan del Norte',16,1),(138,'San Miguelito',16,1),(139,'Altagracia',17,1),(140,'Belén',17,1),(141,'Buenos Aires',17,1),(142,'Cárdenas',17,1),(143,'Moyogalpa',17,1),(144,'Potosí',17,1),(145,'San Jorge',17,1),(146,'San Juan del Sur',17,1),(147,'Tola',17,1);
 /*!40000 ALTER TABLE `municipio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,6 +439,7 @@ DROP TABLE IF EXISTS `sexo`;
 CREATE TABLE `sexo` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -445,7 +450,7 @@ CREATE TABLE `sexo` (
 
 LOCK TABLES `sexo` WRITE;
 /*!40000 ALTER TABLE `sexo` DISABLE KEYS */;
-INSERT INTO `sexo` VALUES (1,'Masculino'),(2,'Femenino');
+INSERT INTO `sexo` VALUES (1,'Masculino',1),(2,'Femenino',1);
 /*!40000 ALTER TABLE `sexo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -459,6 +464,7 @@ DROP TABLE IF EXISTS `tipo_usuario`;
 CREATE TABLE `tipo_usuario` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -469,7 +475,7 @@ CREATE TABLE `tipo_usuario` (
 
 LOCK TABLES `tipo_usuario` WRITE;
 /*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
-INSERT INTO `tipo_usuario` VALUES (1,'Administrador'),(2,'Docente'),(3,'Tutor'),(4,'Alumno');
+INSERT INTO `tipo_usuario` VALUES (1,'Administrador',1),(2,'Docente',1),(3,'Tutor',1),(4,'Alumno',1);
 /*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -483,6 +489,7 @@ DROP TABLE IF EXISTS `turno`;
 CREATE TABLE `turno` (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -493,7 +500,7 @@ CREATE TABLE `turno` (
 
 LOCK TABLES `turno` WRITE;
 /*!40000 ALTER TABLE `turno` DISABLE KEYS */;
-INSERT INTO `turno` VALUES (1,'Matutino'),(2,'Vespertino');
+INSERT INTO `turno` VALUES (1,'Matutino',1),(2,'Vespertino',1);
 /*!40000 ALTER TABLE `turno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -513,7 +520,7 @@ CREATE TABLE `tutor` (
   PRIMARY KEY (`Id`),
   KEY `Tutor_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Tutor_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -522,7 +529,7 @@ CREATE TABLE `tutor` (
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2,1),(2,'00000000000001','maistro',4,1);
+INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2,1),(2,'00000000000001','maistro',4,1),(11,'000000000000012222','adadasdas',56,1),(12,'000000000000012222222','adadasdas',58,1);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +549,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -551,7 +558,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1,1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2,1);
+INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1,1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2,1),(53,'AndMan24314','$2y$10$15H//ENTiPb0U4mVQLCHbeIAMQ/0lRD9L.2WoFbDvGLL.FiJVsheC',2,1),(54,'VicOrt24753','$2y$10$AvGUyDNArwDV0/rKNT79zeY/lWMgImZZ3uK6lzaUV7EejSExb003S',4,1),(55,'VicOrt54650','$2y$10$RYg9Csd.ocb7ZUVfDFa4jOogU8FwHyhchqQU7ZbGelVhk5UBLAPKe',4,1),(56,'Pepjos54728','$2y$10$Bl37724XtITK1md6hyH5yOm4UrWbn5Bf.sz8ehV57rvaa4Utha3bm',3,1),(57,'cairam54844','$2y$10$ONNLgB0AcR5QuTi5tbYyZu1c8oYuHvxXZEqnqz6mZryIOIelVKap2',4,1),(58,'castul5484','$2y$10$2XR5a1TH9lO32LKtu2ncoeFydU31I7V395WhuAUeXj3UMXcLb5f6q',3,1),(59,'Pepjos31131','$2y$10$3xH.XOXr8hp7bjUS9HSlseuCKz/kdb030VBr/sVDTFugoeMF6Cqgq',2,1),(60,'Pepjos31159','$2y$10$FdTb2/ZbZdge6xaWa/1fweTGKTU/b.8BxL/K7MgUKqSSJgtARE6bK',4,1),(61,'cairam42120','$2y$10$SQ291HnBC9gwS8IOrCObDuGXu9I6fAq2WHY662pqpNYwVCEAl9U2G',4,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -653,7 +660,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Detalle_grado_asignatura`( grad int, turn int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Detalle_grado_asignatura`( iddag int)
 begin
 	
 	select 
@@ -678,7 +685,7 @@ begin
 	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
 	inner join
 	detalle_aniolectivo_grado as dag on dag.Id = dga.Id_detalle_aniolectivo_grado 
-	where dag.id_grado = grad and dag.id_turno = turn and dga.Estado = 1
+	where dga.Id_detalle_aniolectivo_grado = iddag  and dga.Estado = 1
 	;
 END ;;
 DELIMITER ;
@@ -870,6 +877,42 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_Get_MatriculasPorGrado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_MatriculasPorGrado`(id_dga int)
+begin
+select 
+mat.Id ,
+mat.Id_estudiante ,
+dp.Nombres,
+dp.Apellidos, 
+mat.id_grado 
+from 
+matricula as mat 
+inner join
+estudiante as es on es.Id = mat.Id_estudiante 
+inner join 
+datos_personales as dp on dp.Id_Usuario = es.Id_Usuario 
+inner join 
+detalle_aniolectivo_grado as dag on dag.id_grado = mat.id_grado 
+inner join 
+detalle_grado_asignaturas dga on dga.Id_detalle_aniolectivo_grado = dag.Id 
+where dga.Id = id_dga and mat.Estado = 1
+; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_Get_Tutores` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -959,4 +1002,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-11 22:51:16
+-- Dump completed on 2024-06-15 23:35:54
