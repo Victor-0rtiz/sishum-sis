@@ -4,7 +4,7 @@
     <div class="collapse navbar-collapse container  d-flex justify-content-end" id="navbarSupportedContent">
      
       <div class="d-flex justify-content-center gap-3 align-items-center">
-        <p class="text-white m-0 modifywapper pb-2"> <?php echo strtoupper( $_SESSION["usser"]); ?></p>
+        <p class="text-white m-0 modifywapper pb-2"> <?php echo $_SESSION["Nombres"] . ' '.$_SESSION["Apellidos"]; ?></p>
 
         <a href="/unlogin" class="text-white p-2 modifywapper">  <span>
         Cerrar Sesión

@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\DatosPersonales;
 use Model\Sexo;
 use Model\Usuario;
 use Model\TipoUsuario;
@@ -92,6 +93,26 @@ class UsuariosController
         // $data = Usuario::obtenerUsuarios();
         echo json_encode($data);
         return;
+    }
+    public static function getUserUnic(Router $router)
+    {
+
+
+        if (!is_auth()) {
+           
+            return;
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = Usuario::find($_POST["Id"]);
+            $data2 = DatosPersonales::where('Id_Usuario',$_POST["Id"]);
+    
+            // $data = Usuario::obtenerUsuarios();
+            echo json_encode($data2);
+            return;
+        }
+       
+        
     }
     // public static function addUsers(Router $router)
     // {

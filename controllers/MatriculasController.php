@@ -45,7 +45,7 @@ class MatriculasController
             return;
         }
 
-        $matriculas = Matricula::obtenerMatriculasPorGrado($_POST);
+        $matriculas = Matricula::obtenerMatriculasPorGrado($_POST["dga"]);
 
 
         echo json_encode($matriculas);

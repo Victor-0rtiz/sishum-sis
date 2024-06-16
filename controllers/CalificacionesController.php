@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Model\DetalleAnioLectivoGrado;
 use Model\DetalleGradoAsignaturas;
+use Model\DetalleNotaAsignatura;
 use MVC\Router;
 
 class CalificacionesController
@@ -180,6 +181,46 @@ class CalificacionesController
             }
 
             echo json_encode($resp);
+            return;
+        }
+        // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();
+        // echo json_encode($detalle);
+        return;
+    }
+
+    public static function addCaliNotas(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
+            $detalle = DetalleNotaAsignatura::where('id_matricula',$_POST['id_matricula']);
+
+            if ($detalle) {
+
+                echo json_encode(["alert" => "El registro existe, verifique los datos"]);
+                return;
+            }
+
+            $notaNew = new DetalleNotaAsignatura($_POST);
+
+            $resp =  $notaNew->guardar();
+
+            if (isset($resp["Id"])) {
+                echo json_encode(["exito" => "Se guardo correctamente las asignación de la asignatura "]);
+                return;
+            }
+
+
+
+
+            echo json_encode($_POST);
             return;
         }
         // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();

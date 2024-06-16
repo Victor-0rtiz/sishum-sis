@@ -43,8 +43,11 @@ $router->get("/dashboard/usuarios", [UsuariosController::class, "index"]);
 //usuarios
 $router->get("/api/usuarios/all", [UsuariosController::class, "allusers"]);
 $router->post("/api/usuarios/add", [UsuariosController::class, "createUser"]);
+$router->post("/api/usuarios/unic", [UsuariosController::class, "getUserUnic"]);
 $router->get("/api/usuarios/tipouser", [UsuariosController::class, "getTipoUsers"]);
 
+//Perfil
+$router->post("/api/perfil/edit", [PerfilController::class, "ActualizarDatos"]);
 
 //departamentos y municipios
 $router->get("/api/departamentos/all", [DepartamentosController::class, "getAllDepartamentos"]);
@@ -76,6 +79,7 @@ $router->post("/api/grado/calificacion/add", [CalificacionesController::class, "
 $router->post("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
 $router->post("/api/calificaciones/asignaturas/add", [CalificacionesController::class, "addDetalleGradoAsig"]);
 $router->post("/api/calificaciones/notas/all", [CalificacionesController::class, "getAllCaliNotas"]);
+$router->post("/api/calificaciones/notas/add", [CalificacionesController::class, "addCaliNotas"]);
 
 //asignaturas
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);

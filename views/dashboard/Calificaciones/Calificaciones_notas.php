@@ -11,8 +11,8 @@
 
                 <div class="card-header row">
                     <h5 class="col">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal-dialog-scrollable" data-bs-target="#staticBackdrop">
-                            Agregar
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#asignarNotasMat">
+                            Agregar Nota
                         </button>
                     </h5>
 
@@ -36,6 +36,42 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="modal fade" id="asignarNotasMat" tabindex="-1" aria-labelledby="asignarNotasMat" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <h3 class="fs-2">Agregar Nota</h3>
+
+                        <form id="FormDataNotas">
+                            <div class="mb-3">
+                                <label for="estudiante" class="form-label">Estudiante</label>
+                                <select class="form-select" name="id_matricula" id="estudiante">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Nota" class="form-label">Nota</label>
+                                <input type="number" class="form-control" name="Nota" id="Nota">
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                    <button id="GuardarNota" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
     </div>
 
 

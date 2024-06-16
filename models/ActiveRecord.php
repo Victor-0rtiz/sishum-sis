@@ -42,14 +42,14 @@ class ActiveRecord {
     }
 
     public static function all() {
-        $query = "SELECT * FROM " . static::$tabla;
+        $query = "SELECT * FROM " . static::$tabla . " WHERE Estado = '1'";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
 
     // Busca un registro por su id
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE Id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE Id = ${id} AND Estado = '1'" ;
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -63,7 +63,7 @@ class ActiveRecord {
 
     // Busqueda Where con Columna 
     public static function where($columna, $valor) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}'";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ${columna} = '${valor}' AND Estado = '1'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -129,7 +129,7 @@ class ActiveRecord {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ";
         foreach ($array as $key => $value) {
             if ($key === array_key_last($array)) {
-                $query .= " $key = '$value'";
+                $query .= " $key = '$value' AND Estado = 1";
             } else {
                 $query .= " $key = '$value' AND";
             }
