@@ -4,7 +4,7 @@ namespace Model;
 
 class Matricula extends ActiveRecord {
     protected static $tabla = 'matricula';
-    protected static $columnasDB = ['Id', 'Id_estudiante', 'Id_tutor', 'id_grado', 'id_turno', 'id_anio_lectivo'];
+    protected static $columnasDB = ['Id', 'Id_estudiante', 'Id_tutor', 'id_grado', 'id_turno', 'id_anio_lectivo' ,'qrhash'];
 
     public $Id;
     public $Id_estudiante;
@@ -12,6 +12,7 @@ class Matricula extends ActiveRecord {
     public $id_grado;
     public $id_turno;
     public $id_anio_lectivo;
+    public $qrhash;
 
     public function __construct($args = [])
     {
@@ -21,6 +22,7 @@ class Matricula extends ActiveRecord {
         $this->id_grado = $args['id_grado'] ?? null;
         $this->id_turno = $args['id_turno'] ?? null;
         $this->id_anio_lectivo = $args['id_anio_lectivo'] ?? null;
+        $this->qrhash = $args['qrhash'] ?? '';
     }
 
 
@@ -35,6 +37,12 @@ class Matricula extends ActiveRecord {
         $nombreSP = 'sp_Get_MatriculasPorGrado';
 
         return self::ejecutarSP($nombreSP,[$idGrado]);
+    }
+    public static function obtenerMatriculaUnica($IdMatricula)
+    {
+        $nombreSP = 'sp_MatriculaReporte';
+
+        return self::ejecutarSP($nombreSP,[$IdMatricula]);
     }
 
 

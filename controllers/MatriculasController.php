@@ -168,7 +168,6 @@ class MatriculasController
                 $resp2 = $tutor->guardar();
                 // $resp2["Id"] = 21;
                 $idTutor = $resp2["Id"];
-
             }
 
 
@@ -192,6 +191,8 @@ class MatriculasController
                 ]
             );
 
+            $uniqueId = uniqid();
+            $matriculaNew->qrhash = hash('sha256', $uniqueId . $matriculaNew->Id_estudiante . $matriculaNew->id_anio_lectivo);
 
             $resulSaveMatri =  $matriculaNew->guardar();
 

@@ -11,6 +11,7 @@ use Controllers\EstudiantesController;
 use Controllers\LoginController;
 use Controllers\MatriculasController;
 use Controllers\PerfilController;
+use Controllers\ReportesController;
 use Controllers\TutoresController;
 use Controllers\UsuariosController;
 use MVC\Router;
@@ -93,6 +94,8 @@ $router->post("/api/asignaturas-asignadas/add", [AsignaturasController::class, "
 // sexo
 $router->get("/api/sexo/all", [UsuariosController::class, "getAllsexo"]);
 
-
+//reportes
+$router->post("/api/reporte/matricula", [ReportesController::class, "Matricula"]);
+$router->get("/api/reporte/matricula", [ReportesController::class, "Matricula"]);
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
