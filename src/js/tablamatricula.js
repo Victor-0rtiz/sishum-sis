@@ -368,11 +368,15 @@
                     { data: 'Nombres_estudiante' },
                     { data: 'Nombres_tutor' },
                     { data: 'Id_turno_nombre' },
-                    { data: 'Id_grado_nombre' },
+                    { data: 'Id_grado_nombre' }, 
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
+                            return `
+                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                                <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
+                                <button type="button" class="btn btn-success btn-reporte " data-id="${row.Id}"><i class="fa-solid fa-file-pdf"></i>Ver Matricula</button>
+                            `    ;
                         }
                     }
                 ],
@@ -400,6 +404,34 @@
             // Manejar errores de la solicitud AJAX
             console.error(xhr.responseText);
         }
+    });
+
+    $('#tablaMatriculas').on('click', '.btn-reporte', function() {
+        const id = $(this).data('id');
+        // Aquí puedes generar el reporte
+        console.log('Generar reporte para matricula con ID:', id);
+      
+        // Aquí puedes realizar la acción de borrado
+        $.ajax({
+            url: '/api/reporte/matricula', // URL de tu controlador que genera el PDF
+            type: 'POST',
+            data: { "Id": id }, // Enviar los datos como JSON
+            xhrFields: {
+                responseType: 'blob' // Recibir la respuesta como un blob
+            },
+            success: function(data) {     
+                const blob = new Blob([data], { type: "application/pdf" });
+                const url = window.URL.createObjectURL(blob);
+                window.open(url, '_blank'); // Abrir el PDF en una nueva pestaña
+                // Limpiar el objeto URL después de un tiempo para liberar memoria
+                setTimeout(() => {
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al obtener el PDF:", error);
+            }
+        });
     });
 
     $.ajax({

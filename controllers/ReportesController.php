@@ -14,32 +14,36 @@ class ReportesController
 {
     public static function Matricula(Router $router)
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
 
-        $_POST["Id"];
+            $idMatricula = $_POST["Id"];
+            // echo json_encode($idMatricula);
+            // return;
 
-        $datos = Matricula::obtenerMatriculaUnica(12);
-        $datos = $datos[0];
+            $datos = Matricula::obtenerMatriculaUnica( $idMatricula);
+            $datos = $datos[0];
 
-        // Generar el código QR con la URL
-        $qrCode = new QrCode("http://localhost:6060".$datos['qrhash']);
-        $qrCode->setSize(115); // Ajusta el tamaño del QR según sea necesario
+            // Generar el código QR con la URL
+            $qrCode = new QrCode("http://localhost:6060" . $datos['qrhash']);
+            $qrCode->setSize(115); // Ajusta el tamaño del QR según sea necesario
 
-        // Guardar el QR como imagen en base64
-        $writer = new PngWriter();
-        $result = $writer->write($qrCode);
-        $qrCodeBase64 = base64_encode($result->getString());
+            // Guardar el QR como imagen en base64
+            $writer = new PngWriter();
+            $result = $writer->write($qrCode);
+            $qrCodeBase64 = base64_encode($result->getString());
 
-        // Ruta absoluta para la imagen de fondo
-        $logoPath = '../public/build/img/prueba1asd.png'; // Ajusta esta ruta según sea necesario
-        $logoBase64 = base64_encode(file_get_contents($logoPath));
+            // Ruta absoluta para la imagen de fondo
+            $logoPath = '../public/build/img/prueba1asd.png'; // Ajusta esta ruta según sea necesario
+            $logoBase64 = base64_encode(file_get_contents($logoPath));
 
-        // Crear la instancia de Dompdf
-        // Crear una nueva instancia de mPDF
-        $mpdf = new Mpdf();
-        $mpdf->SetWatermarkImage('../public/build/img/LOGO 1.png', 0.1,  [150, 180]);
-        $mpdf->showWatermarkImage = true;
-        // Generar el contenido HTML del PDF
-        $htmlContent = '
+            // Crear la instancia de Dompdf
+            // Crear una nueva instancia de mPDF
+            $mpdf = new Mpdf();
+            $mpdf->SetWatermarkImage('../public/build/img/LOGO 1.png', 0.1,  [150, 180]);
+            $mpdf->showWatermarkImage = true;
+            // Generar el contenido HTML del PDF
+            $htmlContent = '
     
         <head>
             <style>
@@ -195,11 +199,19 @@ class ReportesController
         </html>
         ';
 
-        // Cargar el contenido HTML
-        $mpdf->WriteHTML($htmlContent);
-        $mpdf->Output();
+            // Cargar el contenido HTML
+            $mpdf->WriteHTML($htmlContent);
 
-       
+            // Configurar la cabecera para devolver el PDF como respuesta
+            // Configurar la cabecera para devolver el PDF como respuesta
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: inline; filename="documento.pdf"');
+            header('Cache-Control: private, max-age=0, must-revalidate'); // Opcional, ayuda con ciertos navegadores
+            $mpdf->Output('', 'I'); // Eliminado __FILE__
+        } else {
+            http_response_code(405); // Método no permitido
+            exit;
+        }
     }
 
 
