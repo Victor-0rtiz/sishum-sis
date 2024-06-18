@@ -209,4 +209,30 @@ class MatriculasController
         echo json_encode("false");
         return;
     }
+
+
+
+    public static function delMatricula(Router $router)
+    {
+        if (!is_auth()) {
+            
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $matricula =  Matricula::find($_POST["Id"]);
+
+            $matricula->Estado = 0;
+
+            $resp = $matricula->guardar();
+
+            echo json_encode(["exito"=>$resp]);
+            return;
+        }
+        $matriculas = "";
+
+
+        echo json_encode($matriculas);
+        return;
+    }
 }

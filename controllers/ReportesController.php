@@ -26,7 +26,7 @@ class ReportesController
 
             // Generar el código QR con la URL
             $qrCode = new QrCode("http://localhost:6060" . $datos['qrhash']);
-            $qrCode->setSize(115); // Ajusta el tamaño del QR según sea necesario
+            $qrCode->setSize(90); // Ajusta el tamaño del QR según sea necesario
 
             // Guardar el QR como imagen en base64
             $writer = new PngWriter();
@@ -40,7 +40,7 @@ class ReportesController
             // Crear la instancia de Dompdf
             // Crear una nueva instancia de mPDF
             $mpdf = new Mpdf();
-            $mpdf->SetWatermarkImage('../public/build/img/LOGO 1.png', 0.1,  [150, 180]);
+            $mpdf->SetWatermarkImage('../public/build/img/LOGO 1.png', 0.1,  [115, 150]);
             $mpdf->showWatermarkImage = true;
             // Generar el contenido HTML del PDF
             $htmlContent = '

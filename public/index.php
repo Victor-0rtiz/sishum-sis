@@ -68,6 +68,7 @@ $router->post("/api/estudiantes/add", [EstudiantesController::class, "addEstuden
 $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
 $router->post("/api/matricula-grado/all", [MatriculasController::class, "getAllMatPorGrado"]);
 $router->post("/api/matricula/add", [MatriculasController::class, "addMatricula"]);
+$router->post("/api/matricula/del", [MatriculasController::class, "delMatricula"]);
 
 //docentes
 $router->get("/api/docentes/all", [DocentesController::class, "getAllDocentes"]);

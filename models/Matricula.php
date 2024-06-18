@@ -4,7 +4,7 @@ namespace Model;
 
 class Matricula extends ActiveRecord {
     protected static $tabla = 'matricula';
-    protected static $columnasDB = ['Id', 'Id_estudiante', 'Id_tutor', 'id_grado', 'id_turno', 'id_anio_lectivo' ,'qrhash'];
+    protected static $columnasDB = ['Id', 'Id_estudiante', 'Id_tutor', 'id_grado', 'id_turno', 'id_anio_lectivo' ,'qrhash','Estado'];
 
     public $Id;
     public $Id_estudiante;
@@ -13,6 +13,7 @@ class Matricula extends ActiveRecord {
     public $id_turno;
     public $id_anio_lectivo;
     public $qrhash;
+    public $Estado;
 
     public function __construct($args = [])
     {
