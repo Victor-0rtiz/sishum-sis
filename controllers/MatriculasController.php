@@ -187,7 +187,8 @@ class MatriculasController
                     "Id_tutor" => $idTutor,
                     "id_anio_lectivo" => $_POST["data_matricula"]["id_anio_lectivo"],
                     "id_grado" => $_POST["data_matricula"]["id_grado"],
-                    "id_turno" => $_POST["data_matricula"]["id_turno"]
+                    "id_turno" => $_POST["data_matricula"]["id_turno"],
+                    "Edad" => $_POST["data_matricula"]["Edad"]
                 ]
             );
 

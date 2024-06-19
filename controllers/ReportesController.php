@@ -140,6 +140,11 @@ class ReportesController
                             <td style="border:none; border-collapse:collapse;"><label><span style="font-weight: bold;">Sexo: </span>  ' . $datos['Sexo_Estudiante'] . '</label></td>
                             
                         </tr>
+                        <tr style="border:none; border-collapse:collapse;">
+                            <td style="border:none; border-collapse:collapse;"><label><span style="font-weight: bold;">Edad del Estudiante:  </span> ' . $datos['Edad'] . '</label></td>
+                       
+                            
+                        </tr>
                         
                     </table>
                 </div>

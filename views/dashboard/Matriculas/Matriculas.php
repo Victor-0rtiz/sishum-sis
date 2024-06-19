@@ -91,6 +91,10 @@
 
                         <form id="FormDatosAcademicos">
                             <div class="mb-3">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type='number' class='form-control' name='Edad' id='edad'>
+                            </div>
+                            <div class="mb-3">
                                 <label for="grado" class="form-label">Grado</label>
                                 <select class="form-select" name="id_grado" id="Grado">
                                 </select>
@@ -100,6 +104,7 @@
                                 <select class="form-select" name="id_turno" id="Turno">
                                 </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="aniolectivo" class="form-label">Año Lectivo</label>
                                 <select class="form-select" name="id_anio_lectivo" id="AnioLectivo">
