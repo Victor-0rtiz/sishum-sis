@@ -6,7 +6,7 @@ namespace Model;
 
 class DatosPersonales extends ActiveRecord {
     protected static $tabla = 'datos_personales';
-    protected static $columnasDB = ['Id', 'Nombres', 'Apellidos', 'Telefono', 'Direccion', 'Id_sexo', 'Id_Usuario'];
+    protected static $columnasDB = ['Id', 'Nombres', 'Apellidos', 'Telefono', 'Direccion', 'Id_sexo', 'Id_Usuario','Estado'];
 
     public $Id;
     public $Nombres;
@@ -15,6 +15,7 @@ class DatosPersonales extends ActiveRecord {
     public $Direccion;
     public $Id_sexo;
     public $Id_Usuario;
+    public $Estado;
 
     public function __construct($args = [])
     {
@@ -25,6 +26,7 @@ class DatosPersonales extends ActiveRecord {
         $this->Direccion = $args['Direccion'] ?? '';
         $this->Id_sexo = $args['Id_sexo'] ?? null;
         $this->Id_Usuario = $args['Id_Usuario'] ?? null;
+        $this->Estado = $args['Estado'] ?? 1;
     }
 
 

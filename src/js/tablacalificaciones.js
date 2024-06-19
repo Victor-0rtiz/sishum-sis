@@ -16,11 +16,12 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id_grado}&turno=${row.Id_turno}&idDetalle=${row.Id }" class="btn btn-primary btn-editar">
-                            Ver Asignaturas ${row.Id}
+                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                                <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id_grado}&turno=${row.Id_turno}&idDetalle=${row.Id }" class="btn btn-secondary btn-verasignaturas">
+                           Asignaturas 
                              </a> 
-                            <button type="button" class="btn btn-danger">Borrar</button>
-                                        `;
+                                <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
+                            `  ;
                         }
                     }
                 ],
@@ -47,6 +48,47 @@
             // Manejar errores de la solicitud AJAX
             console.error(xhr.responseText);
         }
+    });
+
+
+    $('#tablaasingas').on('click', '.btn-borrar', function () {
+        const id = $(this).data('id');
+        // Aquí puedes generar el reporte
+        console.log('eliminar el registro ID:', id);
+
+        // Aquí puedes realizar la acción de borrado
+        $.ajax({
+            url: '/api/grado/calificacion/del', // URL de tu controlador que genera el PDF
+            type: 'POST',
+            data: { "Id": id }, // Enviar los datos como JSON
+            dataType: "json",
+            success: async function (response) {
+                console.log(response);
+                const respuesta = response;
+
+                if (respuesta.exito) {
+                    await cargarLista();
+
+                    await Swal.fire({
+                        icon: "success",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">Eliminado Correctamente</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'green',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: '#B8FFB8',
+                        showConfirmButton: false,
+                    });
+
+                    return;
+
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
     });
 
 
@@ -103,7 +145,7 @@
 
     $(document).ready(() => {
 
-        $("#GuardarAnioGradoTurno").click(async() => {
+        $("#GuardarAnioGradoTurno").click(async () => {
 
             let formDataAnioGradoTurno = new FormData($("#FormAnioGradoTurno")[0]);
 
@@ -195,7 +237,7 @@
         return obj;
     }
 
-    async function cargarLista(){
+    async function cargarLista() {
         $.ajax({
             url: '/api/grado/calificacion/all', // Especifica la URL de tu controlador
             dataType: 'json', // El tipo de datos esperado en la respuesta
@@ -213,11 +255,12 @@
                             data: null,
                             render: function (data, type, row) {
                                 return `
-                                <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id_grado}&turno=${row.Id_turno}" class="btn btn-primary btn-editar">
-                                Ver Asignaturas ${row.Id}
-                                 </a> 
-                                <button type="button" class="btn btn-danger">Borrar</button>
-                                            `;
+                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                                <a href="/dashboard/calificaciones-asignaturas?grado=${row.Id_grado}&turno=${row.Id_turno}&idDetalle=${row.Id}" class="btn btn-secondary btn-verasignaturas">
+                             Asignaturas 
+                             </a> 
+                                <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
+                            `  ;
                             }
                         }
                     ],
@@ -237,8 +280,8 @@
                         }
                     }
                 });
-    
-    
+
+
             },
             error: function (xhr, status, error) {
                 // Manejar errores de la solicitud AJAX

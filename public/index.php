@@ -62,6 +62,7 @@ $router->get("/api/tutores/all", [TutoresController::class, "getAllTutores"]);
 //estudiantes
 $router->get("/api/estudiantes/all", [EstudiantesController::class, "getAllEstudent"]);
 $router->post("/api/estudiantes/add", [EstudiantesController::class, "addEstudent"]);
+$router->post("/api/estudiantes/dell", [EstudiantesController::class, "delEstudiante"]);
 
 
 //matricula 
@@ -73,20 +74,26 @@ $router->post("/api/matricula/del", [MatriculasController::class, "delMatricula"
 //docentes
 $router->get("/api/docentes/all", [DocentesController::class, "getAllDocentes"]);
 $router->post("/api/docentes/add", [DocentesController::class, "addDocente"]);
+$router->post("/api/docentes/del", [DocentesController::class, "delDocente"]);
 
 
 //calificaciones
 $router->get("/api/grado/calificacion/all", [CalificacionesController::class, "getAllCali"]);
 $router->post("/api/grado/calificacion/add", [CalificacionesController::class, "addDetalleGradAnioAsig"]);
+$router->post("/api/grado/calificacion/del", [CalificacionesController::class, "dellCalificacionAsigGrado"]);
 $router->post("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
 $router->post("/api/calificaciones/asignaturas/add", [CalificacionesController::class, "addDetalleGradoAsig"]);
+$router->post("/api/calificaciones/asignaturas/del", [CalificacionesController::class, "dellAsigGradoNota"]);
 $router->post("/api/calificaciones/notas/all", [CalificacionesController::class, "getAllCaliNotas"]);
 $router->post("/api/calificaciones/notas/add", [CalificacionesController::class, "addCaliNotas"]);
+$router->post("/api/calificaciones/notas/del", [CalificacionesController::class, "dellAsigGradoUnica"]);
 
-//asignaturas
+//asignaturas y catalogos
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
 $router->get("/api/asignaturas/list", [AsignaturasController::class, "getAsignaturasList"]);
 $router->post("/api/asignaturas/add", [AsignaturasController::class, "addAsignaturas"]);
+$router->post("/api/asignaturas/del", [AsignaturasController::class, "dellAsignaturaList"]);
+$router->post("/api/asignaturas/detalle/del", [AsignaturasController::class, "dellAsignaturaUnica"]);
 $router->get("/api/anioslectivos/all", [AsignaturasController::class, "allAniosLectivos"]);
 $router->get("/api/grados/all", [AsignaturasController::class, "allGrados"]);
 $router->get("/api/turnos/all", [AsignaturasController::class, "allTurnos"]);

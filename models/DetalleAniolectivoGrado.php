@@ -4,12 +4,13 @@ namespace Model;
 
 class DetalleAnioLectivoGrado extends ActiveRecord {
     protected static $tabla = 'detalle_aniolectivo_grado';
-    protected static $columnasDB = ['Id', 'Id_anio_lectivo', 'id_grado', 'id_turno'];
+    protected static $columnasDB = ['Id', 'Id_anio_lectivo', 'id_grado', 'id_turno' , 'Estado'];
 
     public $Id;
     public $Id_anio_lectivo;
     public $id_grado;
     public $id_turno;
+    public $Estado;
 
     public function __construct($args = [])
     {
@@ -17,6 +18,7 @@ class DetalleAnioLectivoGrado extends ActiveRecord {
         $this->Id_anio_lectivo = $args['Id_anio_lectivo'] ?? null;
         $this->id_grado = $args['id_grado'] ?? null;
         $this->id_turno = $args['id_turno'] ?? null;
+        $this->Estado = $args['Estado'] ?? 1;
     }
 
     public static function obtenerGradoanio()

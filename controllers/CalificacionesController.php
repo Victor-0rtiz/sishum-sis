@@ -162,7 +162,7 @@ class CalificacionesController
             }
 
 
-            $dataExistenciaAsignatura = DetalleGradoAsignaturas::whereArray(['Id_asignatura'=> $_POST['Id_asignatura'], 'Id_detalle_aniolectivo_grado'=> $_POST['Id_detalle_aniolectivo_grado' ]]);
+            $dataExistenciaAsignatura = DetalleGradoAsignaturas::whereArray(['Id_asignatura' => $_POST['Id_asignatura'], 'Id_detalle_aniolectivo_grado' => $_POST['Id_detalle_aniolectivo_grado']]);
 
             if ($dataExistenciaAsignatura) {
 
@@ -170,7 +170,7 @@ class CalificacionesController
                 return;
             }
 
-           
+
             $GradoAsignatura = new DetalleGradoAsignaturas($_POST);
 
             $resp =  $GradoAsignatura->guardar();
@@ -200,7 +200,7 @@ class CalificacionesController
 
 
 
-            $detalle = DetalleNotaAsignatura::where('id_matricula',$_POST['id_matricula']);
+            $detalle = DetalleNotaAsignatura::where('id_matricula', $_POST['id_matricula']);
 
             if ($detalle) {
 
@@ -225,6 +225,76 @@ class CalificacionesController
         }
         // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();
         // echo json_encode($detalle);
+        return;
+    }
+
+
+    public static function dellCalificacionAsigGrado(Router $router)
+    {
+        if (!is_auth()) {
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $DetalleAnioGradoTurno =  DetalleAnioLectivoGrado::find($_POST["Id"]);
+
+            $DetalleAnioGradoTurno->Estado = 0;
+
+            $resp = $DetalleAnioGradoTurno->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+        echo json_encode(['respuesta' => true]);
+        return;
+    }
+
+
+    public static function dellAsigGradoNota(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $DetalleGradoAsignaturas =  DetalleGradoAsignaturas::find($_POST["Id"]);
+
+            $DetalleGradoAsignaturas->Estado = 0;
+
+            $resp = $DetalleGradoAsignaturas->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+        echo json_encode(['respuesta' => true]);
+        return;
+    }
+
+    public static function dellAsigGradoUnica(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $DetalleAsignaturasNotas =  DetalleNotaAsignatura::find($_POST["Id"]);
+
+            $DetalleAsignaturasNotas->Estado = 0;
+
+            $resp = $DetalleAsignaturasNotas->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+        echo json_encode(['respuesta' => true]);
         return;
     }
 }

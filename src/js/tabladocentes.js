@@ -18,7 +18,10 @@
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
+                            return `
+                            <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                           <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
+                                       `;
                         }
                     }
                 ],
@@ -90,6 +93,47 @@
     });
 
 
+    $('#tablaDocentes').on('click', '.btn-borrar', function () {
+        const id = $(this).data('id');
+        // Aquí puedes generar el reporte
+        console.log('eliminar el registro ID:', id);
+
+        // Aquí puedes realizar la acción de borrado
+        $.ajax({
+            url: '/api/docentes/del', // URL de tu controlador que genera el PDF
+            type: 'POST',
+            data: { "Id": id }, // Enviar los datos como JSON
+            dataType: "json",
+            success: async function (response) {
+                console.log(response);
+                const respuesta = response;
+
+                if (respuesta.exito) {
+                    await actualizarLista();
+
+                    await Swal.fire({
+                        icon: "success",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">Eliminado Correctamente</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'green',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: '#B8FFB8',
+                        showConfirmButton: false,
+                    });
+
+                    return;
+
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+
+
 
     $("#formDocente").on('submit', function (event) {
         event.preventDefault();
@@ -126,7 +170,7 @@
             type: 'POST', // O el método HTTP que estés utilizando
             data: dataForms, // Los datos del formulario serializados
             dataType: 'json', // El tipo de datos esperado en la respuesta
-            success: function (response) {
+            success: async function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
 
@@ -146,7 +190,7 @@
                 }
 
                 if (response.act) {
-
+                    await actualizarLista();
                     $('#agregarModal').modal('hide');
                     Swal.fire({
                         icon: "success",
@@ -160,52 +204,7 @@
                         showConfirmButton: false,
                     });
 
-                    $.ajax({
-                        url: '/api/docentes/all', // Especifica la URL de tu controlador
-                        dataType: 'json', // El tipo de datos esperado en la respuesta
-                        success: function (response) {
-                            // Manejar la respuesta del servidor
-                            console.log(response);
-                            const table = $('#tablaDocentes').DataTable({
-                                destroy: true, 
-                                columns: [
-                                    { data: 'Id' },
-                                    { data: 'Nombres' },
-                                    { data: 'Apellidos' },
-                                    { data: 'Cod_docente' },
-                                    { data: 'usser' },
-                                    { 
-                                        data: null,
-                                        render: function (data, type, row) {
-                                            return '<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal">Editar</button> <button type="button" class="btn btn-danger">Borrar</button>';
-                                        }
-                                    }
-                                ],
-                                language: {
-                                    "lengthMenu": "Mostrar _MENU_ registros por página",
-                                    "zeroRecords": "No se encontraron resultados",
-                                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                                    "infoEmpty": "No hay registros disponibles",
-                                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                                    "search": "Buscar:",
-                                    "loadingRecords": "Cargando...",
-                                    "processing": "Procesando...",
-                                    "emptyTable": "No hay datos disponibles en la tabla",
-                                    "aria": {
-                                        "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                                        "sortDescending": ": activar para ordenar la columna de manera descendente"
-                                    }
-                                }
-                            });
-                            // Por ejemplo, cerrar el modal
-                            // $('#addModal').modal('hide');
-                            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
-                        },
-                        error: function (xhr, status, error) {
-                            // Manejar errores de la solicitud AJAX
-                            console.error(xhr.responseText);
-                        }
-                    });
+                  
                 }
                 // Por ejemplo, cerrar el modal
                 $('#addModal').modal('hide');
@@ -219,6 +218,62 @@
 
 
     })
+
+
+    async function actualizarLista(){
+        console.log("actualizando...");
+
+        $.ajax({
+            url: '/api/docentes/all', // Especifica la URL de tu controlador
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success:  function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                const table = $('#tablaDocentes').DataTable({
+                    destroy: true,
+                    data:response,
+                    columns: [
+                        { data: 'Id' },
+                        { data: 'Nombres' },
+                        { data: 'Apellidos' },
+                        { data: 'Cod_docente' },
+                        { data: 'usser' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return `
+                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                               <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
+                                           `;
+                            }
+                        }
+                    ],
+                    language: {
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty": "No hay registros disponibles",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
+                            "sortDescending": ": activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+                // Por ejemplo, cerrar el modal
+                // $('#addModal').modal('hide');
+                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    }
 
 
 })()

@@ -4,12 +4,13 @@ namespace Model;
 
 class DetalleNotaAsignatura extends ActiveRecord {
     protected static $tabla = 'detalle_nota_asignatura';
-    protected static $columnasDB = ['Id', 'id_detalle_grado_asignatura', 'id_matricula', 'Nota'];
+    protected static $columnasDB = ['Id', 'id_detalle_grado_asignatura', 'id_matricula', 'Nota', 'Estado'];
 
     public $Id;
     public $id_detalle_grado_asignatura;
     public $id_matricula;
     public $Nota;
+    public $Estado;
 
     public function __construct($args = [])
     {
@@ -17,6 +18,7 @@ class DetalleNotaAsignatura extends ActiveRecord {
         $this->id_detalle_grado_asignatura = $args['id_detalle_grado_asignatura'] ?? null;
         $this->id_matricula = $args['id_matricula'] ?? null;
         $this->Nota = $args['Nota'] ?? 0;
+        $this->Estado = $args['Estado'] ?? 1;
     }
 
    

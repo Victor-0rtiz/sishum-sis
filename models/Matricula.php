@@ -24,6 +24,7 @@ class Matricula extends ActiveRecord {
         $this->id_turno = $args['id_turno'] ?? null;
         $this->id_anio_lectivo = $args['id_anio_lectivo'] ?? null;
         $this->qrhash = $args['qrhash'] ?? '';
+        $this->Estado = $args['Estado'] ?? 1;
     }
 
 

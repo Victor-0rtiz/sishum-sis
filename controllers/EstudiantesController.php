@@ -101,7 +101,7 @@ class EstudiantesController
 
 
         if (isset($_POST["TutorNuevo"])) {
-            
+
             $tutorNewNombre =  str_replace(" ", "", $_POST["TutorNuevo"]["Nombres"]);
             $tutorNewApellido =  str_replace(" ", "", $_POST["TutorNuevo"]["Apellidos"]);
             $numeroRandom2 = random_int(0, 99);
@@ -135,7 +135,7 @@ class EstudiantesController
 
             if (isset($respDPTutor["Id"]) && isset($respTutor["Id"])) {
 
-                $detalleTutorEstud2 = new DetalleTutorEstudiante(['Id_Tutor' => $respTutor["Id"] , 'Id_Estudiante' => $resp2["Id"]]);
+                $detalleTutorEstud2 = new DetalleTutorEstudiante(['Id_Tutor' => $respTutor["Id"], 'Id_Estudiante' => $resp2["Id"]]);
                 $respDTE2 =  $detalleTutorEstud2->guardar();
 
                 if (isset($respDTE2['Id'])) {
@@ -144,7 +144,6 @@ class EstudiantesController
                 }
                 echo json_encode(["error" => "ocurrio un error"]);
                 return;
-
             }
             if (isset($respDPTutor["Id"])) {
                 echo json_encode("Se guardo correctamente solo dp del tutor");
@@ -160,6 +159,37 @@ class EstudiantesController
         }
 
         echo json_encode($estudiante);
+        return;
+    }
+
+
+    public static function delEstudiante(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $estudiante =  Estudiante::find($_POST["Id"]);
+
+            
+            $estudiante->Estado = 0;
+            $detalleTutorEstudiantedata = DetalleTutorEstudiante::whereArray(["Id_Estudiante"=>$_POST["Id"], "Id_Tutor"=>$_POST["Id_Tutor"]]);
+            
+            $detalleTutorEstudiantedata[0]->Estado= 0;
+
+
+            $resp = $estudiante->guardar();
+            $resp2 = $detalleTutorEstudiantedata[0]->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+
+        echo json_encode(['respuesta' => true]);
         return;
     }
 }

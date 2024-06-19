@@ -4,15 +4,17 @@ namespace Model;
 
 class Asignatura extends ActiveRecord {
     protected static $tabla = 'asignatura';
-    protected static $columnasDB = ['Id', 'Nombre'];
+    protected static $columnasDB = ['Id', 'Nombre', 'Estado'];
 
     public $Id;
     public $Nombre;
+    public $Estado;
 
     public function __construct($args = [])
     {
         $this->Id = $args['Id'] ?? null;
         $this->Nombre = $args['Nombre'] ?? '';
+        $this->Estado = $args['Estado'] ?? 1;
     }
 
     public static function obtenerAsingaturas()

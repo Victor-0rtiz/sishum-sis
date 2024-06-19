@@ -146,4 +146,51 @@ class AsignaturasController
             // return;
         }
     }
+
+
+
+    public static function dellAsignaturaList(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $Asignatura = Asignatura::find($_POST["Id"]);
+
+            $Asignatura->Estado = 0;
+
+            $resp = $Asignatura->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+        echo json_encode(['respuesta' => true]);
+        return;
+    }
+    public static function dellAsignaturaUnica(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $DetalleGradoAsignaturas =  DetalleGradoAsignaturas::find($_POST["Id"]);
+
+            $DetalleGradoAsignaturas->Estado = 0;
+
+            $resp = $DetalleGradoAsignaturas->guardar();
+
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+        echo json_encode(['respuesta' => true]);
+        return;
+    }
 }

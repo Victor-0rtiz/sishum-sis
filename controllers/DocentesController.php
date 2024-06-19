@@ -100,4 +100,31 @@ class DocentesController
         echo json_encode($dpDocente);
         return;
     }
+
+
+    public static function delDocente(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $Docente =  Docente::find($_POST["Id"]);
+
+            
+            $Docente->Estado = 0;
+          
+
+            $resp = $Docente->guardar();
+            
+            echo json_encode(["exito" => $resp]);
+            return;
+        }
+
+        echo json_encode(['respuesta' => true]);
+        return;
+    }
 }
