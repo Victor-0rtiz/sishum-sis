@@ -113,7 +113,7 @@ CREATE TABLE `datos_personales` (
   KEY `datos_personales_sexo_FK` (`Id_sexo`),
   CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
   CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `docente` (
   PRIMARY KEY (`Id`),
   KEY `docente_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `docente_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -378,6 +378,7 @@ CREATE TABLE `matricula` (
   `id_anio_lectivo` int NOT NULL,
   `Estado` int DEFAULT '1',
   `qrhash` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Edad` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Matricula_estudiante_FK` (`Id_estudiante`),
   KEY `Matricula_tutor_FK` (`Id_tutor`),
@@ -389,7 +390,7 @@ CREATE TABLE `matricula` (
   CONSTRAINT `Matricula_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `Matricula_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`),
   CONSTRAINT `Matricula_tutor_FK` FOREIGN KEY (`Id_tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -398,7 +399,7 @@ CREATE TABLE `matricula` (
 
 LOCK TABLES `matricula` WRITE;
 /*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
-INSERT INTO `matricula` VALUES (1,1,1,1,1,1,1,NULL),(2,2,2,3,2,2,1,NULL),(3,3,2,3,2,1,1,NULL),(8,2,2,1,1,1,1,NULL),(9,1,1,2,1,1,1,NULL),(10,17,1,1,1,1,1,NULL),(12,1,2,1,2,1,0,'d41a786f663fe31c4f29562454d08af1c36b6fb4366a690ca6d1b8d61ed0b02f '),(13,21,1,1,1,1,1,'cc7705706c436031b7e009998e9ec24e3efed173dd36f566820abeedec87c86f');
+INSERT INTO `matricula` VALUES (1,1,1,1,1,1,1,NULL,7),(2,2,2,3,2,2,1,NULL,8),(3,3,2,3,2,1,1,NULL,5),(8,2,2,1,1,1,1,NULL,6),(9,1,1,2,1,1,1,NULL,6),(10,17,1,1,1,1,1,NULL,7),(12,1,2,1,2,1,0,'d41a786f663fe31c4f29562454d08af1c36b6fb4366a690ca6d1b8d61ed0b02f ',8),(13,21,1,1,1,1,1,'cc7705706c436031b7e009998e9ec24e3efed173dd36f566820abeedec87c86f',9),(14,4,1,1,1,1,1,'6fcf83ad6e8d60b88d3b962e60f7bf1d2b3e9696bb7db822adec9fcad913a80d',10);
 /*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -550,7 +551,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -838,7 +839,8 @@ begin
 	mat.Id,
 	mat.Id_estudiante,
 	mat.Id_tutor,
-	mat.id_grado,
+	mat.id_grado,
+	mat.Edad,
 	grd.Nombre as Id_grado_nombre,
 	mat.id_turno,
 	tur.Nombre as Id_turno_nombre,
@@ -893,6 +895,7 @@ begin
 select 
 mat.Id ,
 mat.Id_estudiante ,
+mat.Edad,
 dp.Nombres,
 dp.Apellidos, 
 mat.id_grado 
@@ -1010,7 +1013,8 @@ begin
 	mat.Id,
 	mat.Id_estudiante,
 	mat.Id_tutor,
-	mat.id_grado,
+	mat.id_grado,
+	mat.Edad,
 	grd.Nombre as Id_grado_nombre,
 	mat.id_turno,
 	mat.qrhash,
@@ -1068,4 +1072,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-18 22:37:57
+-- Dump completed on 2024-06-18 23:01:45
