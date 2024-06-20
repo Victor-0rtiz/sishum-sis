@@ -29,7 +29,7 @@
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Tutor</th>
-                              
+
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -117,7 +117,7 @@
 
                 </form>
 
- 
+
                 <div>
 
                     <h3 class="fs-2"> Tutor</h3>
@@ -125,7 +125,7 @@
 
                 </div>
 
-                
+
                 <div>
                     <label for="tutorExistente1">Tutor Existente</label>
                     <input type="radio" name="tutorExistente" id="tutorExistente1" value="1">
@@ -135,15 +135,53 @@
 
                 <div id="tutorchange">
 
-               
-                
+
+
 
                 </div>
-                <button id="GuardarEstudiante"class="btn btn-primary">Guardar</button>
+                <button id="GuardarEstudiante" class="btn btn-primary">Guardar</button>
 
 
 
 
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+////////////// Modal de matriculas del estudiante
+
+<!-- Modal -->
+<div class="modal fade" id="modalMatriculasEstudiante" tabindex="-1" aria-labelledby="modalMatriculasEstudiante" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-5">
+            <div class="modal-header">
+                <h5 class="modal-title fs-2" id="editarModalLabel">Matriculas del Estudiante</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modalmatestudiante">
+                <div class="container">
+                    <div class="row">
+                        <!-- Tarjeta 1 -->
+                        <div class="col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">Some quick </p>
+                                    <button type="button" class="btn btn-primary">Ver </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repite este bloque para cada tarjeta -->
+                    </div>
+                    <!-- Repite el bloque.row para nuevas filas -->
+                </div>
 
             </div>
 

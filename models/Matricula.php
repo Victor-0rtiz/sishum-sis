@@ -49,6 +49,12 @@ class Matricula extends ActiveRecord
 
         return self::ejecutarSP($nombreSP, [$IdMatricula]);
     }
+    public static function obtenerMatriculaEstudiante($IdEstudiante)
+    {
+        $nombreSP = 'sp_Get_MatriculaPorEstudiante';
+
+        return self::ejecutarSP($nombreSP, [$IdEstudiante]);
+    }
 
 
 

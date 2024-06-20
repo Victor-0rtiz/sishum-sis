@@ -52,6 +52,19 @@ class MatriculasController
         echo json_encode($matriculas);
         return;
     }
+    public static function getAllMatPorEstudiante(Router $router)
+    {
+        if (!is_auth()) {
+            header('Location: /');
+            return;
+        }
+
+        $matriculas = Matricula::obtenerMatriculaEstudiante($_POST["Id_Estudiante"]);
+
+
+        echo json_encode($matriculas);
+        return;
+    }
     public static function addMatricula(Router $router)
     {
         if (!is_auth()) {

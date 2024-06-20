@@ -25,6 +25,7 @@
                         render: function (data, type, row) {
                             return `
                             <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                            <button type="button" class="btn btn-secondary btn-matriculas" data-bs-toggle="modal" data-bs-target="#modalMatriculasEstudiante" data-id="${row.Id}" >Matriculas</button>
                             <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}" data-tut="${row.Id_tutor}">Borrar</button>
                                        `;
                         }
@@ -112,6 +113,24 @@
 
             tutorInfo = response;
 
+            // Por ejemplo, cerrar el modal
+            // $('#addModal').modal('hide');
+            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+        },
+        error: function (xhr, status, error) {
+            // Manejar errores de la solicitud AJAX
+            console.error(xhr.responseText);
+        }
+    });
+
+
+    $.ajax({
+        url: '/api/estudiantes/all', // Especifica la URL de tu controlador
+        dataType: 'json', // El tipo de datos esperado en la respuesta
+        success: function (response) {
+            // Manejar la respuesta del servidor
+            console.log(response);
+          
             // Por ejemplo, cerrar el modal
             // $('#addModal').modal('hide');
             // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
@@ -500,6 +519,7 @@
                             render: function (data, type, row) {
                                 return `
                                 <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                                <button type="button" class="btn btn-secondary btn-matriculas" data-bs-toggle="modal" data-bs-target="#modalMatriculasEstudiante" data-id="${row.Id}" >Matriculas</button>
                                 <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}" data-tut="${row.Id_tutor}">Borrar</button>
                                            `;
                             }
