@@ -167,7 +167,7 @@
             </div>
             <div class="modal-body modalmatestudiante">
                 <div class="container">
-                    <div class="row">
+                    <div class="row  " id="gridmatriculas">
                         <!-- Tarjeta 1 -->
                         <div class="col-3 mb-4">
                             <div class="card">

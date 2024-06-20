@@ -124,22 +124,51 @@
     });
 
 
-    $.ajax({
-        url: '/api/estudiantes/all', // Especifica la URL de tu controlador
-        dataType: 'json', // El tipo de datos esperado en la respuesta
-        success: function (response) {
-            // Manejar la respuesta del servidor
-            console.log(response);
-          
-            // Por ejemplo, cerrar el modal
-            // $('#addModal').modal('hide');
-            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
-        },
-        error: function (xhr, status, error) {
-            // Manejar errores de la solicitud AJAX
-            console.error(xhr.responseText);
-        }
+
+    $('#tablaEstudiantes').on('click', '.btn-matriculas', function () {
+        const id = $(this).data('id');
+       
+        // Aquí puedes generar el reporte
+        console.log('eliminar el registro ID:', id);
+
+
+
+        // Aquí puedes realizar la acción de borrado
+        $.ajax({
+            url: '/api/matricula-estudiante/all', // Especifica la URL de tu controlador
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success: function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+    
+                $('#gridmatriculas').empty();
+                // Agrega una opción por cada dato del tipo de usuario
+                result.forEach(function (Matricula) {
+                    $('#gridmatriculas').append(`
+                         <div class="col-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${Matricula.Id_anio_lectivo_anio}</h5>
+                                    <p class="card-text">${Matricula.Id_grado_nombre} </p>
+                                    <p class="card-text">${Matricula.Id_turno_nombre} </p>
+                                    <button type="button" data-matid="${Matricula.Id}" class="btn btn-primary">Ver Boletin </button>
+                                </div>
+                            </div>
+                        </div>
+                        `);
+                });
+              
+                // Por ejemplo, cerrar el modal
+                // $('#addModal').modal('hide');
+                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
     });
+   
 
     $('#tablaEstudiantes').on('click', '.btn-borrar', function () {
         const id = $(this).data('id');
