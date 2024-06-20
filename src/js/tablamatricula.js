@@ -267,6 +267,59 @@
             }
 
 
+            const regexTelefonos = /^\d{8,11}$/;
+            const regexCedula = /^\d{13}[A-Za-z]$/;
+            const inputTelefonos = $('input[name="Telefono"]');
+            const inputCedulas = $('input[name="Cedula"]');
+            let datavalid = true;
+            inputTelefonos.each(async function () {
+                if (!regexTelefonos.test($(this).val())) {
+                    datavalid = false;
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    $(this).css('border', '1px solid red');
+                    return false; // Detiene la iteración de .each
+                } else {
+                    $(this).css('border', ''); // Restablece el estilo del borde
+                }
+            });
+
+            inputCedulas.each(async function () {
+                if (!regexCedula.test($(this).val())) {
+                    datavalid = false;
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">La cédula está mal formateada</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    $(this).css('border', '1px solid red');
+                    return false; // Detiene la iteración de .each
+                } else {
+                    $(this).css('border', ''); // Restablece el estilo del borde
+                }
+            });
+
+            if (!datavalid) {
+                return;
+            }
+
+
+
             console.log(DatosMatricula);
 
 

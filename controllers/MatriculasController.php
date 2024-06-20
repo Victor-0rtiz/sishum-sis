@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\DatosPersonales;
+use Model\DetalleTutorEstudiante;
 use Model\Estudiante;
 use Model\Matricula;
 use Model\Tutor;
@@ -195,6 +196,15 @@ class MatriculasController
             $uniqueId = uniqid();
             $matriculaNew->qrhash = hash('sha256', $uniqueId . $matriculaNew->Id_estudiante . $matriculaNew->id_anio_lectivo);
 
+            $datadetalletutorestudiante = DetalleTutorEstudiante::whereArray(["Id_Estudiante" => $idEstudiante, "Id_Tutor" => $idTutor]);
+
+            if (!$datadetalletutorestudiante) {
+                $detalletutoestudiante = new DetalleTutorEstudiante(["Id_Estudiante" => $idEstudiante, "Id_Tutor" => $idTutor]);
+                $resultadoDetalletut =  $detalletutoestudiante->guardar();
+            }
+
+            
+
             $resulSaveMatri =  $matriculaNew->guardar();
 
             if (isset($resulSaveMatri["Id"])) {
@@ -216,7 +226,7 @@ class MatriculasController
     public static function delMatricula(Router $router)
     {
         if (!is_auth()) {
-            
+
             return;
         }
 
@@ -227,7 +237,7 @@ class MatriculasController
 
             $resp = $matricula->guardar();
 
-            echo json_encode(["exito"=>$resp]);
+            echo json_encode(["exito" => $resp]);
             return;
         }
         $matriculas = "";

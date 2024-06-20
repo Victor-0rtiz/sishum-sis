@@ -139,7 +139,7 @@
             success: async function (response) {
                 console.log(response);
                 const respuesta = response;
-               
+
                 if (respuesta.exito) {
                     await atualizarLista();
 
@@ -169,6 +169,11 @@
 
 
     $(document).ready(() => {
+
+
+
+
+
         $('input[name="tutorExistente"]').change(function () {
             const selectedValue = $(this).val();
             // Realizar acciones basadas en el valor seleccionado
@@ -188,7 +193,7 @@
                     </div>
                     <div class='mb-3'>
                         <label for='Telefono' class='form-label'>Telefono</label>
-                        <input type='number' class='form-control' name='Telefono' id='Telefono'>
+                        <input type='number' min="8" max="9" class='form-control' name='Telefono' id='Telefono'>
                     </div>
                     <div class='mb-3'>
                         <label for='Cedula' class='form-label'>Cédula</label>
@@ -238,6 +243,8 @@
 
         $(document).ready(() => {
             $("#GuardarEstudiante").click(async () => {
+
+
                 const formDpE = new FormData($("#formAddDatosPersonales")[0]);
                 const formEstudiante = new FormData($("#formEstudiante")[0]);
 
@@ -252,13 +259,82 @@
                 const form1 = formDataToObject(formDpE);
                 const form2 = formDataToObject(formEstudiante);
 
+
                 const dataForms = {
                     datos_personales: form1,
                     estudiante: form2,
                 };
 
+                const regexTelefonos = /^\d{8,11}$/;
+                const regexCedula = /^\d{13}[A-Za-z]$/;
+                const inputTelefonos = $('input[name="Telefono"]');
+                const inputCedulas = $('input[name="Cedula"]');
+                let datavalid = true;
+                inputTelefonos.each(async function () {
+                    if (!regexTelefonos.test($(this).val())) {
+                        datavalid = false;
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: 'rgb(255, 184, 184)',
+                            showConfirmButton: false,
+                        });
+                        $(this).css('border', '1px solid red');
+                        return false; // Detiene la iteración de .each
+                    } else {
+                        $(this).css('border', ''); // Restablece el estilo del borde
+                    }
+                });
+
+                inputCedulas.each(async function () {
+                    if (!regexCedula.test($(this).val())) {
+                        datavalid = false;
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 800;">La cédula está mal formateada</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: 'rgb(255, 184, 184)',
+                            showConfirmButton: false,
+                        });
+                        $(this).css('border', '1px solid red');
+                        return false; // Detiene la iteración de .each
+                    } else {
+                        $(this).css('border', ''); // Restablece el estilo del borde
+                    }
+                });
+
+                if (!datavalid) {
+                    return;
+                }
+
+
+
                 // Verificar si se seleccionó un radio button
                 const tutorOption = $("input[name='tutorExistente']:checked").val();
+
+                if (!tutorOption) {
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">Debe seleccionar una opción para el tutor</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    return;
+                }
 
                 if (!tutorOption) {
                     await Swal.fire({
@@ -394,6 +470,9 @@
                 console.log(dataForms);
             });
         });
+
+
+
 
 
     })

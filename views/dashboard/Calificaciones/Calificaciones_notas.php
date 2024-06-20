@@ -23,7 +23,9 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Estudiante</th>
-                                <th scope="col">Nota</th>
+                                <th scope="col">Primer Corte</th>
+                                <th scope="col">Segundo Corte</th>
+                                <th scope="col">Tercer Corte</th>
                                
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -56,8 +58,16 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="Nota" class="form-label">Nota</label>
-                                <input type="number" class="form-control" name="Nota" id="Nota">
+                                <label for="Nota" class="form-label">Nota Primera Evaluación</label>
+                                <input type="number" class="form-control" name="Nota" class="Nota" id="Nota">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Nota" class="form-label">Nota Segunda Evaluación </label>
+                                <input type="number" class="form-control" name="Nota_2" class="Nota" id="Nota_2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Nota" class="form-label">Nota Tercera Evaluación</label>
+                                <input type="number" class="form-control" name="Nota_3" class="Nota" id="Nota_3">
                             </div>
                             
                         </form>

@@ -23,6 +23,8 @@
                     { data: 'Id' },
                     { data: 'Nombres' },
                     { data: 'Nota' },
+                    { data: 'Nota_2' },
+                    { data: 'Nota_3' },
                     {
                         data: null,
                         render: function (data, type, row) {
@@ -133,7 +135,41 @@
 
             formDataNota = formDataToObject(formDataNota);
 
-            formDataNota.id_detalle_grado_asignatura = dga
+            formDataNota.id_detalle_grado_asignatura = dga;
+
+
+            const regexNumeros =  /^(?:0|[1-9][0-9]?|100)$/;
+           
+            const inputTelefonos = $('input[name="Telefono"]');
+            
+            let datavalid = true;
+            inputTelefonos.each(async function () {
+                if (!regexNumeros.test($(this).val())) {
+                    datavalid = false;
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">Las notas solo pueden ir de 0 a 100</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    $(this).css('border', '1px solid red');
+                    return false; // Detiene la iteración de .each
+                } else {
+                    $(this).css('border', ''); // Restablece el estilo del borde
+                }
+            });
+
+          
+
+            if (!datavalid) {
+                return;
+            }
+
 
             $.ajax({
                 url: '/api/calificaciones/notas/add', // Especifica la URL de tu controlador
@@ -233,6 +269,8 @@
                         { data: 'Id' },
                         { data: 'Nombres' },
                         { data: 'Nota' },
+                        { data: 'Nota_2' },
+                        { data: 'Nota_3' },
                         {
                             data: null,
                             render: function (data, type, row) {

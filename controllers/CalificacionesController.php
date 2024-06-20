@@ -199,9 +199,11 @@ class CalificacionesController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
+            
+            $detalle = DetalleNotaAsignatura::whereArray(['id_matricula'=> $_POST['id_matricula'],'id_detalle_grado_asignatura'=> $_POST['id_detalle_grado_asignatura']]);
 
-            $detalle = DetalleNotaAsignatura::where('id_matricula', $_POST['id_matricula']);
-
+            // echo json_encode($detalle);
+            // return;
             if ($detalle) {
 
                 echo json_encode(["alert" => "El registro existe, verifique los datos"]);
