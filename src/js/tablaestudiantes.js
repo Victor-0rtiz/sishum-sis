@@ -136,14 +136,16 @@
         // Aquí puedes realizar la acción de borrado
         $.ajax({
             url: '/api/matricula-estudiante/all', // Especifica la URL de tu controlador
-            dataType: 'json', // El tipo de datos esperado en la respuesta
+            type: 'POST',
+            data: { "Id_Estudiante": id }, // Enviar los datos como JSON
+            dataType: "json",
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
     
                 $('#gridmatriculas').empty();
                 // Agrega una opción por cada dato del tipo de usuario
-                result.forEach(function (Matricula) {
+                response.forEach(function (Matricula) {
                     $('#gridmatriculas').append(`
                          <div class="col-3 mb-4">
                             <div class="card">
