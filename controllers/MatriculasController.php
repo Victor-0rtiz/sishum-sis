@@ -216,7 +216,7 @@ class MatriculasController
                 $resultadoDetalletut =  $detalletutoestudiante->guardar();
             }
 
-            
+
 
             $resulSaveMatri =  $matriculaNew->guardar();
 
@@ -252,6 +252,112 @@ class MatriculasController
 
             echo json_encode(["exito" => $resp]);
             return;
+        }
+        $matriculas = "";
+
+
+        echo json_encode($matriculas);
+        return;
+    }
+
+
+    public static function editMatricula(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // echo json_encode($_POST);
+            // return;
+
+            $matriculaSinEditar = Matricula::find($_POST["FormDatosAcademicos"]["Id"]);
+            $matriculaDataEdit  = Matricula::find($_POST["FormDatosAcademicos"]["Id"]);
+            $matriculaDataEdit->sincronizar($_POST["FormDatosAcademicos"]);
+
+            if ($matriculaSinEditar != $matriculaDataEdit) {
+
+                $matriculaExistente =  Matricula::whereArray([
+                    "id_anio_lectivo" => $_POST["FormDatosAcademicos"]["id_anio_lectivo"],
+                    "id_grado" => $_POST["FormDatosAcademicos"]["id_grado"],
+                    "id_turno" => $_POST["FormDatosAcademicos"]["id_turno"],
+                    "Id_estudiante" => $_POST["FormEstudiante"]["Id_estudiante"],
+                    "Id_tutor" => $_POST["FormTutor"]["Id_tutor"],
+                    "Edad" => $_POST["FormDatosAcademicos"]["Edad"],
+                ]);
+
+                if ($matriculaExistente) {
+                    echo json_encode(["alert" => "La matricula ya existe, verifique los datos"]);
+                    return;
+                }
+            }
+
+
+            $estudianteEdit = Estudiante::find($_POST["FormEstudiante"]["Id_estudiante"]);
+            $estudianteEdit->sincronizar([
+                'Id'=> $_POST["FormEstudiante"]['Id_estudiante'], 
+                'Cod_estudiante'=> $_POST["FormEstudiante"]['Cod_estudiante'], 
+                'IdMunicipio'=> $_POST["FormEstudiante"]['IdMunicipio'], 
+            ]);
+            $estudianteDataOriginal= Estudiante::find($_POST["FormEstudiante"]["Id_estudiante"]);
+
+            if ($estudianteEdit != $estudianteDataOriginal) {
+
+                $estudianteexistente =  Estudiante::where('Cod_estudiante', $_POST["FormEstudiante"]['Cod_estudiante']);
+                if ($estudianteexistente) {
+                    echo json_encode(["alert" => "El codigo de estudiante ya le pertenece a otro estudiante, verifique los datos"]);
+                    return;
+                }
+            }
+            $estudianteDatosPersonales = DatosPersonales::find($_POST["FormEstudiante"]["Id_datos_personales"]);
+
+            $tutorEdit = Tutor::find($_POST["FormTutor"]["Id_tutor"]);
+            $tutorEdit->sincronizar([
+                'Id'=> $_POST["FormTutor"]['Id_tutor'], 
+                'Cedula'=> $_POST["FormTutor"]['CedulaTutor'], 
+                'Ocupacion'=> $_POST["FormTutor"]['Ocupacion'], 
+            ]);
+            $tutordataexist = Tutor::find($_POST["FormTutor"]["Id_tutor"]);
+
+            if ($tutorEdit != $tutordataexist) {
+
+                $tutorexistente =  Tutor::where('Cedula', $_POST["FormTutor"]['CedulaTutor']);
+                if ($tutorexistente) {
+                    echo json_encode(["alert" => "La cedula ingresada ya pertenece a otra persona, verifique los datos"]);
+                    return;
+                }
+            }
+            $tutorDatosPersonales = DatosPersonales::find($_POST["FormTutor"]["Id_datos_personales"]);
+
+            $estudianteDatosPersonales->sincronizar([
+                'Id'=> $_POST["FormEstudiante"]['Id_datos_personales'], 
+                'Apellidos'=> $_POST["FormEstudiante"]['Apellidos'], 
+                'Nombres'=> $_POST["FormEstudiante"]['Nombres'], 
+                'Telefono'=> $_POST["FormEstudiante"]['TelefonoEstudiante'], 
+                'Direccion'=> $_POST["FormEstudiante"]['Direccion'], 
+                'Id_sexo'=> $_POST["FormEstudiante"]['Id_sexo'], 
+            ]);
+            $tutorDatosPersonales->sincronizar([
+                'Id'=> $_POST["FormTutor"]['Id_datos_personales'], 
+                'Apellidos'=> $_POST["FormTutor"]['Apellidos'], 
+                'Nombres'=> $_POST["FormTutor"]['Nombres'], 
+                'Telefono'=> $_POST["FormTutor"]['TelefonoTutor'], 
+                'Direccion'=> $_POST["FormTutor"]['Direccion'], 
+                'Id_sexo'=> $_POST["FormTutor"]['Id_sexo'], 
+            ]);
+
+            $resp5 = $estudianteEdit->guardar();
+            $resp4 =  $tutorEdit->guardar();
+            $resp =   $estudianteDatosPersonales->guardar();
+            $resp3 =   $tutorDatosPersonales->guardar();
+            $resp2 = $matriculaDataEdit->guardar();
+
+            if ($resp2) {
+                echo json_encode(["exito" => "La matricula se actualizo correctamente"]);
+                return;
+            }
         }
         $matriculas = "";
 

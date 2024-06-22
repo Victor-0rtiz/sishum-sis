@@ -141,6 +141,52 @@ class CalificacionesController
         // echo json_encode($detalle);
         return;
     }
+
+    public static function editDetalleGradAnioAsig(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
+            $dataGradoAnioTurnData = DetalleAnioLectivoGrado::where("Id", $_POST["Id"]);
+            $dataGradoAnioTurnModificado = DetalleAnioLectivoGrado::where("Id", $_POST["Id"]);
+            $dataGradoAnioTurnModificado->sincronizar($_POST);
+
+
+            if ($dataGradoAnioTurnData != $dataGradoAnioTurnModificado) {
+
+                $dataGradoAnioTurnDataExistente = DetalleAnioLectivoGrado::whereArray([
+                    'Id_anio_lectivo',
+                    'id_grado',
+                    'id_turno',
+                ]);
+
+                if ($dataGradoAnioTurnDataExistente) {
+                    echo json_encode(["alert" => "La matricula ya existe, verifique los datos"]);
+                    return;
+                }
+            }
+
+
+
+
+            $resp =  $dataGradoAnioTurnModificado->guardar();
+
+            if ($resp) {
+                echo json_encode(["exito" => "Se guardaron correctamente las asignaciónes "]);
+                return;
+            }
+        }
+        // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();
+        // echo json_encode($detalle);
+        return;
+    }
     public static function addDetalleGradoAsig(Router $router)
     {
         if (!is_auth()) {
@@ -188,6 +234,56 @@ class CalificacionesController
         return;
     }
 
+    public static function editDetalleGradoAsig(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $dataGradoAsignaturaEdit = DetalleGradoAsignaturas::where("Id", $_POST["Id"]);
+            $dataGradoAsignaturaOriginal = DetalleGradoAsignaturas::where("Id", $_POST["Id"]);
+            $dataGradoAsignaturaEdit->sincronizar($_POST);
+
+
+
+            if ($dataGradoAsignaturaEdit != $dataGradoAsignaturaOriginal) {
+
+                $dataGradoAnioTurnDataExistente = DetalleGradoAsignaturas::whereArray([
+                    'Id_detalle_aniolectivo_grado',
+                    'Id_asignatura',
+                    'Id_docente',
+                ]);
+
+                if ($dataGradoAnioTurnDataExistente) {
+                    echo json_encode(["alert" => "La Asignatura en este grado ya tiene un docente asignado, verifique los datos"]);
+                    return;
+                }
+            }
+
+            $resp = $dataGradoAsignaturaEdit->guardar();
+
+
+
+
+
+            if ($resp) {
+                echo json_encode(["exito" => "Se edito correctamente las asignación de la asignatura "]);
+                return;
+            }
+
+            echo json_encode($resp);
+            return;
+        }
+        // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();
+        // echo json_encode($detalle);
+        return;
+    }
+
     public static function addCaliNotas(Router $router)
     {
         if (!is_auth()) {
@@ -199,8 +295,8 @@ class CalificacionesController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-            
-            $detalle = DetalleNotaAsignatura::whereArray(['id_matricula'=> $_POST['id_matricula'],'id_detalle_grado_asignatura'=> $_POST['id_detalle_grado_asignatura']]);
+
+            $detalle = DetalleNotaAsignatura::whereArray(['id_matricula' => $_POST['id_matricula'], 'id_detalle_grado_asignatura' => $_POST['id_detalle_grado_asignatura']]);
 
             // echo json_encode($detalle);
             // return;
@@ -220,6 +316,57 @@ class CalificacionesController
             }
 
 
+
+
+            echo json_encode($_POST);
+            return;
+        }
+        // $detalle = DetalleAnioLectivoGrado::obtenerCalificacionNotas();
+        // echo json_encode($detalle);
+        return;
+    }
+
+    public static function editCaliNotas(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
+            // echo json_encode($_POST);
+            // return;
+            $detalleEdit = DetalleNotaAsignatura::find($_POST["Id"]);
+            $detalleOriginal = DetalleNotaAsignatura::find($_POST["Id"]);
+            $detalleEdit->sincronizar($_POST);
+
+            // echo json_encode($detalle);
+            // return;
+            if ($detalleOriginal != $detalleEdit) {
+
+                $detallenotaexistente = DetalleNotaAsignatura::whereArray([
+                    'id_detalle_grado_asignatura' => $_POST["id_detalle_grado_asignatura"],
+                    'id_matricula' => $_POST["id_matricula"],
+                ]);
+
+                // if ($detallenotaexistente) {
+                //     echo json_encode(["alert" => "El registro existe, verifique los datos"]);
+                //     return;
+                // }
+            }
+
+         
+
+            $resp =  $detalleEdit->guardar();
+
+            if ($resp) {
+                echo json_encode(["exito" => "Se guardo correctamente la nota "]);
+                return;
+            }
 
 
             echo json_encode($_POST);

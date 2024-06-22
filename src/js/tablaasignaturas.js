@@ -356,38 +356,14 @@
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response, "del listado de asignaturas");
-                const table = $('#tablaAsignaturasList').DataTable({
-                    destroy: true,
-                    data: response,
-                    columns: [
-                        { data: 'Id' },
-                        { data: 'Nombre' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-                                return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
-                               <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
-                                           `;
-                            }
-                        }
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "No hay registros disponibles",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "emptyTable": "No hay datos disponibles en la tabla",
-                        "aria": {
-                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                            "sortDescending": ": activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
+                const table = $('#tablaAsignaturasList').DataTable();
+                table.clear();
+                
+                // Agregar los nuevos datos
+                table.rows.add(response);
+                
+                // Dibujar la tabla con los nuevos datos
+                table.draw();
 
                 response.forEach(function (asignatura) {
                     $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
@@ -413,41 +389,14 @@
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-                const table = $('#tablaAsignaturas').DataTable({
-                    destroy: true,
-                    data: response,
-                    columns: [
-                        { data: 'Id' },
-                        { data: 'Asignatura_Nombre' },
-                        { data: 'Docente_Nombres' },
-                        { data: 'Grado_Nombre' },
-                        { data: 'Turno_Nombre' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-                                return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
-                               <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
-                                           `;
-                            }
-                        }
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "No hay registros disponibles",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "emptyTable": "No hay datos disponibles en la tabla",
-                        "aria": {
-                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                            "sortDescending": ": activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
+                const table = $('#tablaAsignaturas').DataTable();
+                table.clear();
+                
+                // Agregar los nuevos datos
+                table.rows.add(response);
+                
+                // Dibujar la tabla con los nuevos datos
+                table.draw();
 
 
             },

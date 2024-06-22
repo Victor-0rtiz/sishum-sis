@@ -155,6 +155,66 @@
 </div>
 
 
+
+<!-- Modal de Edición -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-5">
+            <div class="modal-header">
+                <h5 class="modal-title fs-2" id="editarModalLabel">Editar Estudiante</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditEstudiante">
+
+                    <div class="mb-3">
+                        <label for="editNombres" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="Nombres" id="editNombres">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editApellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="Apellidos" id="editApellidos">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTelefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" name="Telefono" id="editTelefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDireccion" class="form-label">Dirección</label>
+                        <textarea name="Direccion" id="editDireccion" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editSexo" class="form-label">Sexo</label>
+                        <select class="form-select" name="Id_sexo" id="editSexo">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCodEstudiante" class="form-label">Código de Estudiante</label>
+                        <input name="Cod_estudiante" id="editCodEstudiante" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDepartamento" class="form-label">Departamento</label>
+                        <select class="form-select" name="IdDepartamento" id="editDepartamento">
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editMunicipio" class="form-label">Municipio</label>
+                        <select class="form-select" name="IdMunicipio" id="editMunicipio">
+                        </select>
+                    </div>
+                    <div>
+                        <input type="number" hidden class="form-control" name="Id_datos_personales" id="editId_datos_personales">
+                        <input type="number" hidden class="form-control" name="Id_estudiante" id="editId_estudiante">
+                    </div>
+                    <button type="button" id="GuardarCambiosEstudiante" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 ////////////// Modal de matriculas del estudiante
 
 <!-- Modal -->

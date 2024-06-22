@@ -28,6 +28,13 @@ class Estudiante extends ActiveRecord {
         return self::ejecutarSP($nombreSP);
     }
 
+
+    public static function obtenerBoletinEstudiante($IdMatricula)
+    {
+        $nombreSP = 'sp_BoletinReporte';
+
+        return self::ejecutarSP($nombreSP, [$IdMatricula]);
+    }
     
 
    

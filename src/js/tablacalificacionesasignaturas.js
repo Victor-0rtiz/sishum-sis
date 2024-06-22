@@ -55,6 +55,16 @@
                 }
             });
 
+            $('#tablaCaliAsign tbody').on('click', '.btn-editar', function () {
+                const dataAsignaturaDocente = table.row($(this).parents('tr')).data();
+                console.log(dataAsignaturaDocente);
+            
+                // Llenar los campos del formulario FormAsigAsignaturaDocEdit
+                $('#asignaturaEdit').val(dataAsignaturaDocente.Id_asignatura );
+                $('#Id_caliasig').val(dataAsignaturaDocente.Id);
+                $('#docenteEdit').val(dataAsignaturaDocente.Id_docente);
+            });
+
 
         },
         error: function (xhr, status, error) {
@@ -73,6 +83,7 @@
 
             response.forEach(function (asignatura) {
                 $('#asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
+                $('#asignaturaEdit').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
             });
 
 
@@ -92,6 +103,7 @@
 
             response.forEach(function (docente) {
                 $('#docente').append('<option value="' + docente.Id + '">' + docente.Nombres + ' ' + docente.Apellidos + '</option>');
+                $('#docenteEdit').append('<option value="' + docente.Id + '">' + docente.Nombres + ' ' + docente.Apellidos + '</option>');
             });
 
             // Por ejemplo, cerrar el modal
@@ -227,6 +239,85 @@
                 }
             });
         })
+        $("#GuardarAsigDocAnioEdit").click(async () => {
+
+            let formDataAsignaturaDocente = new FormData($("#FormAsigAsignaturaDocEdit")[0]);
+
+            formDataAsignaturaDocente = formDataToObject(formDataAsignaturaDocente);
+            formDataAsignaturaDocente.Id_detalle_aniolectivo_grado = iddag;
+
+            console.log(formDataAsignaturaDocente);
+
+            $.ajax({
+                url: '/api/calificaciones/asignaturas/edit', // Especifica la URL de tu controlador
+                type: 'POST', // O el método HTTP que estés utilizando
+                data: formDataAsignaturaDocente, // Los datos del formulario serializados
+                dataType: 'json', // El tipo de datos esperado en la respuesta
+                success: async function (response) {
+                    // Manejar la respuesta del servidor
+                    console.log(response, 'de agregar');
+
+
+                    if (response.exito) {
+                        $("#FormAsigAsignaturaDocEdit")[0].reset();
+                        await cargarLista();
+                        $('#editarModal').modal('hide');
+                        await Swal.fire({
+                            icon: "success",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'green',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#B8FFB8',
+                            showConfirmButton: false,
+                        });
+
+                        return;
+
+                    }
+
+                    if (response.error) {
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.error}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#FFB8B8',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
+                    if (response.alert) {
+                        await Swal.fire({
+                            icon: "warning",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.alert}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'yellow',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#F6FBC2',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
+
+
+                    // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+                },
+                error: function (xhr, status, error) {
+                    // Manejar errores de la solicitud AJAX
+                    console.error(xhr.responseText);
+                }
+            });
+        })
 
     });
 
@@ -248,46 +339,17 @@
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-                const table = $('#tablaCaliAsign').DataTable({
-                    destroy: true,
-                    data: response,
-                    columns: [
-                        { data: 'Id' },
-                        { data: 'Asignatura_nombre' },
-                        { data: 'Nombres' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-                                return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
-                               <a href="/dashboard/calificaciones-notas?grado=${row.id_grado}&dga=${row.Id}&asignatura=${row.Id_asignatura}" class="btn btn-secondary btn-editar">
-                               Ver Notas 
-                                </a> 
-   
-                               <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
-                                           `;
-                            }
-                        }
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "No hay registros disponibles",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "emptyTable": "No hay datos disponibles en la tabla",
-                        "aria": {
-                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                            "sortDescending": ": activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
+                const table = $('#tablaCaliAsign').DataTable();
+                table.clear();
+                
+                // Agregar los nuevos datos
+                table.rows.add(response);
+                
+                // Dibujar la tabla con los nuevos datos
+                table.draw();
 
 
-            },
+            }, 
             error: function (xhr, status, error) {
                 // Manejar errores de la solicitud AJAX
                 console.error(xhr.responseText);

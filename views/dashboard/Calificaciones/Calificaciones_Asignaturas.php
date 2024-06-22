@@ -75,6 +75,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <h3 class="fs-2">Editar Asignatura</h3>
+
+                        <form id="FormAsigAsignaturaDocEdit">
+                            <div class="mb-3">
+                                <label for="asignatura" class="form-label">Asignatura</label>
+                                <select class="form-select" name="Id_asignatura" id="asignaturaEdit">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="docente" class="form-label">Docente</label>
+                                <select class="form-select" name="Id_docente" id="docenteEdit">
+                                </select>
+                            </div>
+                            <input type="number" hidden name="Id" id="Id_caliasig">
+                        </form>
+
+                    </div>
+                    <button id="GuardarAsigDocAnioEdit" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
 
 </div>
 

@@ -62,6 +62,7 @@ $router->get("/api/tutores/all", [TutoresController::class, "getAllTutores"]);
 //estudiantes
 $router->get("/api/estudiantes/all", [EstudiantesController::class, "getAllEstudent"]);
 $router->post("/api/estudiantes/add", [EstudiantesController::class, "addEstudent"]);
+$router->post("/api/estudiantes/edit", [EstudiantesController::class, "editEstudiante"]);
 $router->post("/api/estudiantes/dell", [EstudiantesController::class, "delEstudiante"]);
 
 
@@ -70,6 +71,7 @@ $router->get("/api/matricula/all", [MatriculasController::class, "getAllMat"]);
 $router->post("/api/matricula-grado/all", [MatriculasController::class, "getAllMatPorGrado"]);
 $router->post("/api/matricula-estudiante/all", [MatriculasController::class, "getAllMatPorEstudiante"]);
 $router->post("/api/matricula/add", [MatriculasController::class, "addMatricula"]);
+$router->post("/api/matricula/edit", [MatriculasController::class, "editMatricula"]);
 $router->post("/api/matricula/del", [MatriculasController::class, "delMatricula"]);
 
 //docentes
@@ -81,12 +83,15 @@ $router->post("/api/docentes/del", [DocentesController::class, "delDocente"]);
 //calificaciones
 $router->get("/api/grado/calificacion/all", [CalificacionesController::class, "getAllCali"]);
 $router->post("/api/grado/calificacion/add", [CalificacionesController::class, "addDetalleGradAnioAsig"]);
+$router->post("/api/grado/calificacion/edit", [CalificacionesController::class, "editDetalleGradAnioAsig"]);
 $router->post("/api/grado/calificacion/del", [CalificacionesController::class, "dellCalificacionAsigGrado"]);
 $router->post("/api/calificaciones/asignaturas/all", [CalificacionesController::class, "getAllCaliAsig"]);
 $router->post("/api/calificaciones/asignaturas/add", [CalificacionesController::class, "addDetalleGradoAsig"]);
+$router->post("/api/calificaciones/asignaturas/edit", [CalificacionesController::class, "editDetalleGradoAsig"]);
 $router->post("/api/calificaciones/asignaturas/del", [CalificacionesController::class, "dellAsigGradoNota"]);
 $router->post("/api/calificaciones/notas/all", [CalificacionesController::class, "getAllCaliNotas"]);
 $router->post("/api/calificaciones/notas/add", [CalificacionesController::class, "addCaliNotas"]);
+$router->post("/api/calificaciones/notas/edit", [CalificacionesController::class, "editCaliNotas"]);
 $router->post("/api/calificaciones/notas/del", [CalificacionesController::class, "dellAsigGradoUnica"]);
 
 //asignaturas y catalogos
@@ -106,5 +111,6 @@ $router->get("/api/sexo/all", [UsuariosController::class, "getAllsexo"]);
 //reportes
 $router->post("/api/reporte/matricula", [ReportesController::class, "Matricula"]);
 $router->get("/api/reporte/matricula", [ReportesController::class, "Matricula"]);
+$router->post("/api/reporte/boletin", [ReportesController::class, "Boletin"]);
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

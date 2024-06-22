@@ -1,6 +1,7 @@
 (function () {
     let sexo;
 
+
     let tutorOption;
 
     let tutorInfo;
@@ -47,9 +48,19 @@
                     }
                 }
             });
-            // Por ejemplo, cerrar el modal
-            // $('#addModal').modal('hide');
-            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            $('#tablaEstudiantes tbody').on('click', '.btn-editar', function () {
+                const data = table.row($(this).parents('tr')).data();
+                $('#editId_estudiante').val(data.Id);
+                $('#editId_datos_personales').val(data.Id_datos_personales);
+                $('#editNombres').val(data.Nombres);
+                $('#editApellidos').val(data.Apellidos);
+                $('#editTelefono').val(data.Telefono);
+                $('#editDireccion').val(data.Direccion);
+                $('#editSexo').val(data.Id_sexo);
+                $('#editCodEstudiante').val(data.Cod_estudiante);
+                $('#editDepartamento').val(data.IdDepartamento);
+                $('#editMunicipio').val(data.Id_Municipio);
+            });
         },
         error: function (xhr, status, error) {
             // Manejar errores de la solicitud AJAX
@@ -67,6 +78,7 @@
             // Agrega una opción por cada dato del tipo de usuario
             result.forEach(function (sexo) {
                 $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+                $('#editSexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
             });
         },
         error: function (params) {
@@ -82,6 +94,7 @@
             // Agrega una opción por cada dato del tipo de usuario
             result.forEach(function (departament) {
                 $('#Departamento').append('<option value="' + departament.IdDepartamento + '">' + departament.Nombre + '</option>');
+                $('#editDepartamento').append('<option value="' + departament.IdDepartamento + '">' + departament.Nombre + '</option>');
             });
         },
         error: function (params) {
@@ -97,6 +110,7 @@
             // Agrega una opción por cada dato del tipo de usuario
             result.forEach(function (Municipio) {
                 $('#Municipio').append('<option value="' + Municipio.IdMunicipio + '">' + Municipio.Nombre + '</option>');
+                $('#editMunicipio').append('<option value="' + Municipio.IdMunicipio + '">' + Municipio.Nombre + '</option>');
             });
         },
         error: function (params) {
@@ -127,7 +141,7 @@
 
     $('#tablaEstudiantes').on('click', '.btn-matriculas', function () {
         const id = $(this).data('id');
-       
+
         // Aquí puedes generar el reporte
         console.log('eliminar el registro ID:', id);
 
@@ -142,7 +156,7 @@
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-    
+
                 $('#gridmatriculas').empty();
                 // Agrega una opción por cada dato del tipo de usuario
                 response.forEach(function (Matricula) {
@@ -153,13 +167,40 @@
                                     <h5 class="card-title">${Matricula.Id_anio_lectivo_anio}</h5>
                                     <p class="card-text">${Matricula.Id_grado_nombre} </p>
                                     <p class="card-text">${Matricula.Id_turno_nombre} </p>
-                                    <button type="button" data-matid="${Matricula.Id}" class="btn btn-primary">Ver Boletin </button>
+                                    <button type="button" data-matid="${Matricula.Id}" class="btn btn-primary ver-boletinEst">Ver Boletin </button>
                                 </div>
                             </div>
                         </div>
                         `);
                 });
-              
+
+
+                $('.ver-boletinEst').each(function () {
+                    $(this).on('click', function () {
+                        const matId = $(this).data('matid'); // Obtener el id de la matrícula del atributo data-matid
+
+                        // Realizar una consulta AJAX enviando el id de la matrícula
+                        // console.log(matId);
+                        // return;
+                        $.ajax({
+                            url: '/api/reporte/boletin', // URL del endpoint que manejará la solicitud
+                            type: 'POST', // Método HTTP
+                            data: { "Id_matricula": matId }, // Datos que se enviarán en la solicitud
+                            success: function (response) {
+                                // Manejar la respuesta del servidor aquí
+                                console.log('Boletín:', response);
+
+                                // Puedes mostrar los datos del boletín en un modal o de otra manera
+                            },
+                            error: function (xhr, status, error) {
+                                // Manejar errores aquí
+                                console.error('Error al obtener el boletín:', error);
+                            }
+                        });
+                    });
+                });
+
+
                 // Por ejemplo, cerrar el modal
                 // $('#addModal').modal('hide');
                 // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
@@ -170,7 +211,9 @@
             }
         });
     });
-   
+
+
+
 
     $('#tablaEstudiantes').on('click', '.btn-borrar', function () {
         const id = $(this).data('id');
@@ -218,11 +261,12 @@
 
 
 
+
+
+
+
+
     $(document).ready(() => {
-
-
-
-
 
         $('input[name="tutorExistente"]').change(function () {
             const selectedValue = $(this).val();
@@ -519,6 +563,90 @@
                 // Aquí puedes enviar dataForms al servidor
                 console.log(dataForms);
             });
+
+
+
+            $('#GuardarCambiosEstudiante').click(async function () {
+
+
+                const FormEstudianteEdit = new FormData($("#formEditEstudiante")[0]);
+
+                const regexTelefonos = /^\d{8,11}$/;
+                const inputTelefonos = $('#editTelefono');
+                let datavalid = true;
+
+                function formDataToObject(formData) {
+                    let obj = {};
+                    formData.forEach((value, key) => {
+                        obj[key] = value;
+                    });
+                    return obj;
+                }
+
+                const formEstudianteModify = formDataToObject(FormEstudianteEdit);
+
+                inputTelefonos.each(async function () {
+                    if (!regexTelefonos.test($(this).val())) {
+                        datavalid = false;
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: 'rgb(255, 184, 184)',
+                            showConfirmButton: false,
+                        });
+                        $(this).css('border', '1px solid red');
+                        return false; // Detiene la iteración de .each
+                    } else {
+                        $(this).css('border', ''); // Restablece el estilo del borde
+                    }
+                });
+
+
+                if (!datavalid) {
+                    return;
+                }
+
+                $.ajax({
+                    url: '/api/estudiantes/edit',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: formEstudianteModify,
+                    success: async function (response) {
+                        console.log(response);
+
+                        if (response.exito) {
+                            await atualizarLista();
+                            $('#formEditEstudiante')[0].reset();
+
+                            $('#editarModal').modal('hide');
+                            await Swal.fire({
+                                icon: "success",
+                                html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                                toast: true,
+                                position: 'bottom-end',
+                                iconColor: 'green',
+                                timer: 1500,
+                                padding: "2rem",
+                                background: '#B8FFB8',
+                                showConfirmButton: false,
+                            });
+                            return;
+
+                        }
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
         });
 
 
@@ -529,6 +657,8 @@
 
 
 
+
+
     async function atualizarLista() {
         $.ajax({
             url: '/api/estudiantes/all', // Especifica la URL de tu controlador
@@ -536,45 +666,14 @@
             success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-                const table = $('#tablaEstudiantes').DataTable({
-                    destroy: true,
-                    data: response,
-                    columns: [
-                        { data: 'Id' },
-                        { data: 'Nombres' },
-                        { data: 'Cod_estudiante' },
-                        { data: 'usser' },
-                        { data: 'Tutor_Nombres' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-                                return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
-                                <button type="button" class="btn btn-secondary btn-matriculas" data-bs-toggle="modal" data-bs-target="#modalMatriculasEstudiante" data-id="${row.Id}" >Matriculas</button>
-                                <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}" data-tut="${row.Id_tutor}">Borrar</button>
-                                           `;
-                            }
-                        }
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "No hay registros disponibles",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "emptyTable": "No hay datos disponibles en la tabla",
-                        "aria": {
-                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                            "sortDescending": ": activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
-                // Por ejemplo, cerrar el modal
-                // $('#addModal').modal('hide');
-                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+                const table = $('#tablaEstudiantes').DataTable();
+                table.clear();
+
+                // Agregar los nuevos datos
+                table.rows.add(response);
+
+                // Dibujar la tabla con los nuevos datos
+                table.draw();
             },
             error: function (xhr, status, error) {
                 // Manejar errores de la solicitud AJAX

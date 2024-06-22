@@ -76,6 +76,7 @@
 
                 sexo.forEach(function (sexo) {
                     $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+
                 });
 
                 departamentos.forEach(function (departament) {
@@ -336,7 +337,22 @@
 
                     if (response.exito) {
                         await cargarLista();
+
+                        if (tutorOption == 1) {
+                            $('#formTutorExistente')[0].reset();
+                        } else {
+                            $('#formTutorNuevo')[0].reset();
+
+                        }
+                        if (EstudianteOption == 1) {
+                            $('#formEstudianteExistente')[0].reset();
+                        } else {
+                            $('#formAddDatosPersonalesEstudiante')[0].reset();
+                            $('#formEstudiante')[0].reset();
+                        }
                         $('#agregarMatriculaModal').modal('hide');
+
+
                         await Swal.fire({
                             icon: "success",
                             html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
@@ -397,6 +413,114 @@
         });
 
 
+        $("#GuardarMatriculaEditada").click(async function () {
+
+            let formEstudianteEdit = new FormData($("#formEstudianteEdit")[0]);
+            let formTutorEdit = new FormData($("#formTutorEdit")[0]);
+            let formDatosAcademicosEdit = new FormData($("#FormDatosAcademicosEdit")[0]);
+            formEstudianteEdit = formDataToObject(formEstudianteEdit);
+            formTutorEdit = formDataToObject(formTutorEdit);
+            formDatosAcademicosEdit = formDataToObject(formDatosAcademicosEdit);
+            const DataFormularioEdit = {
+                "FormEstudiante":formEstudianteEdit,
+                "FormTutor":formTutorEdit,
+                "FormDatosAcademicos":formDatosAcademicosEdit
+            }
+    
+            const inputTelefonos = $('.checkTelefono');
+            const inputCedulas = $('.checkCedula');
+    
+            const regexTelefonos = /^\d{8,11}$/;
+            const regexCedula = /^\d{13}[A-Za-z]$/;
+    
+            let datavalid = true;
+            inputTelefonos.each(async function () {
+                if (!regexTelefonos.test($(this).val())) {
+                    datavalid = false;
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    $(this).css('border', '1px solid red');
+                    return false; // Detiene la iteración de .each
+                } else {
+                    $(this).css('border', ''); // Restablece el estilo del borde
+                }
+            });
+    
+            inputCedulas.each(async function () {
+                if (!regexCedula.test($(this).val())) {
+                    datavalid = false;
+                    await Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 800;">La cédula está mal formateada</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(255, 184, 184)',
+                        showConfirmButton: false,
+                    });
+                    $(this).css('border', '1px solid red');
+                    return false; // Detiene la iteración de .each
+                } else {
+                    $(this).css('border', ''); // Restablece el estilo del borde
+                }
+            });
+    
+            if (!datavalid) {
+                return;
+            }
+    
+            $.ajax({
+                url: '/api/matricula/edit',
+                method: 'POST',
+                dataType: 'json',
+                data: DataFormularioEdit,
+                success: async function (response) {
+                    console.log(response);    
+                    if (response.exito) {
+                        $('#formEstudianteEdit')[0].reset();
+                        $('#formTutorEdit')[0].reset();
+                        $('#FormDatosAcademicosEdit')[0].reset();
+                        await cargarLista();
+                        
+    
+                        $('#editarModal').modal('hide');
+                        await Swal.fire({
+                            icon: "success",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'green',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#B8FFB8',
+                            showConfirmButton: false,
+                        });
+                        return;
+    
+                    }
+    
+    
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+    
+    
+    
+        })
+
 
 
 
@@ -426,7 +550,7 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.Id}">Editar</button>
                                 <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
                                 <button type="button" class="btn btn-success btn-reporte " data-id="${row.Id}"><i class="fa-solid fa-file-pdf"></i>Ver Matricula</button>
                             `    ;
@@ -448,10 +572,39 @@
                         "sortDescending": ": activar para ordenar la columna de manera descendente"
                     }
                 }
+
             });
-            // Por ejemplo, cerrar el modal
-            // $('#addModal').modal('hide');
-            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+
+            $('#tablaMatriculas tbody').on('click', '.btn-editar', function () {
+                const dataMatri1 = table.row($(this).parents('tr')).data();
+                console.log(dataMatri1);
+                $('#editId_matricula').val(dataMatri1.Id);
+                $('#editId_estudiante').val(dataMatri1.Id_estudiante);
+                $('#editId_datos_personales_estudiante').val(dataMatri1.Id_datos_personales_estudiante);
+                $('#editId_tutor').val(dataMatri1.Id_tutor);
+                $('#editId_datos_personales_tutor').val(dataMatri1.Id_datos_personales_tutor);
+                $('#nombresEstudiante').val(dataMatri1.Nombres_estudiante);
+                $('#apellidosEstudiante').val(dataMatri1.Apellidos_estudiante);
+                $('#TelefonoEstudiante').val(dataMatri1.Telefono_estudiante);
+                $('#DireccionEstudiante').val(dataMatri1.Direccion_estudiante);
+                $('#sexoEstudiante').val(dataMatri1.Id_sexo_estudiante);
+                $('#Cod_estudianteEdit').val(dataMatri1.Cod_estudiante);
+                $('#DepartamentoEstudiante').val(dataMatri1.IdDepartamento);
+                $('#MunicipioEstudiante').val(dataMatri1.IdMunicipio);
+
+                $('#nombresTutor').val(dataMatri1.Nombres_tutor);
+                $('#apellidosTutor').val(dataMatri1.Apellidos_tutor);
+                $('#TelefonoTutor').val(dataMatri1.Telefono_tutor);
+                $('#CedulaTutor').val(dataMatri1.Cedula);
+                $('#OcupacionEdit').val(dataMatri1.Ocupacion);
+                $('#DireccionTutorEdit').val(dataMatri1.Direccion_tutor);
+                $('#sexoTutor').val(dataMatri1.Id_sexo_tutor);
+
+                $('#EdadEdit').val(dataMatri1.Edad);
+                $('#GradoEdit').val(dataMatri1.id_grado);
+                $('#TurnoEdit').val(dataMatri1.id_turno);
+                $('#AnioLectivoEdit').val(dataMatri1.id_anio_lectivo);
+            });
         },
         error: function (xhr, status, error) {
             // Manejar errores de la solicitud AJAX
@@ -461,21 +614,35 @@
 
     $('#tablaMatriculas').on('click', '.btn-reporte', function () {
         const id = $(this).data('id');
-        // Aquí puedes generar el reporte
-        console.log('Generar reporte para matricula con ID:', id);
-
-        // Aquí puedes realizar la acción de borrado
+    
+        // Mostrar alerta de SweetAlert indicando que se está generando el reporte
+        Swal.fire({
+            title: 'Generando reporte',
+            text: 'Por favor espera...',
+            icon: 'info',
+            showConfirmButton: false,
+            allowOutsideClick: false, // Evitar que se cierre haciendo clic fuera de la alerta
+        });
+    
+        // Realizar la solicitud AJAX para generar el reporte
         $.ajax({
-            url: '/api/reporte/matricula', // URL de tu controlador que genera el PDF
+            url: '/api/reporte/matricula',
             type: 'POST',
-            data: { "Id": id }, // Enviar los datos como JSON
+            data: { "Id": id },
             xhrFields: {
-                responseType: 'blob' // Recibir la respuesta como un blob
+                responseType: 'blob'
             },
             success: function (data) {
+                // Cerrar la alerta de SweetAlert
+                Swal.close();
+    
+                // Generar el blob con el PDF recibido
                 const blob = new Blob([data], { type: "application/pdf" });
                 const url = window.URL.createObjectURL(blob);
-                window.open(url, '_blank'); // Abrir el PDF en una nueva pestaña
+    
+                // Abrir el PDF en una nueva pestaña
+                window.open(url, '_blank');
+    
                 // Limpiar el objeto URL después de un tiempo para liberar memoria
                 setTimeout(() => {
                     window.URL.revokeObjectURL(url);
@@ -483,9 +650,20 @@
             },
             error: function (xhr, status, error) {
                 console.error("Error al obtener el PDF:", error);
+    
+                // Cerrar la alerta de SweetAlert en caso de error
+                Swal.close();
+    
+                // Mostrar mensaje de error con SweetAlert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al generar el reporte. Por favor, intenta de nuevo más tarde.',
+                });
             }
         });
     });
+    
     $('#tablaMatriculas').on('click', '.btn-borrar', function () {
         const id = $(this).data('id');
         // Aquí puedes generar el reporte
@@ -497,12 +675,12 @@
             type: 'POST',
             data: { "Id": id }, // Enviar los datos como JSON
             dataType: "json",
-            success: async function (response) {       
+            success: async function (response) {
                 const respuesta = response;
-            
+
                 if (respuesta.exito) {
                     await cargarLista();
-                    
+
                     await Swal.fire({
                         icon: "success",
                         html: `<span style="font-size: 1.5rem; font-weight: 900;">Eliminado Correctamente</span>`,
@@ -517,7 +695,7 @@
 
                     return;
 
-                }                            
+                }
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);
@@ -531,12 +709,23 @@
         success: function (result) {
             sexo = result;
             console.log(result, "del sexo");
+            sexo.forEach(function (sexo) {
+                $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+                $('#sexoEstudiante').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+                $('#sexoTutor').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+            });
+
+
 
         },
         error: function (params) {
 
         }
     });
+
+
+
+    
 
     $.ajax({
         url: "/api/departamentos/all",
@@ -545,6 +734,14 @@
             console.log(result, "del departamento");
             departamentos = result;
             // Agrega una opción por cada dato del tipo de usuario
+
+
+            departamentos.forEach(function (departament) {
+                $('#Departamento').append('<option value="' + departament.IdDepartamento + '">' + departament.Nombre + '</option>');
+                $('#DepartamentoEstudiante').append('<option value="' + departament.IdDepartamento + '">' + departament.Nombre + '</option>');
+            });
+
+
 
         },
         error: function (params) {
@@ -558,6 +755,12 @@
             console.log(result, "del municipios");
 
             municipios = result;
+
+
+            municipios.forEach(function (Municipio) {
+                $('#Municipio').append('<option value="' + Municipio.IdMunicipio + '">' + Municipio.Nombre + '</option>');
+                $('#MunicipioEstudiante').append('<option value="' + Municipio.IdMunicipio + '">' + Municipio.Nombre + '</option>');
+            });
 
 
         },
@@ -609,6 +812,7 @@
             console.log(response, "del listado del grado");
             response.forEach(function (grado) {
                 $('#Grado').append('<option value="' + grado.Id + '">' + grado.Nombre + '</option>');
+                $('#GradoEdit').append('<option value="' + grado.Id + '">' + grado.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -624,6 +828,7 @@
             console.log(response, "del listado del turno");
             response.forEach(function (Turnos) {
                 $('#Turno').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre + '</option>');
+                $('#TurnoEdit').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -639,6 +844,7 @@
             console.log(response, "del listado del anio lectivo");
             response.forEach(function (anioLec) {
                 $('#AnioLectivo').append('<option value="' + anioLec.Id + '">' + anioLec.anio + '</option>');
+                $('#AnioLectivoEdit').append('<option value="' + anioLec.Id + '">' + anioLec.anio + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -663,48 +869,19 @@
         $.ajax({
             url: '/api/matricula/all', // Especifica la URL de tu controlador
             dataType: 'json', // El tipo de datos esperado en la respuesta
-            success: function (response) {
+            success: async function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
-                const table = $('#tablaMatriculas').DataTable({
-                    destroy: true,
-                    data: response,
-                    columns: [
-                        { data: 'Id_anio_lectivo_anio' },
-                        { data: 'Nombres_estudiante' },
-                        { data: 'Nombres_tutor' },
-                        { data: 'Id_turno_nombre' },
-                        { data: 'Id_grado_nombre' },
-                        {
-                            data: null,
-                            render: function (data, type, row) {
-                                return `
-                                <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
-                                <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
-                                <button type="button" class="btn btn-success btn-reporte " data-id="${row.Id}"><i class="fa-solid fa-file-pdf"></i>Ver Matricula</button>
-                            `    ;
-                            }
-                        }
-                    ],
-                    language: {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "No hay registros disponibles",
-                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                        "search": "Buscar:",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "emptyTable": "No hay datos disponibles en la tabla",
-                        "aria": {
-                            "sortAscending": ": activar para ordenar la columna de manera ascendente",
-                            "sortDescending": ": activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
-                // Por ejemplo, cerrar el modal
-                // $('#addModal').modal('hide');
-                // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+                const table = $('#tablaMatriculas').DataTable();
+            
+                // Limpiar datos existentes
+                table.clear();
+                
+                // Agregar los nuevos datos
+                table.rows.add(response);
+                
+                // Dibujar la tabla con los nuevos datos
+                table.draw();
             },
             error: function (xhr, status, error) {
                 // Manejar errores de la solicitud AJAX

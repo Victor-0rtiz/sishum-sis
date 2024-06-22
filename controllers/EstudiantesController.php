@@ -163,6 +163,34 @@ class EstudiantesController
     }
 
 
+    public static function editEstudiante()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $estudianteEdit = Estudiante::find($_POST["Id_estudiante"]);
+            $estudianteDatosPersonales = DatosPersonales::find($_POST["Id_datos_personales"]);
+
+            $estudianteEdit->sincronizar($_POST);
+            $estudianteDatosPersonales->sincronizar($_POST);
+
+            $estudianteEdit->guardar();
+            $resp =   $estudianteDatosPersonales->guardar();
+
+            if ($resp) {
+                echo json_encode(["exito" => "El estudiante se actualizo correctamente"]);
+                return;
+            }
+
+
+
+            echo json_encode(["error" => "ocurrio un error"]);
+            return;
+        }
+    }
+
+
     public static function delEstudiante(Router $router)
     {
         if (!is_auth()) {
@@ -175,11 +203,14 @@ class EstudiantesController
 
             $estudiante =  Estudiante::find($_POST["Id"]);
 
-            
+
             $estudiante->Estado = 0;
-            $detalleTutorEstudiantedata = DetalleTutorEstudiante::whereArray(["Id_Estudiante"=>$_POST["Id"], "Id_Tutor"=>$_POST["Id_Tutor"]]);
-            
-            $detalleTutorEstudiantedata[0]->Estado= 0;
+            $detalleTutorEstudiantedata = DetalleTutorEstudiante::whereArray(["Id_Estudiante" => $_POST["Id"], "Id_Tutor" => $_POST["Id_Tutor"]]);
+
+            // echo json_encode($detalleTutorEstudiantedata);
+            // return;
+
+            $detalleTutorEstudiantedata[0]->Estado = 0;
 
 
             $resp = $estudiante->guardar();
