@@ -231,14 +231,15 @@ CREATE TABLE `detalle_nota_asignatura` (
   `Nota` int DEFAULT '0',
   `Nota_2` int DEFAULT '0',
   `Nota_3` int DEFAULT '0',
-  `qrhash` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Nota_4` int DEFAULT '0',
+  `qrhash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `detalle_nota_asignatura_detalle_grado_asignaturas_FK` (`id_detalle_grado_asignatura`),
   KEY `detalle_nota_asignatura_matricula_FK` (`id_matricula`),
   CONSTRAINT `detalle_nota_asignatura_detalle_grado_asignaturas_FK` FOREIGN KEY (`id_detalle_grado_asignatura`) REFERENCES `detalle_grado_asignaturas` (`Id`),
   CONSTRAINT `detalle_nota_asignatura_matricula_FK` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +248,7 @@ CREATE TABLE `detalle_nota_asignatura` (
 
 LOCK TABLES `detalle_nota_asignatura` WRITE;
 /*!40000 ALTER TABLE `detalle_nota_asignatura` DISABLE KEYS */;
-INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,30,0,NULL,1),(2,2,2,90,0,0,NULL,1),(3,1,2,30,60,0,NULL,1),(7,1,10,80,30,30,NULL,1),(8,9,13,80,0,0,NULL,1),(11,1,13,12,23,32,NULL,1);
+INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,30,0,0,NULL,1),(2,2,2,90,0,0,0,NULL,1),(3,1,2,30,60,0,0,NULL,1),(7,1,10,80,30,30,0,NULL,0),(8,9,13,80,0,0,0,NULL,1),(11,1,13,12,23,32,90,NULL,0),(12,1,22,30,30,30,30,NULL,1),(13,1,8,30,30,30,30,NULL,0);
 /*!40000 ALTER TABLE `detalle_nota_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,11 +593,13 @@ mat.id_anio_lectivo,
 aniolec.anio as id_anio_lectivo_anio,
 dga.Id_asignatura ,
 dp.Nombres  as Estudiante_Nombres,
-asig.Nombre as Asignatura_Nombre ,
+asig.Nombre as Asignatura_Nombre ,
+es.Cod_estudiante ,
 dna.Nota ,
 dna.Nota_2 ,
 dna.Nota_3 ,
-ROUND(CEIL((dna.Nota + dna.Nota_2 + dna.Nota_3) / 3)) AS Promedio_Redondeado
+dna.Nota_4,
+ROUND(CEIL((dna.Nota + dna.Nota_2 + dna.Nota_3+ dna.Nota_4) / 4)) AS Promedio_Redondeado
 from 
 matricula as mat 
 inner join
@@ -770,7 +773,8 @@ begin
 	dna.id_matricula,
 	dna.Nota ,
 	dna.Nota_2 ,
-	dna.Nota_3,
+	dna.Nota_3,
+	dna.Nota_4,
 	asig.Nombre as Nombre_asignatura,
 	dp.Nombres as Nombres,
 	mat.Id_estudiante as Id_estudiante,
@@ -1212,4 +1216,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-22 19:06:16
+-- Dump completed on 2024-06-22 20:34:32

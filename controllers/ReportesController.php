@@ -383,7 +383,7 @@ class ReportesController
                 $qualitative3 = getQualitative($dato['Nota_3']);
                 $qualitative4 = getQualitative($dato['Nota_4']);
                 $qualitativeFinal = getQualitative($dato["Promedio_Redondeado"]);
-            
+                  
                 $htmlContent .= '
                                 <tr>
                                     <td>' . $dato['Asignatura_Nombre'] . '</td>
