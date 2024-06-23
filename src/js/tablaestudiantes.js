@@ -179,18 +179,36 @@
                     $(this).on('click', function () {
                         const matId = $(this).data('matid'); // Obtener el id de la matrícula del atributo data-matid
 
-                        // Realizar una consulta AJAX enviando el id de la matrícula
-                        // console.log(matId);
-                        // return;
+                        Swal.fire({
+                            title: 'Generando reporte',
+                            text: 'Por favor espera...',
+                            icon: 'info',
+                            showConfirmButton: false,
+                            allowOutsideClick: false, // Evitar que se cierre haciendo clic fuera de la alerta
+                        });
                         $.ajax({
                             url: '/api/reporte/boletin', // URL del endpoint que manejará la solicitud
                             type: 'POST', // Método HTTP
                             data: { "Id_matricula": matId }, // Datos que se enviarán en la solicitud
+                            xhrFields: {
+                                responseType: 'blob'
+                            },
                             success: function (response) {
                                 // Manejar la respuesta del servidor aquí
                                 console.log('Boletín:', response);
-
-                                // Puedes mostrar los datos del boletín en un modal o de otra manera
+                                Swal.close();
+    
+                                // Generar el blob con el PDF recibido
+                                const blob = new Blob([response], { type: "application/pdf" });
+                                const url = window.URL.createObjectURL(blob);
+                    
+                                // Abrir el PDF en una nueva pestaña
+                                window.open(url, '_blank');
+                    
+                                // Limpiar el objeto URL después de un tiempo para liberar memoria
+                                setTimeout(() => {
+                                    window.URL.revokeObjectURL(url);
+                                }, 100);
                             },
                             error: function (xhr, status, error) {
                                 // Manejar errores aquí
@@ -664,6 +682,10 @@
             });
 
         });
+
+
+
+      
 
 
 

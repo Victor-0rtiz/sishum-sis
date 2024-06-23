@@ -229,18 +229,10 @@
                 <div class="container">
                     <div class="row  " id="gridmatriculas">
                         <!-- Tarjeta 1 -->
-                        <div class="col-3 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick </p>
-                                    <button type="button" class="btn btn-primary">Ver </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repite este bloque para cada tarjeta -->
+                        
+                        
                     </div>
-                    <!-- Repite el bloque.row para nuevas filas -->
+                 
                 </div>
 
             </div>
