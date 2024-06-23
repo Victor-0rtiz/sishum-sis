@@ -77,6 +77,7 @@ $router->post("/api/matricula/del", [MatriculasController::class, "delMatricula"
 //docentes
 $router->get("/api/docentes/all", [DocentesController::class, "getAllDocentes"]);
 $router->post("/api/docentes/add", [DocentesController::class, "addDocente"]);
+$router->post("/api/docentes/edit", [DocentesController::class, "editDocente"]);
 $router->post("/api/docentes/del", [DocentesController::class, "delDocente"]);
 
 
@@ -98,11 +99,13 @@ $router->post("/api/calificaciones/notas/del", [CalificacionesController::class,
 $router->get("/api/asignaturas/all", [AsignaturasController::class, "getAllAsignaturas"]);
 $router->get("/api/asignaturas/list", [AsignaturasController::class, "getAsignaturasList"]);
 $router->post("/api/asignaturas/add", [AsignaturasController::class, "addAsignaturas"]);
+$router->post("/api/asignaturas/edit", [AsignaturasController::class, "editAsignaturas"]);
 $router->post("/api/asignaturas/del", [AsignaturasController::class, "dellAsignaturaList"]);
 $router->post("/api/asignaturas/detalle/del", [AsignaturasController::class, "dellAsignaturaUnica"]);
 $router->get("/api/anioslectivos/all", [AsignaturasController::class, "allAniosLectivos"]);
 $router->get("/api/grados/all", [AsignaturasController::class, "allGrados"]);
 $router->get("/api/turnos/all", [AsignaturasController::class, "allTurnos"]);
+$router->post("/api/asignaturas-asignadas/edit", [AsignaturasController::class, "editAsignaturaAsignada"]);
 $router->post("/api/asignaturas-asignadas/add", [AsignaturasController::class, "addAsignaturaAsignada"]);
 
 // sexo

@@ -108,6 +108,34 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-2" id="editarModalLabel">Editar Asignatura</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAsignaturaEdit">
+                        <div class="mb-3">
+                            <label for="nombresUsser" class="form-label">Nombre de la Asignatura</label>
+                            <input type="text" class="form-control" name="Nombre" id="Nombre_asignatura">
+                            <input type="number" class="form-control" name="Id" id="Id_asignatura" hidden>
+                        </div>
+
+
+                        <button id="GuardarAsignaturaEditada" class="btn btn-primary">Guardar</button>
+                    </form>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="agregarAsignaturaGradoModal" tabindex="-1" aria-labelledby="agregarAsignaturaGradoModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -153,6 +181,55 @@
 
 
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editarModalAsig" tabindex="-1" aria-labelledby="editarModalAsig" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-5">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-2" id="editarModalLabel">Editar Asignatura asignada al Grado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form id="formAsigAnioLecEdit">
+                        <div class="mb-3">
+                            <label for="AnioLectivo" class="form-label">Año Lectivo</label>
+                            <select class="form-select" name="Id_anio_lectivo" id="AnioLectivoEditAsig">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Grado" class="form-label">Grado</label>
+                            <select class="form-select" name="id_grado" id="GradoEditAsig">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Turno" class="form-label">Turno</label>
+                            <select class="form-select" name="id_turno" id="TurnoEditAsig">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Asignatura" class="form-label">Asignatura</label>
+                            <select class="form-select" name="Id_asignatura" id="AsignaturaEditAsig">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Docente" class="form-label">Docente</label>
+                            <select class="form-select" name="Id_docente" id="DocenteEditAsig">
+                            </select>
+                        </div>
+
+                        <input type="number" name="Id" id="Id_matAsig" hidden>
+                        <input type="number" name="Id_detalle_aniolectivo_grado" id="Id_detalle_aniolectivo_gradoEdit"  hidden>
+
+
+                        <button id="GuardarAsigAnioLecEdit" class="btn btn-primary">Guardar</button>
+                    </form>
                 </div>
 
             </div>

@@ -346,18 +346,18 @@ class CalificacionesController
 
             // echo json_encode($detalle);
             // return;
-            if ($detalleOriginal != $detalleEdit) {
+            // if ($detalleOriginal != $detalleEdit) {
 
-                $detallenotaexistente = DetalleNotaAsignatura::whereArray([
-                    'id_detalle_grado_asignatura' => $_POST["id_detalle_grado_asignatura"],
-                    'id_matricula' => $_POST["id_matricula"],
-                ]);
+            //     $detallenotaexistente = DetalleNotaAsignatura::whereArray([
+            //         'id_detalle_grado_asignatura' => $_POST["id_detalle_grado_asignatura"],
+            //         'id_matricula' => $_POST["id_matricula"],
+            //     ]);
 
-                // if ($detallenotaexistente) {
-                //     echo json_encode(["alert" => "El registro existe, verifique los datos"]);
-                //     return;
-                // }
-            }
+            //     // if ($detallenotaexistente) {
+            //     //     echo json_encode(["alert" => "El registro existe, verifique los datos"]);
+            //     //     return;
+            //     // }
+            // }
 
          
 

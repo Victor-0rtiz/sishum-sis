@@ -302,7 +302,8 @@
                 dataType: 'json', // El tipo de datos esperado en la respuesta
                 success: async function (response) {
                     // Manejar la respuesta del servidor
-                    console.log(response, 'de agregar');
+                    // console.log(response, 'de editar');
+                    // return
 
 
                     if (response.exito) {

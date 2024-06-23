@@ -18,7 +18,7 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                            <button type="button" class="btn btn-primary btn-editarAsig" data-bs-toggle="modal" data-bs-target="#editarModalAsig" data-id="${row.id}">Editar</button>
                            <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
                                        `;
                         }
@@ -39,6 +39,17 @@
                         "sortDescending": ": activar para ordenar la columna de manera descendente"
                     }
                 }
+            });
+
+            $('#tablaAsignaturas tbody').on('click', '.btn-editarAsig', function () {
+                const data = table.row($(this).parents('tr')).data();
+                $('#Id_matAsig').val(data.Id);
+                $('#Id_detalle_aniolectivo_gradoEdit').val(data.Id_detalle_aniolectivo_grado);
+                $('#AnioLectivoEditAsig').val(data.Id_anio_lectivo);
+                $('#GradoEditAsig').val(data.id_grado);
+                $('#TurnoEditAsig').val(data.id_turno);
+                $('#AsignaturaEditAsig').val(data.Id_asignatura);
+                $('#DocenteEditAsig').val(data.Id_docente);
             });
 
 
@@ -87,8 +98,18 @@
                 }
             });
 
+            $('#tablaAsignaturasList tbody').on('click', '.btn-editar', function () {
+                const data = table.row($(this).parents('tr')).data();
+                $('#Nombre_asignatura').val(data.Nombre);
+                $('#Id_asignatura').val(data.Id);
+
+            });
+
+
+
             response.forEach(function (asignatura) {
                 $('#Asignatura').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
+                $('#AsignaturaEditAsig').append('<option value="' + asignatura.Id + '">' + asignatura.Nombre + '</option>');
             });
 
 
@@ -220,8 +241,95 @@
                     // Manejar la respuesta del servidor
                     console.log(response, 'de agregar');
                     if (response.exito) {
-                        await cargarLista()
+                        await cargarLista();
+                        await cargarLista2();
                         $('#agregarAsignaturaModal').modal('hide');
+                        await Swal.fire({
+                            icon: "success",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'green',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#B8FFB8',
+                            showConfirmButton: false,
+                        });
+
+                        return;
+
+                    }
+
+                    if (response.error) {
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.error}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#FFB8B8',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
+
+
+                    // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+                },
+                error: function (xhr, status, error) {
+                    // Manejar errores de la solicitud AJAX
+                    console.error(xhr.responseText);
+                }
+            });
+
+
+        });
+        $("#formAsignaturaEdit").on('submit', function (event) {
+            event.preventDefault();
+            const formAsignatura = new FormData($("#formAsignaturaEdit")[0]);
+
+            function formDataToObject(formData) {
+                let obj = {};
+                formData.forEach((value, key) => {
+                    obj[key] = value;
+                });
+                return obj;
+            }
+
+            const form1 = formDataToObject(formAsignatura);
+
+            if (Object.values(form1) == "") {
+                Swal.fire({
+                    icon: "error",
+                    html: `<span style="font-size: 1.5rem; font-weight: 900;">El nombre no puede ir vacio</span>`,
+                    toast: true,
+                    position: 'bottom-end',
+                    iconColor: 'red',
+                    timer: 1500,
+                    padding: "2rem",
+                    background: 'rgb(231, 184, 184)',
+                    showConfirmButton: false,
+                });
+                return;
+            }
+
+
+            $.ajax({
+                url: '/api/asignaturas/edit', // Especifica la URL de tu controlador
+                type: 'POST', // O el método HTTP que estés utilizando
+                data: form1, // Los datos del formulario serializados
+                dataType: 'json', // El tipo de datos esperado en la respuesta
+                success: async function (response) {
+                    // Manejar la respuesta del servidor
+                    console.log(response, 'de agregar');
+
+                    if (response.exito) {
+                        await cargarLista()
+                        await cargarLista2()
+                        $('#editarModal').modal('hide');
                         await Swal.fire({
                             icon: "success",
                             html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
@@ -296,7 +404,9 @@
                     // Manejar la respuesta del servidor
                     console.log(response, 'de agregar asignatura asignada');
                     if (response.exito) {
-                        await cargarLista2()
+                        await cargarLista2();
+                        await cargarLista();
+                        
                         $('#agregarAsignaturaGradoModal').modal('hide');
                         await Swal.fire({
                             icon: "success",
@@ -344,6 +454,87 @@
 
         });
 
+        $("#formAsigAnioLecEdit").on('submit', function (event) {
+            event.preventDefault();
+
+
+
+            const formAsinaturasAnioEdits = new FormData($("#formAsigAnioLecEdit")[0]);
+
+            function formDataToObject(formData) {
+                let obj = {};
+                formData.forEach((value, key) => {
+                    obj[key] = value;
+                });
+                return obj;
+            }
+
+            const form2 = formDataToObject(formAsinaturasAnioEdits);
+
+
+
+
+            $.ajax({
+                url: '/api/asignaturas-asignadas/edit', // Especifica la URL de tu controlador
+                type: 'POST', // O el método HTTP que estés utilizando
+                data: form2, // Los datos del formulario serializados
+                dataType: "json",
+                success: async function (response) {
+                    // Manejar la respuesta del servidor
+                    console.log(form2, 'enviado');
+                    console.log(response, 'de agregar asignatura asignada mod?');
+                
+                    if (response.exito) {
+                        await cargarLista2();
+                        await cargarLista();
+                        $('#editarModalAsig').modal('hide');
+                        await Swal.fire({
+                            icon: "success",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'green',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#B8FFB8',
+                            showConfirmButton: false,
+                        });
+
+                        return;
+
+                    }
+
+                    if (response.error) {
+                        await Swal.fire({
+                            icon: "error",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.error}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'red',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#FFB8B8',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
+
+
+                    // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+                },
+                error: function (xhr, status, error) {
+                    // Manejar errores de la solicitud AJAX
+                    console.error(xhr.responseText);
+                }
+            });
+
+
+
+
+        });
+
+
     })
 
 
@@ -358,10 +549,10 @@
                 console.log(response, "del listado de asignaturas");
                 const table = $('#tablaAsignaturasList').DataTable();
                 table.clear();
-                
+
                 // Agregar los nuevos datos
                 table.rows.add(response);
-                
+
                 // Dibujar la tabla con los nuevos datos
                 table.draw();
 
@@ -379,10 +570,10 @@
 
 
 
+
+
     }
     async function cargarLista2() {
-
-
         $.ajax({
             url: '/api/asignaturas/all', // Especifica la URL de tu controlador
             dataType: 'json', // El tipo de datos esperado en la respuesta
@@ -391,10 +582,10 @@
                 console.log(response);
                 const table = $('#tablaAsignaturas').DataTable();
                 table.clear();
-                
+
                 // Agregar los nuevos datos
                 table.rows.add(response);
-                
+
                 // Dibujar la tabla con los nuevos datos
                 table.draw();
 
@@ -405,6 +596,9 @@
                 console.error(xhr.responseText);
             }
         });
+
+
+
     }
 
 
@@ -419,6 +613,7 @@
             console.log(response, "del listado del grado");
             response.forEach(function (grado) {
                 $('#Grado').append('<option value="' + grado.Id + '">' + grado.Nombre + '</option>');
+                $('#GradoEditAsig').append('<option value="' + grado.Id + '">' + grado.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -434,6 +629,7 @@
             console.log(response, "del listado del turno");
             response.forEach(function (Turnos) {
                 $('#Turno').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre + '</option>');
+                $('#TurnoEditAsig').append('<option value="' + Turnos.Id + '">' + Turnos.Nombre + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -449,6 +645,7 @@
             console.log(response, "del listado del anio lectivo");
             response.forEach(function (anioLec) {
                 $('#AnioLectivo').append('<option value="' + anioLec.Id + '">' + anioLec.anio + '</option>');
+                $('#AnioLectivoEditAsig').append('<option value="' + anioLec.Id + '">' + anioLec.anio + '</option>');
             });
         },
         error: function (xhr, status, error) {
@@ -464,6 +661,7 @@
             console.log(response, "del listado del docente");
             response.forEach(function (docente) {
                 $('#Docente').append('<option value="' + docente.Id + '">' + docente.Nombres + ' ' + docente.Apellidos + '</option>');
+                $('#DocenteEditAsig').append('<option value="' + docente.Id + '">' + docente.Nombres + ' ' + docente.Apellidos + '</option>');
             });
         },
         error: function (xhr, status, error) {

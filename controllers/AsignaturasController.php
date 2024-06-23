@@ -2,10 +2,10 @@
 
 namespace Controllers;
 
+use Model\DetalleGradoAsignaturas;
 use Model\AnioLectivo;
 use Model\Asignatura;
 use Model\DetalleAnioLectivoGrado;
-use Model\DetalleGradoAsignaturas;
 use Model\Grado;
 use Model\Turno;
 use MVC\Router;
@@ -54,6 +54,33 @@ class AsignaturasController
 
         return;
     }
+    public static function editAsignaturas(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
+            // echo json_encode($_POST);
+            // return;
+            $asinatura =  Asignatura::find($_POST["Id"]);
+
+            $asinatura->sincronizar($_POST);
+            $resp = $asinatura->guardar();
+
+            if ($resp) {
+                echo json_encode(['exito' => 'Se edito correctamente la asignatura']);
+                return;
+            }
+            echo json_encode(['error' => 'No se edito correctamente la asignatura']);
+            return;
+        }
+    }
+
     public static function addAsignaturas(Router $router)
     {
         if (!is_auth()) {
@@ -74,6 +101,8 @@ class AsignaturasController
             return;
         }
     }
+
+
     public static function allAniosLectivos(Router $router)
     {
         if (!is_auth()) {
@@ -117,6 +146,7 @@ class AsignaturasController
             return;
         }
 
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $detalleAnGr = new DetalleAnioLectivoGrado($_POST);
 
@@ -146,6 +176,88 @@ class AsignaturasController
             // return;
         }
     }
+
+    public static function editAsignaturaAsignada(Router $router)
+    {
+        if (!is_auth()) {
+
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            // echo json_encode($_POST);
+            // return;
+
+
+            $detalleAnGrEdits =  DetalleGradoAsignaturas::find($_POST['Id']);
+            $detalleAnGrEdits->sincronizar([
+                'Id_detalle_aniolectivo_grado' => $_POST['Id_detalle_aniolectivo_grado'],
+                'Id_asignatura' => $_POST['Id_asignatura'],
+                'Id_docente' => $_POST['Id_docente'],
+            ]);
+            $detalleAnGrData =  DetalleGradoAsignaturas::find($_POST["Id"]);
+
+
+            if ($detalleAnGrData != $detalleAnGrEdits) {
+
+                $detalleAnGrexistentes =  DetalleGradoAsignaturas::whereArray([
+                    'Id_detalle_aniolectivo_grado' => $_POST['Id_detalle_aniolectivo_grado'],
+                    'Id_asignatura' => $_POST['Id_asignatura'],
+                    'Id_docente' => $_POST['Id_docente'],
+                ]);
+                // echo json_encode($detalleAnGrexistentes);
+                // return;
+                if ($detalleAnGrexistentes) {
+                    echo json_encode(['alert' => 'Ya existe un registro de la asignatura asignada al docente en ese año y grado con esos datos']);
+                    return;
+                }
+            }
+
+            $detallenAniolecEdit =  DetalleAnioLectivoGrado::find($_POST['Id_detalle_aniolectivo_grado']);
+            $detallenAniolecEdit->sincronizar([
+                'Id_anio_lectivo' => $_POST['Id_anio_lectivo'],
+                'id_turno' => $_POST['id_turno'],
+                'id_grado' => $_POST['id_grado'],
+            ]);
+            $detalleAnioLecData =  DetalleAnioLectivoGrado::find($_POST["Id_detalle_aniolectivo_grado"]);
+
+
+            if ($detalleAnioLecData != $detallenAniolecEdit) {
+
+                $detalleAnGrexistente =  DetalleAnioLectivoGrado::whereArray([
+                    'Id_anio_lectivo' => $_POST['Id_anio_lectivo'],
+                    'id_turno' => $_POST['id_turno'],
+                    'id_grado' => $_POST['id_grado'],
+                ]);
+
+                if ($detalleAnGrexistente) {
+                    echo json_encode(['alert' => 'Ya existe un registro de ese grado y año lectivo con esos datos']);
+                    return;
+                }
+            }
+
+
+            
+            $resps =   $detalleAnGrEdits->guardar();
+            $resps2 =  $detallenAniolecEdit->guardar();
+
+
+         
+
+            if ($resps) {
+                echo json_encode(['exito' => 'Se actualizaron correctamente los datos']);
+                return;
+                
+            }
+
+            echo json_encode(['error' => 'Ocurrio un error al actualizar los datos']);
+                return;
+
+        }
+    }
+
 
 
 

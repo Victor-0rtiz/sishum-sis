@@ -52,6 +52,13 @@ class EstudiantesController
                 return;
             }
         }
+        if ($_POST["estudiante"]) {
+            $estudiante = Estudiante::where("Cod_estudiante", $_POST["estudiante"]["Cod_estudiante"]);
+            if ($estudiante) {
+                echo json_encode(["alert" => "El código ya le pertenece a un estudiante"]);
+                return;
+            }
+        }
 
 
         $userNombres =  str_replace(" ", "", $_POST["datos_personales"]["Nombres"]);
@@ -169,11 +176,26 @@ class EstudiantesController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
+            // echo json_encode($_POST);
+            // return;
+
             $estudianteEdit = Estudiante::find($_POST["Id_estudiante"]);
+            $estudianteDataOriginal = Estudiante::find($_POST["Id_estudiante"]);
             $estudianteDatosPersonales = DatosPersonales::find($_POST["Id_datos_personales"]);
 
             $estudianteEdit->sincronizar($_POST);
             $estudianteDatosPersonales->sincronizar($_POST);
+
+
+             if ($estudianteEdit != $estudianteDataOriginal) {
+
+                $estudianteEditExistente = Estudiante::where("Cod_estudiante", $_POST["Cod_estudiante"]);
+
+                if ($estudianteEditExistente) {
+                    echo json_encode(["alert" => "El Código ya le pertenece a otro estudiante, verifique los datos"]);
+                    return;
+                }
+            }
 
             $estudianteEdit->guardar();
             $resp =   $estudianteDatosPersonales->guardar();

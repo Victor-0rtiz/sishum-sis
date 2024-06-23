@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace Model; 
 
 class DetalleGradoAsignaturas extends ActiveRecord {
     protected static $tabla = 'detalle_grado_asignaturas';
@@ -23,63 +23,96 @@ class DetalleGradoAsignaturas extends ActiveRecord {
 
    
 
+   
+   
+
     /**
      * Get the value of Id
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->Id;
     }
 
     /**
      * Set the value of Id
      */
-    public function setId($Id): self {
+    public function setId($Id): self
+    {
         $this->Id = $Id;
+
         return $this;
     }
 
     /**
      * Get the value of Id_detalle_aniolectivo_grado
      */
-    public function getIdDetalleAniolectivoGrado() {
+    public function getIdDetalleAniolectivoGrado()
+    {
         return $this->Id_detalle_aniolectivo_grado;
     }
 
     /**
      * Set the value of Id_detalle_aniolectivo_grado
      */
-    public function setIdDetalleAniolectivoGrado($Id_detalle_aniolectivo_grado): self {
+    public function setIdDetalleAniolectivoGrado($Id_detalle_aniolectivo_grado): self
+    {
         $this->Id_detalle_aniolectivo_grado = $Id_detalle_aniolectivo_grado;
+
         return $this;
     }
 
     /**
      * Get the value of Id_asignatura
      */
-    public function getIdAsignatura() {
+    public function getIdAsignatura()
+    {
         return $this->Id_asignatura;
     }
 
     /**
      * Set the value of Id_asignatura
      */
-    public function setIdAsignatura($Id_asignatura): self {
+    public function setIdAsignatura($Id_asignatura): self
+    {
         $this->Id_asignatura = $Id_asignatura;
+
         return $this;
     }
 
     /**
      * Get the value of Id_docente
      */
-    public function getIdDocente() {
+    public function getIdDocente()
+    {
         return $this->Id_docente;
     }
 
     /**
      * Set the value of Id_docente
      */
-    public function setIdDocente($Id_docente): self {
+    public function setIdDocente($Id_docente): self
+    {
         $this->Id_docente = $Id_docente;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Estado
+     */
+    public function getEstado()
+    {
+        return $this->Estado;
+    }
+
+    /**
+     * Set the value of Estado
+     */
+    public function setEstado($Estado): self
+    {
+        $this->Estado = $Estado;
+
         return $this;
     }
 }

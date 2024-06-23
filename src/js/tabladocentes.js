@@ -19,7 +19,7 @@
                         data: null,
                         render: function (data, type, row) {
                             return `
-                            <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.id}">Editar</button>
+                            <button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="${row.Id}">Editar</button>
                            <button type="button" class="btn btn-danger btn-borrar" data-id="${row.Id}">Borrar</button>
                                        `;
                         }
@@ -41,9 +41,25 @@
                     }
                 }
             });
-            // Por ejemplo, cerrar el modal
-            // $('#addModal').modal('hide');
-            // // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            // Supongamos que table es tu instancia de DataTable
+
+            $('#tablaDocentes tbody').on('click', '.btn-editar', function () {
+                const dataPersonales = table.row($(this).parents('tr')).data();
+                console.log(dataPersonales);
+
+                // Llenar formAddDatosPersonalesEdit
+                $('#Id_dpEdit').val(dataPersonales.Id_datos_personales);
+                $('#Id_DocEdit').val(dataPersonales.Id);
+                $('#nombresUsserEdit').val(dataPersonales.Nombres);
+                $('#apellidosUsserEdit').val(dataPersonales.Apellidos);
+                $('#TelefonoEdit').val(dataPersonales.Telefono);
+                $('#DireccionEdit').val(dataPersonales.Direccion);
+                $('#sexoEdit').val(dataPersonales.Id_sexo);
+
+                // Llenar formDocenteEdit
+                $('#CodDocenteEdit').val(dataPersonales.Cod_docente);
+            });
+
         },
         error: function (xhr, status, error) {
             // Manejar errores de la solicitud AJAX
@@ -81,6 +97,7 @@
             // Agrega una opción por cada dato del tipo de usuario
             result.forEach(function (sexo) {
                 $('#sexo').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
+                $('#sexoEdit').append('<option value="' + sexo.Id + '">' + sexo.Nombre + '</option>');
             });
 
 
@@ -162,9 +179,9 @@
         };
 
         const regexTelefonos = /^\d{8,11}$/;
-      
+
         const inputTelefonos = $('input[name="Telefono"]');
-   
+
         let datavalid = true;
         inputTelefonos.each(async function () {
             if (!regexTelefonos.test($(this).val())) {
@@ -187,7 +204,7 @@
             }
         });
 
-       
+
         if (!datavalid) {
             return;
         }
@@ -236,7 +253,7 @@
                         showConfirmButton: false,
                     });
 
-                  
+
                 }
                 // Por ejemplo, cerrar el modal
                 $('#addModal').modal('hide');
@@ -252,21 +269,245 @@
     })
 
 
-    async function actualizarLista(){
+
+    $("#formDocente").on('submit', function (event) {
+        event.preventDefault();
+
+        const formDatosP = new FormData($("#formAddDatosPersonales")[0]);
+        const formDatosDoc = new FormData($("#formDocente")[0]);
+
+
+        function formDataToObject(formData) {
+            let obj = {};
+            formData.forEach((value, key) => {
+                obj[key] = value;
+            });
+            return obj;
+        }
+
+        const form1 = formDataToObject(formDatosDoc);
+        const form2 = formDataToObject(formDatosP);
+
+
+        // Combinar los objetos de datos en un solo objeto
+        const dataForms = {
+            docente: form1,
+            datos_personales: form2,
+
+        };
+
+        const regexTelefonos = /^\d{8,11}$/;
+
+        const inputTelefonos = $('input[name="Telefono"]');
+
+        let datavalid = true;
+        inputTelefonos.each(async function () {
+            if (!regexTelefonos.test($(this).val())) {
+                datavalid = false;
+                await Swal.fire({
+                    icon: "error",
+                    html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                    toast: true,
+                    position: 'bottom-end',
+                    iconColor: 'red',
+                    timer: 1500,
+                    padding: "2rem",
+                    background: 'rgb(255, 184, 184)',
+                    showConfirmButton: false,
+                });
+                $(this).css('border', '1px solid red');
+                return false; // Detiene la iteración de .each
+            } else {
+                $(this).css('border', ''); // Restablece el estilo del borde
+            }
+        });
+
+
+        if (!datavalid) {
+            return;
+        }
+
+        $.ajax({
+            url: '/api/docentes/edit', // Especifica la URL de tu controlador
+            type: 'POST', // O el método HTTP que estés utilizando
+            data: dataForms, // Los datos del formulario serializados
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success: async function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+
+                if (response.error) {
+                    Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.error}</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(231, 184, 184)',
+                        showConfirmButton: false,
+                    });
+
+                }
+
+                if (response.exito) {
+                    await actualizarLista();
+                    $('#agregarModal').modal('hide');
+                    Swal.fire({
+                        icon: "success",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.resp}</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'green',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(168,255,162)',
+                        showConfirmButton: false,
+                    });
+
+
+                }
+                // Por ejemplo, cerrar el modal
+                $('#addModal').modal('hide');
+                // Actualizar la tabla de usuarios u otra interfaz según sea necesario
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+
+
+    })
+
+
+    $("#formDocenteEdit").on('submit', function (event) {
+        event.preventDefault();
+
+        const formDatosP = new FormData($("#formAddDatosPersonalesEdit")[0]);
+        const formDatosDoc = new FormData($("#formDocenteEdit")[0]);
+
+
+        function formDataToObject(formData) {
+            let obj = {};
+            formData.forEach((value, key) => {
+                obj[key] = value;
+            });
+            return obj;
+        }
+
+        const form1 = formDataToObject(formDatosDoc);
+        const form2 = formDataToObject(formDatosP);
+
+
+        // Combinar los objetos de datos en un solo objeto
+        const dataForms = {
+            docente: form1,
+            datos_personales: form2,
+
+        };
+
+        const regexTelefonos = /^\d{8,11}$/;
+
+        const inputTelefonos = $('.checkTelefono');
+
+        let datavalid = true;
+        inputTelefonos.each(async function () {
+            if (!regexTelefonos.test($(this).val())) {
+                datavalid = false;
+                await Swal.fire({
+                    icon: "error",
+                    html: `<span style="font-size: 1.5rem; font-weight: 800;">El celular debe tener de 8 a 12 dígitos</span>`,
+                    toast: true,
+                    position: 'bottom-end',
+                    iconColor: 'red',
+                    timer: 1500,
+                    padding: "2rem",
+                    background: 'rgb(255, 184, 184)',
+                    showConfirmButton: false,
+                });
+                $(this).css('border', '1px solid red');
+                return false; // Detiene la iteración de .each
+            } else {
+                $(this).css('border', ''); // Restablece el estilo del borde
+            }
+        });
+
+
+        if (!datavalid) {
+            return;
+        }
+
+        $.ajax({
+            url: '/api/docentes/edit', // Especifica la URL de tu controlador
+            type: 'POST', // O el método HTTP que estés utilizando
+            data: dataForms, // Los datos del formulario serializados
+            dataType: 'json', // El tipo de datos esperado en la respuesta
+            success: async function (response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+
+                if (response.error) {
+                    Swal.fire({
+                        icon: "error",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.error}</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'red',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(231, 184, 184)',
+                        showConfirmButton: false,
+                    });
+
+                }
+
+                if (response.exito) {
+                    await actualizarLista();
+                    $('#editarModal').modal('hide');
+                    Swal.fire({
+                        icon: "success",
+                        html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,
+                        toast: true,
+                        position: 'bottom-end',
+                        iconColor: 'green',
+                        timer: 1500,
+                        padding: "2rem",
+                        background: 'rgb(168,255,162)',
+                        showConfirmButton: false,
+                    });
+
+
+                }
+              
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+
+
+    })
+
+
+
+    async function actualizarLista() {
         console.log("actualizando...");
 
         $.ajax({
             url: '/api/docentes/all', // Especifica la URL de tu controlador
             dataType: 'json', // El tipo de datos esperado en la respuesta
-            success:  function (response) {
+            success: function (response) {
                 // Manejar la respuesta del servidor
                 console.log(response);
                 const table = $('#tablaDocentes').DataTable();
                 table.clear();
-                
+
                 // Agregar los nuevos datos
                 table.rows.add(response);
-                
+
                 // Dibujar la tabla con los nuevos datos
                 table.draw();
             },

@@ -88,7 +88,7 @@ CREATE TABLE `asignatura` (
 
 LOCK TABLES `asignatura` WRITE;
 /*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
-INSERT INTO `asignatura` VALUES (1,'Matemáticas',1),(2,'Ciencias Naturales',1),(3,'Historia',1),(4,'Geografía',1),(5,'Arte',1),(6,'Música',1),(7,'Educación Física',1),(8,'Inglés',1),(9,'Ciudadanía',1),(10,'Tecnología',1),(11,'Informática',1),(12,'Literatura',1),(13,'Filosofía',1),(14,'Psicología',1),(15,'Sociología',1),(16,'Biología',1),(17,'Química',1),(18,'Física',1),(19,'Astronomía',1),(20,'Geología',1),(22,'Historia de Nicaragua ',1),(24,'Fisica 2 ',1),(25,'Historia de Nicaragua 2',1);
+INSERT INTO `asignatura` VALUES (1,'Matemáticas 1',1),(2,'Ciencias Naturales',1),(3,'Historia',1),(4,'Geografía',1),(5,'Arte',1),(6,'Música',1),(7,'Educación Física',1),(8,'Inglés',1),(9,'Ciudadanía',1),(10,'Tecnología',0),(11,'Informática',0),(12,'Literatura',1),(13,'Filosofía',1),(14,'Psicología',1),(15,'Sociología',1),(16,'Biología',1),(17,'Química',1),(18,'Física',1),(19,'Astronomía',1),(20,'Geología',1),(22,'Historia de Nicaragua ',1),(24,'Fisica 2 ',1),(25,'Historia de Nicaragua 2',1);
 /*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `datos_personales` (
   KEY `datos_personales_sexo_FK` (`Id_sexo`),
   CONSTRAINT `datos_personales_sexo_FK` FOREIGN KEY (`Id_sexo`) REFERENCES `sexo` (`Id`),
   CONSTRAINT `datos_personales_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `datos_personales` (
 
 LOCK TABLES `datos_personales` WRITE;
 /*!40000 ALTER TABLE `datos_personales` DISABLE KEYS */;
-INSERT INTO `datos_personales` VALUES (1,'Juan','Perez','22222222','por mi casa',1,2,1),(2,'pedro pedro','pedrito de la rosa','22222','2222',1,3,1),(3,'pedro pancho','mocho','22222','2222',1,4,1),(4,'pedrito panchito','mochito','22222','2222',1,5,1),(5,'pedrito2 panchito2','mochito2','22222','2222',1,6,1),(6,'estu 4','4','22222','2222',2,7,1),(7,'profe 1','1','22222','2222',1,8,1),(8,'profe 2','2','22222','2222',1,9,1),(27,'VICTOR','BERMUDEZ','12121212','aasssss',1,31,1),(48,'Andres','Manuel','82548329','sdasdasdasdasd',1,53,1),(49,'Victor Jose','Ortiz Bermudez','82548329','De la farmacia mariem 1/2',1,54,1),(50,'Victor Jose','Ortiz Bermudez','82548329','dadadadasdas',1,55,1),(51,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,56,1),(52,'caisilla','ramirez','82548329','dadadasdasdasd',1,57,1),(53,'cas cas','tulo tulo','82548329','dasdasdasdasdasdasdad',1,58,1),(54,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,59,1),(55,'Pepito','jose','82548329','dasdadasdasdada',1,60,1),(56,'Super','Usuario ','12345678','Super usuario prueba',1,1,1),(57,'caisilla','ramirez','82548329','Villa libertad, farmacia Marien, media cuadra abajo, 9 andenes al sur, tope sur.',1,61,1),(58,'Juan perez','ramirez de la fuente','82548329','dsadsadadad',1,63,1),(64,'Daniel Matias','Perez Cazuela','82548329','asdsadasdasdasd',1,71,1),(75,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,82,1),(76,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,84,1),(77,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,86,1),(78,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,88,1),(79,'Luis Carlos','Perez solis','825483293443','asdasdasdasdadada',1,91,1),(80,'Luis Carlos','Perez solis','825483293443','adasdsada',1,92,1),(81,'caisilla','ramirez','82548329122','Villa libertad, farmacia Marien, media cuadra abajo, 9 andenes al sur, tope sur.',1,93,1);
+INSERT INTO `datos_personales` VALUES (1,'Juan Martinez De jesus Perez','Perez Martinez Prueba','22222222','por mi casa',1,2,1),(2,'Pedres2','de la ','22222333','2222',1,3,1),(3,'pedro pancho','mocho','22222','2222',1,4,1),(4,'pedrito Martinez Cruz','mochito','22222333','2222',1,5,1),(5,'pedrito2 panchito Modificado','mochito','22222333','2222',1,6,1),(6,'estu 4','4','22222','2222',2,7,1),(7,'profe 1','1','22222','2222',1,8,1),(8,'profe 2','2','22222','2222',1,9,1),(27,'VICTOR','BERMUDEZ','12121212','aasssss',1,31,1),(48,'Andres','Manuel','82548329','sdasdasdasdasd',1,53,1),(49,'Victor Jose Chepe','Ortiz Bermudez','82548329','De la farmacia mariem 1/2',1,54,1),(50,'Victor Jose','Ortiz Bermudez','82548329','dadadadasdas',1,55,1),(51,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,56,1),(52,'caisilla','ramirez','82548329','dadadasdasdasd',1,57,1),(53,'cas cas','tulo tulo','82548329','dasdasdasdasdasdasdad',1,58,1),(54,'Pepito','jose','82548329','dasdasdasdasdasdasdad',1,59,1),(55,'Pepito','jose','82548329','dasdadasdasdada',1,60,1),(56,'Super','Usuario ','12345678','Super usuario prueba',1,1,1),(57,'caisilla modificada','ramirez','82548329','Villa libertad, farmacia Marien, media cuadra abajo, 9 andenes al sur, tope sur.',1,61,1),(58,'Juan perez modi4','ramirez de la fuentes','82548329','dsadsadadad',1,63,1),(64,'Daniel Matias','Perez Cazuela','82548329','asdsadasdasdasd',1,71,1),(75,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,82,1),(76,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,84,1),(77,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,86,1),(78,'Luis Carlos','Perez solis','82548329','asdsadadasda',1,88,1),(79,'Luis Carlos','Perez solis','825483293443','asdasdasdasdadada',1,91,1),(80,'Luis Carlos','Perez solis','825483293443','adasdsada',1,92,1),(81,'caisilla','ramirez','82548329122','Villa libertad, farmacia Marien, media cuadra abajo, 9 andenes al sur, tope sur.',1,93,1),(82,'Luis Carlos perez lucas','Perez solis23232','12312321233','asdadadasdas',1,95,1),(83,'Luis Carlos perez lucas','Perez solis23232','12345678','asdasdasdad',1,96,1),(84,'Luis Carlos perez lucas','Perez solis23232','12345678','adasdadad',1,97,1),(85,'Luis Carlos perez lucas','Perez solis23232','12345678','asdasdasdasdda',1,98,1),(86,'Luis Carlos perez lucas','Perez solis23232','12345678','asdadadasasd',1,99,1);
 /*!40000 ALTER TABLE `datos_personales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
   CONSTRAINT `Detalle_aniolectivo_grado_anio_lectivo_FK` FOREIGN KEY (`Id_anio_lectivo`) REFERENCES `anio_lectivo` (`Id`),
   CONSTRAINT `Detalle_aniolectivo_grado_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `detalle_aniolectivo_grado_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `detalle_aniolectivo_grado` (
 
 LOCK TABLES `detalle_aniolectivo_grado` WRITE;
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` DISABLE KEYS */;
-INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1,1),(2,1,1,2,1),(3,1,2,2,1),(4,2,4,2,1),(5,1,3,2,1),(6,2,3,2,1),(8,1,5,1,1);
+INSERT INTO `detalle_aniolectivo_grado` VALUES (1,1,1,1,1),(2,1,1,2,1),(3,1,2,2,1),(4,2,4,2,1),(5,1,3,2,1),(6,1,3,2,0),(8,1,5,1,0),(9,1,1,1,1);
 /*!40000 ALTER TABLE `detalle_aniolectivo_grado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
   CONSTRAINT `detalle_grado_asignaturas_asignatura_FK` FOREIGN KEY (`Id_asignatura`) REFERENCES `asignatura` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_detalle_aniolectivo_grado_FK` FOREIGN KEY (`Id_detalle_aniolectivo_grado`) REFERENCES `detalle_aniolectivo_grado` (`Id`),
   CONSTRAINT `detalle_grado_asignaturas_docente_FK` FOREIGN KEY (`Id_docente`) REFERENCES `docente` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +213,7 @@ CREATE TABLE `detalle_grado_asignaturas` (
 
 LOCK TABLES `detalle_grado_asignaturas` WRITE;
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` DISABLE KEYS */;
-INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1,1),(2,2,1,2,1),(3,3,20,2,1),(4,4,18,2,1),(5,5,24,2,1),(6,6,11,2,1),(8,1,1,26,1),(9,1,3,2,1);
+INSERT INTO `detalle_grado_asignaturas` VALUES (1,1,1,1,1),(2,2,1,2,1),(3,3,20,2,1),(4,4,18,2,1),(5,5,24,2,1),(6,6,11,2,1),(8,1,1,26,0),(9,1,3,2,1),(10,1,6,27,1),(11,9,1,25,1);
 /*!40000 ALTER TABLE `detalle_grado_asignaturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,6 +231,7 @@ CREATE TABLE `detalle_nota_asignatura` (
   `Nota` int DEFAULT '0',
   `Nota_2` int DEFAULT '0',
   `Nota_3` int DEFAULT '0',
+  `qrhash` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Estado` tinyint DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `detalle_nota_asignatura_detalle_grado_asignaturas_FK` (`id_detalle_grado_asignatura`),
@@ -246,7 +247,7 @@ CREATE TABLE `detalle_nota_asignatura` (
 
 LOCK TABLES `detalle_nota_asignatura` WRITE;
 /*!40000 ALTER TABLE `detalle_nota_asignatura` DISABLE KEYS */;
-INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,0,0,1),(2,2,2,90,0,0,1),(3,1,2,30,0,0,1),(7,1,10,80,0,0,1),(8,9,13,80,0,0,1),(11,1,13,1,23,3,1);
+INSERT INTO `detalle_nota_asignatura` VALUES (1,1,1,90,30,0,NULL,1),(2,2,2,90,0,0,NULL,1),(3,1,2,30,60,0,NULL,1),(7,1,10,80,30,30,NULL,1),(8,9,13,80,0,0,NULL,1),(11,1,13,12,23,32,NULL,1);
 /*!40000 ALTER TABLE `detalle_nota_asignatura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +268,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
   KEY `Detalle_Tutor_Estudiante_estudiante_FK` (`Id_Estudiante`),
   CONSTRAINT `Detalle_Tutor_Estudiante_estudiante_FK` FOREIGN KEY (`Id_Estudiante`) REFERENCES `estudiante` (`Id`),
   CONSTRAINT `Detalle_Tutor_Estudiante_tutor_FK` FOREIGN KEY (`Id_Tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +277,7 @@ CREATE TABLE `detalle_tutor_estudiante` (
 
 LOCK TABLES `detalle_tutor_estudiante` WRITE;
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` DISABLE KEYS */;
-INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1,1),(2,2,2,1),(3,2,3,1),(4,1,4,1),(16,2,17,1),(27,2,32,1),(28,18,33,1);
+INSERT INTO `detalle_tutor_estudiante` VALUES (1,1,1,1),(2,2,2,1),(3,2,3,1),(4,1,4,1),(16,2,17,1),(27,2,32,1),(28,18,33,1),(29,1,34,1),(30,18,1,1),(31,18,35,1),(32,19,36,1),(33,18,37,1);
 /*!40000 ALTER TABLE `detalle_tutor_estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +327,7 @@ CREATE TABLE `estudiante` (
   KEY `estudiante_municipio_FK` (`IdMunicipio`),
   CONSTRAINT `estudiante_municipio_FK` FOREIGN KEY (`IdMunicipio`) REFERENCES `municipio` (`IdMunicipio`),
   CONSTRAINT `Estudiante_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +336,7 @@ CREATE TABLE `estudiante` (
 
 LOCK TABLES `estudiante` WRITE;
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-INSERT INTO `estudiante` VALUES (1,'0090091',3,3,1),(2,'10101010',5,3,1),(3,'111212222',6,3,1),(4,'99899889',7,3,1),(17,'asdasdasdasdasdasdada',54,1,1),(18,'adasdasdasd',55,1,1),(21,'adasdasdasdasdadadad',61,1,1),(22,'asdasdsadasdasdasdasd',72,1,1),(23,'asdasdasdasdasdadadas',74,1,1),(24,'sasaasdasdasdasdadasd',76,1,1),(25,'asdsadsadsadsadasdsadasd',78,1,1),(26,'asdasdasdadasdasdsad',80,1,1),(27,'adasdsadsadasdasdadadasdasdasdasdsad',81,1,1),(28,'assadasdadada',82,1,1),(29,'assadasdadada',84,1,1),(30,'assadasdadada',86,1,1),(31,'assadasdadada',88,1,1),(32,'asdadasdasdasdadasdad',91,1,1),(33,'asdasdasdasdasdsaasdas',92,1,1);
+INSERT INTO `estudiante` VALUES (1,'10101010pop',3,3,1),(2,'10101010pop',5,3,1),(3,'111212222',6,3,1),(4,'99899889',7,3,1),(17,'asdasdasdasdasdasdada',54,1,1),(18,'adasdasdasd',55,1,1),(21,'adasdasdasdasdadadad',61,1,1),(22,'asdasdsadasdasdasdasd',72,1,1),(23,'asdasdasdasdasdadadas',74,1,1),(24,'sasaasdasdasdasdadasd',76,1,1),(25,'asdsadsadsadsadasdsadasd',78,1,1),(26,'asdasdasdadasdasdsad',80,1,1),(27,'adasdsadsadasdasdadadasdasdasdasdsad',81,1,1),(28,'assadasdadada',82,1,1),(29,'assadasdadada',84,1,1),(30,'assadasdadada',86,1,1),(31,'assadasdadada',88,1,1),(32,'asdadasdasdasdadasdad',91,1,1),(33,'asdasdasdasdasdsaasdas',92,1,1),(34,'adasdsadasdas121233321',95,1,1),(35,'10101010pop',96,1,1),(36,'998998892',97,1,1),(37,'99899889222',99,1,1);
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -378,8 +379,8 @@ CREATE TABLE `matricula` (
   `id_grado` int NOT NULL,
   `id_turno` int NOT NULL,
   `id_anio_lectivo` int NOT NULL,
-  `qrhash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Edad` tinyint DEFAULT '1',
+  `qrhash` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `Estado` int DEFAULT '1',
   PRIMARY KEY (`Id`),
   KEY `Matricula_estudiante_FK` (`Id_estudiante`),
@@ -392,7 +393,7 @@ CREATE TABLE `matricula` (
   CONSTRAINT `Matricula_grado_FK` FOREIGN KEY (`id_grado`) REFERENCES `grado` (`Id`),
   CONSTRAINT `Matricula_turno_FK` FOREIGN KEY (`id_turno`) REFERENCES `turno` (`Id`),
   CONSTRAINT `Matricula_tutor_FK` FOREIGN KEY (`Id_tutor`) REFERENCES `tutor` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +402,7 @@ CREATE TABLE `matricula` (
 
 LOCK TABLES `matricula` WRITE;
 /*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
-INSERT INTO `matricula` VALUES (1,1,1,1,1,1,NULL,7,1),(2,2,2,3,2,2,NULL,8,1),(3,3,2,3,2,1,NULL,5,1),(8,2,2,1,1,1,NULL,6,1),(9,1,1,2,1,1,NULL,6,1),(10,17,1,1,1,1,NULL,7,1),(13,21,1,1,1,1,'cc7705706c436031b7e009998e9ec24e3efed173dd36f566820abeedec87c86f',9,1),(17,22,14,1,1,1,'81558903f88e485054374f769b688931d17b4fa8280280400daf1e58b944241b',43,1),(18,22,14,2,1,1,'057f30200b2c5460d7807794b0da75f0e01683fb0765f057e8e210eb516c7b83',43,1),(19,22,14,3,1,1,'11d8a375d630fd5e1a8385f331cf4d5339cdc0d711b861f0d0093b1f518347e7',43,1),(20,22,2,3,1,1,'da0c528637531b98202b5a6c7fce0c6bb161c0952432e50507fef3f73e39c045',43,1);
+INSERT INTO `matricula` VALUES (1,1,1,1,1,1,74,'',1),(2,2,2,3,2,2,8,'',1),(3,3,2,3,2,1,5,NULL,1),(8,2,2,1,1,1,6,NULL,1),(9,1,1,2,1,1,6,NULL,1),(10,17,1,1,1,1,7,'',1),(13,21,1,1,1,1,9,'cc7705706c436031b7e009998e9ec24e3efed173dd36f566820abeedec87c86f',1),(17,22,14,1,1,1,43,'81558903f88e485054374f769b688931d17b4fa8280280400daf1e58b944241b',1),(18,22,14,2,1,1,43,'057f30200b2c5460d7807794b0da75f0e01683fb0765f057e8e210eb516c7b83',1),(19,22,14,3,1,1,43,'11d8a375d630fd5e1a8385f331cf4d5339cdc0d711b861f0d0093b1f518347e7',1),(20,22,2,3,1,1,43,'da0c528637531b98202b5a6c7fce0c6bb161c0952432e50507fef3f73e39c045',1),(22,1,18,1,1,1,6,'29a963a91768afe2db6053da185d16d65d7bf7ff601c6c4621fca6c592e8c8cc',1),(23,1,18,2,1,1,122,'79f0a497f08df978d326bbc9167fa170883856ad82bb337ef8b43306879b3e5f',1),(24,1,18,4,1,1,23,'c6851e48fdb2964d1ec4b758a36f23b4ae4021c38658063bf8ce46f66b5de26d',1);
 /*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -524,7 +525,7 @@ CREATE TABLE `tutor` (
   PRIMARY KEY (`Id`),
   KEY `Tutor_usuario_FK` (`Id_Usuario`),
   CONSTRAINT `Tutor_usuario_FK` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -533,7 +534,7 @@ CREATE TABLE `tutor` (
 
 LOCK TABLES `tutor` WRITE;
 /*!40000 ALTER TABLE `tutor` DISABLE KEYS */;
-INSERT INTO `tutor` VALUES (1,'0010010001010N','lic',2,1),(2,'00000000000001','maistro',4,1),(11,'000000000000012222','adadasdas',56,1),(12,'000000000000012222222','adadasdas',58,1),(14,'000000000000012222222ssss','adadasdas',73,1),(15,'0000000000000122','dasdadasdasdsa',75,1),(16,'123jasdsadaoasdaosdod','asdsadasdasd',77,1),(17,'asdsadasdasdasdsadasda','asdsadasdasdasdasd',79,1),(18,'0010708991027N','asdasdasdsadasdas',93,1);
+INSERT INTO `tutor` VALUES (1,'0000000000002N','lic',2,1),(2,'00000000000001','maistro',4,1),(11,'000000000000012222','adadasdas',56,1),(12,'000000000000012222222','adadasdas',58,1),(14,'000000000000012222222ssss','adadasdas',73,1),(15,'0000000000000122','dasdadasdasdsa',75,1),(16,'123jasdsadaoasdaosdod','asdsadasdasd',77,1),(17,'asdsadasdasdasdsadasda','asdsadasdasdasdasd',79,1),(18,'0010708991027N','asdasdasdsadasdas',93,1),(19,'0010708991027K','asdasdasdadasd',98,1);
 /*!40000 ALTER TABLE `tutor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -553,7 +554,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`Id`),
   KEY `usuario_tipo_usuario_FK` (`Id_Tipo_Usuario`),
   CONSTRAINT `usuario_tipo_usuario_FK` FOREIGN KEY (`Id_Tipo_Usuario`) REFERENCES `tipo_usuario` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -562,7 +563,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1,1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2,1),(53,'AndMan24314','$2y$10$15H//ENTiPb0U4mVQLCHbeIAMQ/0lRD9L.2WoFbDvGLL.FiJVsheC',2,1),(54,'VicOrt24753','$2y$10$AvGUyDNArwDV0/rKNT79zeY/lWMgImZZ3uK6lzaUV7EejSExb003S',4,1),(55,'VicOrt54650','$2y$10$RYg9Csd.ocb7ZUVfDFa4jOogU8FwHyhchqQU7ZbGelVhk5UBLAPKe',4,1),(56,'Pepjos54728','$2y$10$Bl37724XtITK1md6hyH5yOm4UrWbn5Bf.sz8ehV57rvaa4Utha3bm',3,1),(57,'cairam54844','$2y$10$ONNLgB0AcR5QuTi5tbYyZu1c8oYuHvxXZEqnqz6mZryIOIelVKap2',4,1),(58,'castul5484','$2y$10$2XR5a1TH9lO32LKtu2ncoeFydU31I7V395WhuAUeXj3UMXcLb5f6q',3,1),(59,'Pepjos31131','$2y$10$3xH.XOXr8hp7bjUS9HSlseuCKz/kdb030VBr/sVDTFugoeMF6Cqgq',2,1),(60,'Pepjos31159','$2y$10$FdTb2/ZbZdge6xaWa/1fweTGKTU/b.8BxL/K7MgUKqSSJgtARE6bK',4,1),(61,'cairam42120','$2y$10$SQ291HnBC9gwS8IOrCObDuGXu9I6fAq2WHY662pqpNYwVCEAl9U2G',4,1),(62,'Juaram42459','$2y$10$p1D/5a9a2d3bGL4s/j897.X4kUIBgNmOhhwbE6HTxvFLwHTyCGGIK',2,1),(63,'Juaram42810','$2y$10$8XbNaoMJ9IJ8QpYLUew/Z.85FDoM1m6acmVBqbubZhHD2tGQSJQwO',2,1),(64,'Juaram43035','$2y$10$6Th6GRmmSAkpoSPmVHlNC.IagjsK6tKoh50GiU46pyyw1WJZjR86m',2,1),(65,'Juaram43132','$2y$10$MhT9wTcQRMrcyVVJWMWa8ecWQFlQ9rnEItA4USkmfAYwqMpkWxSbu',2,1),(66,'43219','$2y$10$ekwdRiKMQTRjewd59MmEsO..iMHzez7jh8lVTBrSyNzGMMX0GWxGq',2,1),(67,'Juaram43354','$2y$10$ociFSnFz.fw9Uy3UH1GgTun9lRMCnXYqknobk0xADccDOUelat0b6',2,1),(68,'43352','$2y$10$YFkzhkVbcjI0k8q.QYg68OBXnTTU.70GOdRUWHPvNPBfawGwhtrCi',2,1),(69,'Juaram43414','$2y$10$mmIvPIjdCeTKZXOEQzSZG.5nesF5Fl9aXTEpcZGYCXXm6OH1whZj.',2,1),(71,'DanPer24772','$2y$10$0MAqT0m7FdzlNWC7QK3kBOuFd64QTm5R5hveZHGjh0zJ93FZ/Fv7S',3,1),(72,'LuiPer2498','$2y$10$EdNB5rZRy32JtBqoMXl2hueUKEtdiDzbR41PVMtDo.IQTS7sbiRIq',4,1),(73,'JuaMar24925','$2y$10$DHoaH9LVeSOaravl041CKezA4IXNx55iZXxglND4n11fdsBuHmhUO',3,1),(74,'LuiPer30968','$2y$10$sm4bU/KII5XHEe0GTNRg0u0JFS1oya.gvM5WJSjtBEO3tK7okNm5q',4,1),(75,'VicOrt30955','$2y$10$FP5mHWBAAHTBzdG59OsDv.6pmKCpC5.36L2to2TapV0Hwb28uqtCK',3,1),(76,'LuiPer33211','$2y$10$mLeZVefS.PiLo62xu9Xd3e/IgQz2IvScoF9tEAgrfjx5YuY0XHFZe',4,1),(77,'VicOrt33264','$2y$10$ELPfPZO7ZMsTYQswjaIhoeTK/6j26shPEVYKP4OMtpIX.exnA4iHG',3,1),(78,'LuiPer33495','$2y$10$sTkfYGZ87WHywBGje5AT4OSXnToCqfIJwcIMnAvsKZn1hTJUhF902',4,1),(79,'asdasd33484','$2y$10$v.iU/BIalQPCfvhSVGLUyu9Zmn4hEnJaLYItd547/Lz.kwMpcwuMa',3,1),(80,'LuiPer35169','$2y$10$JUe46ooH8w8fzfUHPqoyAujOCcIq2rCPGK5JVvRY1i9p.8/Z0Cxfe',4,1),(81,'LuiPer35319','$2y$10$iBZ62DxjSCMeNXzt1nuTB.yo0wEsJxzTGDTBvyWKWaWaqfaarjTW6',4,1),(82,'LuiPer40333','$2y$10$jZivacWrEAdInY5KMELj.eN.7qH7akfF8B2q2yeDB7K8IBwMsuCm6',4,1),(83,'cairam40319','$2y$10$kVYa6v2CK3uKkyNiTYGXbO0i6zl6fG5Z.1e4mYdG9BTI8HF5rcivi',3,1),(84,'LuiPer40392','$2y$10$dyILvVqgcioRFTDlc4xcDu49Yl8.AxQZtWIl3BkmfiBnuLpG0/cK6',4,1),(85,'cairam40368','$2y$10$LjMSUpq3TDYw5XT0A.MQUe.iWpqMQMDv19fl6Fpm6nwMU25yvg0K.',3,1),(86,'LuiPer4030','$2y$10$0UysohYnzwd0CSBGRpyq3e6w/gqhpLyjEnZ2MoJMMR3fC8gL1UMJe',4,1),(87,'cairam40349','$2y$10$JTwkf268Ji.DTcXyrntt/eETcegT2b0TS6jbrTOQNgum09RlbQvAu',3,1),(88,'LuiPer40382','$2y$10$3RUh8.r2m5sPt58cs60KfugXAKHttUnoM.4i23vAcKlhEsNsNwEAO',4,1),(89,'cairam40328','$2y$10$0c7VxjIb526lESdX/WDYNehLzv/8BrFePlu5LrUr3taskzOWZUokm',3,1),(90,'LuiPer40985','$2y$10$CtZ/zTJSm1Kv248.O7WRXedbAJTmoP/VHff5hvsS.qiBjuPzzdWXG',4,1),(91,'LuiPer41673','$2y$10$/oofubbteS/hE0iiw.KSI.hYrsZnLT0WcPFMWKRYj0sxZbY1ZoP2.',4,1),(92,'LuiPer41932','$2y$10$fgTiBJ6v/EdRgEYydpTqG.eHTYaR84uI3ipsl5cVZpY041aTYqt7m',4,1),(93,'cairam41910','$2y$10$GuCvKQjPk7odqZxHVQI/A.lrBLvwti/.u18KdJxvSsg5P7LSE4.7u',3,1);
+INSERT INTO `usuario` VALUES (1,'sa','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',1,1),(2,'jun1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(3,'estu1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(4,'tutor2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',3,1),(5,'estu2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(6,'estu3','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(7,'est4','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',4,1),(8,'doce1','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(9,'doce2','$2y$10$ik5JTYeN1OQlfsn8ZvajJOwFWFmYxJPlLjq/nTxBpiSMLPyNP.V0K',2,1),(31,'VICBER101823','$2y$10$Xktj7fJ.RlrpDNE6LK82meD.np2sYJGQfzkiyW9sZrr24jjBMhvcy',2,1),(53,'AndMan24314','$2y$10$15H//ENTiPb0U4mVQLCHbeIAMQ/0lRD9L.2WoFbDvGLL.FiJVsheC',2,1),(54,'VicOrt24753','$2y$10$AvGUyDNArwDV0/rKNT79zeY/lWMgImZZ3uK6lzaUV7EejSExb003S',4,1),(55,'VicOrt54650','$2y$10$RYg9Csd.ocb7ZUVfDFa4jOogU8FwHyhchqQU7ZbGelVhk5UBLAPKe',4,1),(56,'Pepjos54728','$2y$10$Bl37724XtITK1md6hyH5yOm4UrWbn5Bf.sz8ehV57rvaa4Utha3bm',3,1),(57,'cairam54844','$2y$10$ONNLgB0AcR5QuTi5tbYyZu1c8oYuHvxXZEqnqz6mZryIOIelVKap2',4,1),(58,'castul5484','$2y$10$2XR5a1TH9lO32LKtu2ncoeFydU31I7V395WhuAUeXj3UMXcLb5f6q',3,1),(59,'Pepjos31131','$2y$10$3xH.XOXr8hp7bjUS9HSlseuCKz/kdb030VBr/sVDTFugoeMF6Cqgq',2,1),(60,'Pepjos31159','$2y$10$FdTb2/ZbZdge6xaWa/1fweTGKTU/b.8BxL/K7MgUKqSSJgtARE6bK',4,1),(61,'cairam42120','$2y$10$SQ291HnBC9gwS8IOrCObDuGXu9I6fAq2WHY662pqpNYwVCEAl9U2G',4,1),(62,'Juaram42459','$2y$10$p1D/5a9a2d3bGL4s/j897.X4kUIBgNmOhhwbE6HTxvFLwHTyCGGIK',2,1),(63,'Juaram42810','$2y$10$8XbNaoMJ9IJ8QpYLUew/Z.85FDoM1m6acmVBqbubZhHD2tGQSJQwO',2,1),(64,'Juaram43035','$2y$10$6Th6GRmmSAkpoSPmVHlNC.IagjsK6tKoh50GiU46pyyw1WJZjR86m',2,1),(65,'Juaram43132','$2y$10$MhT9wTcQRMrcyVVJWMWa8ecWQFlQ9rnEItA4USkmfAYwqMpkWxSbu',2,1),(66,'43219','$2y$10$ekwdRiKMQTRjewd59MmEsO..iMHzez7jh8lVTBrSyNzGMMX0GWxGq',2,1),(67,'Juaram43354','$2y$10$ociFSnFz.fw9Uy3UH1GgTun9lRMCnXYqknobk0xADccDOUelat0b6',2,1),(68,'43352','$2y$10$YFkzhkVbcjI0k8q.QYg68OBXnTTU.70GOdRUWHPvNPBfawGwhtrCi',2,1),(69,'Juaram43414','$2y$10$mmIvPIjdCeTKZXOEQzSZG.5nesF5Fl9aXTEpcZGYCXXm6OH1whZj.',2,1),(71,'DanPer24772','$2y$10$0MAqT0m7FdzlNWC7QK3kBOuFd64QTm5R5hveZHGjh0zJ93FZ/Fv7S',3,1),(72,'LuiPer2498','$2y$10$EdNB5rZRy32JtBqoMXl2hueUKEtdiDzbR41PVMtDo.IQTS7sbiRIq',4,1),(73,'JuaMar24925','$2y$10$DHoaH9LVeSOaravl041CKezA4IXNx55iZXxglND4n11fdsBuHmhUO',3,1),(74,'LuiPer30968','$2y$10$sm4bU/KII5XHEe0GTNRg0u0JFS1oya.gvM5WJSjtBEO3tK7okNm5q',4,1),(75,'VicOrt30955','$2y$10$FP5mHWBAAHTBzdG59OsDv.6pmKCpC5.36L2to2TapV0Hwb28uqtCK',3,1),(76,'LuiPer33211','$2y$10$mLeZVefS.PiLo62xu9Xd3e/IgQz2IvScoF9tEAgrfjx5YuY0XHFZe',4,1),(77,'VicOrt33264','$2y$10$ELPfPZO7ZMsTYQswjaIhoeTK/6j26shPEVYKP4OMtpIX.exnA4iHG',3,1),(78,'LuiPer33495','$2y$10$sTkfYGZ87WHywBGje5AT4OSXnToCqfIJwcIMnAvsKZn1hTJUhF902',4,1),(79,'asdasd33484','$2y$10$v.iU/BIalQPCfvhSVGLUyu9Zmn4hEnJaLYItd547/Lz.kwMpcwuMa',3,1),(80,'LuiPer35169','$2y$10$JUe46ooH8w8fzfUHPqoyAujOCcIq2rCPGK5JVvRY1i9p.8/Z0Cxfe',4,1),(81,'LuiPer35319','$2y$10$iBZ62DxjSCMeNXzt1nuTB.yo0wEsJxzTGDTBvyWKWaWaqfaarjTW6',4,1),(82,'LuiPer40333','$2y$10$jZivacWrEAdInY5KMELj.eN.7qH7akfF8B2q2yeDB7K8IBwMsuCm6',4,1),(83,'cairam40319','$2y$10$kVYa6v2CK3uKkyNiTYGXbO0i6zl6fG5Z.1e4mYdG9BTI8HF5rcivi',3,1),(84,'LuiPer40392','$2y$10$dyILvVqgcioRFTDlc4xcDu49Yl8.AxQZtWIl3BkmfiBnuLpG0/cK6',4,1),(85,'cairam40368','$2y$10$LjMSUpq3TDYw5XT0A.MQUe.iWpqMQMDv19fl6Fpm6nwMU25yvg0K.',3,1),(86,'LuiPer4030','$2y$10$0UysohYnzwd0CSBGRpyq3e6w/gqhpLyjEnZ2MoJMMR3fC8gL1UMJe',4,1),(87,'cairam40349','$2y$10$JTwkf268Ji.DTcXyrntt/eETcegT2b0TS6jbrTOQNgum09RlbQvAu',3,1),(88,'LuiPer40382','$2y$10$3RUh8.r2m5sPt58cs60KfugXAKHttUnoM.4i23vAcKlhEsNsNwEAO',4,1),(89,'cairam40328','$2y$10$0c7VxjIb526lESdX/WDYNehLzv/8BrFePlu5LrUr3taskzOWZUokm',3,1),(90,'LuiPer40985','$2y$10$CtZ/zTJSm1Kv248.O7WRXedbAJTmoP/VHff5hvsS.qiBjuPzzdWXG',4,1),(91,'LuiPer41673','$2y$10$/oofubbteS/hE0iiw.KSI.hYrsZnLT0WcPFMWKRYj0sxZbY1ZoP2.',4,1),(92,'LuiPer41932','$2y$10$fgTiBJ6v/EdRgEYydpTqG.eHTYaR84uI3ipsl5cVZpY041aTYqt7m',4,1),(93,'cairam41910','$2y$10$GuCvKQjPk7odqZxHVQI/A.lrBLvwti/.u18KdJxvSsg5P7LSE4.7u',3,1),(94,'14389','$2y$10$JriDoHLStwXg483iZ9WfPeWqDVSJ8tbCxwRjqgP2GWroaYSkKLqUS',4,1),(95,'LuiPer21554','$2y$10$pCQ9nuGuq3SijTH4cH17QOsCGVyNHBApC370tgAEa2PTBcCIv9inO',4,1),(96,'LuiPer72033','$2y$10$peOUZ9GFlpjlcBCB5HKGT.zV8oCBfgX3TJ/0WAz.nsBmlre7.hSNS',4,1),(97,'LuiPer72145','$2y$10$LnkwmJ5IBrqJEsCirpFO6eQY87FXplJeMHOyoDXOPadtiO3Irg8Oa',4,1),(98,'LuiPer72185','$2y$10$rfNKHtiz7v1gORzhVTlbdemUXcsSvPvnH5shbPKmnuOGgjNvPovrq',3,1),(99,'LuiPer7241','$2y$10$Q0HAGG11uzA4WZW2DMpzr.jNo4rFi5YliUjvwppmq0ej7eMk99YV6',4,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -641,7 +642,9 @@ begin
 	dag.id_grado ,
 	grd.Nombre as Grado_Nombre,
 	dag.id_turno ,
-	turn.Nombre as Turno_Nombre
+	turn.Nombre as Turno_Nombre,
+	dag.Id_anio_lectivo ,
+	anl.anio as AnioLectivo_Nombre
 	from
 	detalle_grado_asignaturas as dga 
 	inner join
@@ -656,6 +659,8 @@ begin
 	docente as doc on doc.Id = dga.Id_docente 
 	inner join 
 	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario 
+	inner join 
+	anio_lectivo as anl on anl.Id = dag.Id_anio_lectivo 
 	where dga.Estado = 1
 ;
 END ;;
@@ -804,15 +809,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Docentes`()
 begin
 	select 
 	doc.Id,
-	doc.Cod_docente,
+	doc.Cod_docente,
+	dp.Id as Id_datos_personales,
 	dp.Nombres,
 	dp.Apellidos,
+	dp.Direccion,
+	dp.Telefono,
+	dp.Id_sexo,
 	us.usser
-	from docente as doc
+	from
+	docente as doc
 	inner join
 	datos_personales as dp on dp.Id_Usuario = doc.Id_Usuario
 	inner join 
-	usuario as us on us.Id = doc.Id_Usuario and doc.Estado = 1
+	usuario as us on us.Id = doc.Id_Usuario
+	where doc.Estado = 1
 	;
 END ;;
 DELIMITER ;
@@ -833,38 +844,41 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Get_Estudiantes`()
 begin
 	
-select
-	est.Id as Id,
-	est.Cod_estudiante as Cod_estudiante,
-	est.Id_Usuario as Id_Usuario,
-	est.IdMunicipio as Id_Municipio,
-	dp_estu.Nombres as Nombres,
-	dp_estu.Apellidos as Apellidos,
-	dp_estu.Id_sexo as Id_sexo,
-
-
-	dt_tutor.Id_Tutor as Id_tutor,
-	dp_tutor.Nombres as Tutor_Nombres,
+select
+	est.Id as Id,
+	est.Cod_estudiante as Cod_estudiante,
+	est.Id_Usuario as Id_Usuario,
+	est.IdMunicipio as Id_Municipio,
+	dp_estu.Id as Id_datos_personales,
+	dp_estu.Nombres as Nombres,
+	dp_estu.Apellidos as Apellidos,
+	dp_estu.Id_sexo as Id_sexo,
+	dp_estu.Telefono,
+	dp_estu.Direccion,
+	dt_tutor.Id_Tutor as Id_tutor,
+	dp_tutor.Nombres as Tutor_Nombres,
 	dp_tutor.Apellidos as Tutor_Apellidos,
 	uss.usser as usser,
-	sex.Nombre as Id_sexo_nombre
-		
-from 
-	estudiante as est
-inner join 
-	datos_personales as dp_estu on dp_estu.Id_Usuario = est.Id_Usuario
-inner join 
-	detalle_tutor_estudiante  as dt_tutor on dt_tutor.Id_Estudiante  = est.Id
-inner join 
-	tutor  as tut on tut.Id  = dt_tutor.Id_Tutor 
-inner join 
-	datos_personales  as dp_tutor on dp_tutor.Id_Usuario  = tut.Id_Usuario  
- inner join 
- 	usuario as uss on uss.Id = est.Id_Usuario 
-
-
-inner join 
+	sex.Nombre as Id_sexo_nombre,
+	dep.IdDepartamento as IdDepartamento
+from 
+	estudiante as est
+inner join 
+	datos_personales as dp_estu on dp_estu.Id_Usuario = est.Id_Usuario
+inner join 
+	detalle_tutor_estudiante  as dt_tutor on dt_tutor.Id_Estudiante  = est.Id
+inner join 
+	tutor  as tut on tut.Id  = dt_tutor.Id_Tutor 
+inner join 
+	datos_personales  as dp_tutor on dp_tutor.Id_Usuario  = tut.Id_Usuario  
+ inner join 
+ 	usuario as uss on uss.Id = est.Id_Usuario 
+inner join 
 	sexo as sex on sex.Id = dp_estu.Id_sexo
+inner join 
+	municipio as muni on muni.IdMunicipio = est.IdMunicipio 
+inner join 
+	departamento as dep on dep.IdDepartamento = muni.IdDepartamento 
 where 
 est.Estado = 1
 order by est.Id asc 
@@ -957,12 +971,23 @@ begin
 	tur.Nombre as Id_turno_nombre,
 	mat.id_anio_lectivo,
 	an.anio as Id_anio_lectivo_anio,
-	est.Cod_estudiante, 
-	tut.Cedula,
-	dp_estu.Nombres as Nombres_estudiante,
-	dp_estu.Apellidos as Apellidos_estudiante,
+	est.Cod_estudiante,
+	est.IdMunicipio,
+	depart.IdDepartamento,
+	tut.Cedula,
+	tut.Ocupacion,
+	dp_estu.Id as Id_datos_personales_estudiante,
+	dp_estu.Nombres as Nombres_estudiante,
+	dp_estu.Apellidos as Apellidos_estudiante,
+	dp_estu.Telefono as Telefono_estudiante,
+	dp_estu.Direccion as Direccion_estudiante,
+	dp_estu.Id_sexo as Id_sexo_estudiante,
+	dp_tut.Id as Id_datos_personales_tutor,
 	dp_tut.Nombres as Nombres_tutor,
-	dp_tut.Apellidos as Apellidos_tutor,
+	dp_tut.Apellidos as Apellidos_tutor,
+	dp_tut.Telefono as Telefono_tutor,
+	dp_tut.Direccion as Direccion_tutor,
+	dp_tut.Id_sexo as Id_sexo_tutor,
 	mat.Estado
 		
 	from 
@@ -981,6 +1006,10 @@ begin
 	turno  as tur on tur.Id  = mat.id_turno 
 	inner join
 	anio_lectivo  as an on an.Id  = mat.id_anio_lectivo
+	inner  join 
+	municipio  as mun on mun.IdMunicipio = est.IdMunicipio 
+	inner join 
+	departamento as depart on depart.IdDepartamento = mun.IdDepartamento 
 	where 
 	mat.Estado = 1 order by mat.Id asc 
 
@@ -1183,4 +1212,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-20  0:08:45
+-- Dump completed on 2024-06-22 19:06:16

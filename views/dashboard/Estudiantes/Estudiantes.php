@@ -74,7 +74,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="Telefono" class="form-label">Telefono</label>
-                        <input type="number" class="form-control" name="Telefono" id="Telefono">
+                        <input type="number" class="form-control checkTelefono" name="Telefono" id="Telefono">
                     </div>
                     <div class="mb-3">
                         <label for="Direccion" class="form-label">Dirección</label>
@@ -215,7 +215,7 @@
 
 
 
-////////////// Modal de matriculas del estudiante
+
 
 <!-- Modal -->
 <div class="modal fade" id="modalMatriculasEstudiante" tabindex="-1" aria-labelledby="modalMatriculasEstudiante" aria-hidden="true">

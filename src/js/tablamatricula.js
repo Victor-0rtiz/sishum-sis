@@ -509,6 +509,22 @@
                         return;
     
                     }
+
+                    if (response.alert) {
+                        await Swal.fire({
+                            icon: "warning",
+                            html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.alert}</span>`,
+                            toast: true,
+                            position: 'bottom-end',
+                            iconColor: 'yellow',
+                            timer: 1500,
+                            padding: "2rem",
+                            background: '#F6FBC2',
+                            showConfirmButton: false,
+                        });
+                        return;
+
+                    }
     
     
                 },

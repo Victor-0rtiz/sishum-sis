@@ -287,7 +287,7 @@
                     </div>
                     <div class='mb-3'>
                         <label for='Telefono' class='form-label'>Telefono</label>
-                        <input type='number' min="8" max="9" class='form-control' name='Telefono' id='Telefono'>
+                        <input type='number' min="8" max="9" class='form-control checkTelefono' name='Telefono' id='Telefono'>
                     </div>
                     <div class='mb-3'>
                         <label for='Cedula' class='form-label'>Cédula</label>
@@ -361,7 +361,7 @@
 
                 const regexTelefonos = /^\d{8,11}$/;
                 const regexCedula = /^\d{13}[A-Za-z]$/;
-                const inputTelefonos = $('input[name="Telefono"]');
+                const inputTelefonos = $('.checkTelefono');
                 const inputCedulas = $('input[name="Cedula"]');
                 let datavalid = true;
                 inputTelefonos.each(async function () {
@@ -637,6 +637,22 @@
                             });
                             return;
 
+                        }
+
+                        if (response.alert) {
+                            await Swal.fire({
+                                icon: "warning",
+                                html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.alert}</span>`,
+                                toast: true,
+                                position: 'bottom-end',
+                                iconColor: 'yellow',
+                                timer: 1500,
+                                padding: "2rem",
+                                background: '#F6FBC2',
+                                showConfirmButton: false,
+                            });
+                            return;
+    
                         }
 
 

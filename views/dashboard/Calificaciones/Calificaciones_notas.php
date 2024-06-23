@@ -98,7 +98,7 @@
                         <form id="FormDataNotasEdit">
                             <div class="mb-3">
                                 <label for="estudiante" class="form-label">Estudiante</label>
-                                <select class="form-select" name="id_matricula" id="estudianteEdit">
+                                <select class="form-select" name="id_matricula" id="estudianteEdit" readonly disabled>
                                 </select>
                             </div>
                             <div class="mb-3">

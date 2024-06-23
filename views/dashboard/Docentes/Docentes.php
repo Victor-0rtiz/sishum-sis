@@ -106,6 +106,73 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Editar Docente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <h3 class="fs-2">Información y Datos Personales del Docente</h3>
+
+
+                </div>
+
+
+                <form id="formAddDatosPersonalesEdit">
+                    <div class="mb-3">
+                        <label for="nombresUsser" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="Nombres" id="nombresUsserEdit">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidosUsser" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="Apellidos" id="apellidosUsserEdit">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control checkTelefono" name="Telefono" id="TelefonoEdit">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Direccion" class="form-label">Dirección</label>
+                        <textarea name="Direccion" id="DireccionEdit" class="form-control"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-select" name="Id_sexo" id="sexoEdit">
+                        </select>
+                    </div>
+
+                    <input type="number"  name="Id" id="Id_dpEdit" hidden>
+
+
+
+
+                </form>
+
+                <form id="formDocenteEdit">
+                    <div class="mb-3">
+                        <label for="agregarCodDocente" class="form-label">Código Docente</label>
+                        <input type="text" class="form-control" name="Cod_docente" id="CodDocenteEdit">
+                    </div>
+
+                    <input type="number"  name="Id" id="Id_DocEdit" hidden>
+
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+                </form>
+              
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $script = '
  
     <script src="../build/js/tabladocentes.js"></script>

@@ -56,7 +56,7 @@ class DocentesController
         $nwuser = new Usuario(["usser" => $ussername,  "Id_Tipo_Usuario" => 2]);
 
         $nwuser->password = password_hash($nwuser->usser, PASSWORD_BCRYPT);
-        
+
 
 
         $idNewUser = $nwuser->guardar();
@@ -82,14 +82,14 @@ class DocentesController
         $resp2 =  $dpDocente->guardar();
 
         if (isset($resp1["Id"]) && isset($resp2["Id"])) {
-            echo json_encode(["resp"=>"Se guardo correctamente el docente", "act"=>true]);
+            echo json_encode(["resp" => "Se guardo correctamente el docente", "act" => true]);
             return;
         }
-        if (isset($resp1["Id"]) ) {
+        if (isset($resp1["Id"])) {
             echo json_encode("Se guardo correctamente solo  el docente");
             return;
         }
-        if (isset($resp2["Id"]) ) {
+        if (isset($resp2["Id"])) {
             echo json_encode("Se guardo correctamente solo los datos personales ");
             return;
         }
@@ -114,17 +114,66 @@ class DocentesController
 
             $Docente =  Docente::find($_POST["Id"]);
 
-            
+
             $Docente->Estado = 0;
-          
+
 
             $resp = $Docente->guardar();
-            
+
             echo json_encode(["exito" => $resp]);
             return;
         }
 
         echo json_encode(['respuesta' => true]);
+        return;
+    }
+
+
+
+    public static function editDocente(Router $router)
+    {
+        if (!is_auth()) {
+            header('Location: /');
+            return;
+        }
+     
+
+        $docenteEdit = Docente::find($_POST['docente']['Id']);
+        $docenteData = Docente::find($_POST['docente']['Id']);
+        $docenteEdit->sincronizar($_POST['docente']);
+
+        if ($docenteEdit != $docenteData) {
+            $resultDoce =   Docente::whereArray([
+                'Cod_docente',  $_POST['docente']['Cod_docente'],
+            ]);
+
+
+            if ($resultDoce) {
+                echo json_encode(["alert" => "El Código ya le pertenece a otro docente, verifique los datos"]);
+                return;
+            }
+        }
+
+
+        $docenteDPEdit = DatosPersonales::find($_POST['datos_personales']['Id']);
+        $docenteDPData = DatosPersonales::find($_POST['datos_personales']['Id']);
+        $docenteDPEdit->sincronizar($_POST['datos_personales']);
+
+
+        $docenteEdit->guardar();
+        $respuesta =  $docenteDPEdit->guardar();
+
+        if ($respuesta) {
+            echo json_encode(["exito" => "Se actualizaron correctamente los datos"]);
+                return;
+        }
+
+
+
+
+
+
+        echo json_encode($_POST);
         return;
     }
 }
