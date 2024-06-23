@@ -25,6 +25,7 @@
                     { data: 'Nota' },
                     { data: 'Nota_2' },
                     { data: 'Nota_3' },
+                    { data: 'Nota_4' },
                     {
                         data: null,
                         render: function (data, type, row) {
@@ -62,6 +63,7 @@
                 $('#NotaEdit').val(dataNotas.Nota);
                 $('#Nota_2Edit').val(dataNotas.Nota_2);
                 $('#Nota_3Edit').val(dataNotas.Nota_3);
+                $('#Nota_4Edit').val(dataNotas.Nota_4);
             });
 
 
@@ -197,6 +199,7 @@
                     if (response.exito) {
                         await cargarLista()
                         $('#asignarNotasMat').modal('hide');
+                        $("#FormDataNotas")[0].reset();
                         await Swal.fire({
                             icon: "success",
                             html: `<span style="font-size: 1.5rem; font-weight: 900;">${response.exito}</span>`,

@@ -406,7 +406,8 @@
                     if (response.exito) {
                         await cargarLista2();
                         await cargarLista();
-                        
+
+                        $("#formAsigAnioLec")[0].reset();
                         $('#agregarAsignaturaGradoModal').modal('hide');
                         await Swal.fire({
                             icon: "success",

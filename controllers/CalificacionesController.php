@@ -298,13 +298,14 @@ class CalificacionesController
 
             $detalle = DetalleNotaAsignatura::whereArray(['id_matricula' => $_POST['id_matricula'], 'id_detalle_grado_asignatura' => $_POST['id_detalle_grado_asignatura']]);
 
-            // echo json_encode($detalle);
-            // return;
+           
             if ($detalle) {
 
                 echo json_encode(["alert" => "El registro existe, verifique los datos"]);
                 return;
             }
+
+        
 
             $notaNew = new DetalleNotaAsignatura($_POST);
 

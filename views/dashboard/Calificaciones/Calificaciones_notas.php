@@ -26,6 +26,7 @@
                                 <th scope="col">Primer Corte</th>
                                 <th scope="col">Segundo Corte</th>
                                 <th scope="col">Tercer Corte</th>
+                                <th scope="col">Cuarto Corte</th>
                                
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -68,6 +69,10 @@
                             <div class="mb-3">
                                 <label for="Nota" class="form-label">Nota Tercera Evaluación</label>
                                 <input type="number" class="form-control" name="Nota_3" class="Nota" id="Nota_3">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Nota" class="form-label">Nota Tercera Evaluación</label>
+                                <input type="number" class="form-control" name="Nota_4" class="Nota" id="Nota_4">
                             </div>
                             
                         </form>
@@ -112,6 +117,10 @@
                             <div class="mb-3">
                                 <label for="Nota" class="form-label">Nota Tercera Evaluación</label>
                                 <input type="number" class="form-control" name="Nota_3" class="Nota" id="Nota_3Edit">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Nota" class="form-label">Nota Tercera Evaluación</label>
+                                <input type="number" class="form-control" name="Nota_4" class="Nota" id="Nota_4Edit">
                             </div>
                             <input type="number" name="Id" id="IdEdit" hidden>
                         </form>

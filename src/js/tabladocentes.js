@@ -353,6 +353,8 @@
 
                 if (response.exito) {
                     await actualizarLista();
+                    $("#formAddDatosPersonales")[0].reset();
+                    $("#formDocente")[0].reset()
                     $('#agregarModal').modal('hide');
                     Swal.fire({
                         icon: "success",

@@ -178,7 +178,8 @@
 
 
                     if (response.exito) {
-                        await cargarLista()
+                        await cargarLista();
+                        $("#FormAnioGradoTurno")[0].reset();
                         $('#asignarTurnoGrado').modal('hide');
                         await Swal.fire({
                             icon: "success",
